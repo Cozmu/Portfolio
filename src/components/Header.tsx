@@ -1,15 +1,12 @@
-import { type ReactElement } from 'react'
-import { NavLink } from 'react-router-dom'
+import { type ReactElement } from 'react';
+import { NavLink } from 'react-router-dom';
 
-function Header (): ReactElement {
+function Header(): ReactElement {
   return (
     <header>
-      <NavLink
-        to="/sobre">
-Sobre
-      </NavLink>
+      <NavLink to='/sobre'>Sobre</NavLink>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
