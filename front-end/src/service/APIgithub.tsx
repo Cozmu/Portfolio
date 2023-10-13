@@ -28,4 +28,5 @@ const request = async (): Promise<Array<{ data: object }>> => {
   );
 };
 
+export { projects };
 export default request;

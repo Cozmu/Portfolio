@@ -10,6 +10,7 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
     const result = await request();
     return result;
   };
+
   useEffect(() => {
     serviceAPI()
       .then((x) => {
