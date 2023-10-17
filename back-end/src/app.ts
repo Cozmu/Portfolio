@@ -12,9 +12,14 @@ class App {
   }
 
   private config (): void {
-    const accessControl: express.RequestHandler = (_req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*')
-      res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH')
+    const accessControl: express.RequestHandler = (req, res, next) => {
+      const allowedOrigins = ['http://localhost:5173/', 'http://example2.com']
+
+      const origin = req.headers.origin ?? '' // se nao vir nada vai ser tornar uma string vazia
+      if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin)
+      }
+      res.header('Access-Control-Allow-Methods', 'GET')
       res.header('Access-Control-Allow-Headers', '*')
       next()
     }
