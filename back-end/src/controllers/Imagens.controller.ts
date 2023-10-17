@@ -1,8 +1,9 @@
-import { type Request, type Response, type NextFunction } from 'express'
+import { type Request, type Response } from 'express'
 import path from 'path'
+import type IImagensController from './interfaces/IImagens.controller'
 
-class ImagensController {
-  getImagens (req: Request, res: Response, next: NextFunction): void {
+class ImagensController implements IImagensController {
+  getImagens (req: Request, res: Response): void {
     const { img } = req.params
     res.sendFile(path.resolve(`src/imgs/${img}.png`))
   }
