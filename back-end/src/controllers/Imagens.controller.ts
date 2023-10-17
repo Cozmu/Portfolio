@@ -1,11 +1,12 @@
 import { type Request, type Response } from 'express'
-import path from 'path'
 import type IImagensController from './interfaces/IImagens.controller'
+import obterArquivosPorNome from '../services/Imagens.service'
 
 class ImagensController implements IImagensController {
   getImagens (req: Request, res: Response): void {
-    const { img } = req.params
-    res.sendFile(path.resolve(`src/imgs/${img}.png`))
+    const { imgName } = req.params
+    const getPath = obterArquivosPorNome(imgName)
+    getPath.forEach((path) => { res.sendFile(path) }) // fix
   }
 }
 

@@ -5,6 +5,6 @@ const imagensController = new ImagensController()
 
 const router = Router()
 
-router.get('/:img', imagensController.getImagens)
+router.get('/:imgName', imagensController.getImagens)
 
 export default router
