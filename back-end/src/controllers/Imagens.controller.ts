@@ -4,7 +4,7 @@ import path from 'path'
 class ImagensController {
   getImagens (req: Request, res: Response, next: NextFunction): void {
     const { img } = req.params
-    res.sendFile(path.resolve(`imgs/${img}.png`))
+    res.sendFile(path.resolve(`src/imgs/${img}.png`))
   }
 }
 
