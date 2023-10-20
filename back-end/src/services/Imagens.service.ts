@@ -23,4 +23,20 @@ const obterArquivosPorNome = (nomeDoArquivo: string): string[] => {
   }
 }
 
-export default obterArquivosPorNome
+interface IgetPNGFilesDirectory {
+  files: string[]
+  directory: string
+}
+
+const GetPNGFilesDirectory = (fileName: string): IgetPNGFilesDirectory => {
+  const dirname = path.dirname(new URL(import.meta.url).pathname)
+  const directory = path.join(dirname, '../imgs')
+  const regex = new RegExp(`^${fileName}(-\\d+)?\\.png$`, 'i')
+
+  const files = fs.readdirSync(directory).filter(arquivo => regex.test(arquivo))
+
+  return { files, directory }
+}
+
+export { obterArquivosPorNome }
+export default GetPNGFilesDirectory

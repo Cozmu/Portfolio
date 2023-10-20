@@ -1,12 +1,24 @@
 import { type Request, type Response } from 'express'
 import type IImagensController from './interfaces/IImagens.controller'
-import obterArquivosPorNome from '../services/Imagens.service'
+import obterArquivosPNGDoDiretorio from '../services/Imagens.service'
+import AdmZip from 'adm-zip'
+import path from 'path'
 
 class ImagensController implements IImagensController {
-  getImagens (req: Request, res: Response): void {
+  getAllImagens (req: Request, res: Response): void {
     const { imgName } = req.params
-    const getPath = obterArquivosPorNome(imgName)
-    getPath.forEach((path) => { res.sendFile(path) }) // fix
+    const zip = new AdmZip()
+
+    const { files, directory } = obterArquivosPNGDoDiretorio(imgName)
+    files.forEach(file => {
+      const filePath = path.join(directory, file)
+      zip.addLocalFile(filePath)
+    })
+
+    const zipBuffer = zip.toBuffer()
+    res.set('Content-Disposition', 'attachment; filename=arquivos.zip')
+    res.set('Content-Type', 'application/zip')
+    res.status(200).send(zipBuffer)
   }
 }
 
