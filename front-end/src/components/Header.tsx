@@ -1,6 +1,5 @@
 import { type ReactElement, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import unzipper from 'unzipper';
 
 function Header(): ReactElement {
   const [img, setImg] = useState<string[]>();
@@ -8,21 +7,6 @@ function Header(): ReactElement {
   // fix
   const response = async (): Promise<string[]> => {
     const response = await fetch('http://localhost:3001/imagens/Delivery-App');
-    const blob = await response.blob();
-    const arrayBuffer = await blob.arrayBuffer();
-    const directory = await unzipper.Open.buffer(arrayBuffer);
-    const listaDeArquivos = Object.keys(directory.files)
-      .map((nomeDoArquivo) => {
-        const arquivo = directory.files[nomeDoArquivo];
-        if (arquivo.type === 'File') {
-          const blob = new Blob([arquivo._fs.readFileSync()]);
-          const urlDoArquivo = URL.createObjectURL(blob);
-          return urlDoArquivo;
-        }
-        return '';
-      })
-      .filter(Boolean);
-    return listaDeArquivos;
   };
 
   useEffect(() => {
