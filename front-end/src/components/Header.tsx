@@ -22,28 +22,21 @@ function Header(): ReactElement {
     const zipData = await fetchZipFile(
       'http://localhost:3001/imagens/Delivery-App',
     );
-
-    // Cria uma instância do JSZip e carrega o arquivo ZIP
     const zip = await JSZip.loadAsync(zipData);
-
-    // Obtém uma lista dos nomes dos arquivos no arquivo ZIP
     const fileNames = Object.keys(zip.files);
 
-    // Filtra apenas os arquivos de imagem (por exemplo, .jpg, .png, .jpeg)
-    const imageFiles = fileNames.filter((fileName) =>
-      /\.(jpg|jpeg|png)$/i.test(fileName),
-    );
+    // const imageFiles = fileNames.filter((fileName) =>
+    //   /\.(jpg|jpeg|png)$/i.test(fileName),
+    // );
 
-    // Obtém URLs das imagens do arquivo ZIP
     const imageUrls = await Promise.all(
-      imageFiles.map(async (fileName) => {
+      fileNames.map(async (fileName) => {
         const file = zip.files[fileName];
         const blob = await file.async('blob');
         return URL.createObjectURL(blob);
       }),
     );
 
-    // console.log('URLs das imagens:', imageUrls);
     return imageUrls;
   };
 
