@@ -1,5 +1,5 @@
 import express from 'express'
-import ImagensRouter from './routers/Images.router'
+import ImagesRouter from './routers/Images.router'
 
 class App {
   public app: express.Express
@@ -29,7 +29,7 @@ class App {
   }
 
   private Routers (): void {
-    this.app.use('/imagens', ImagensRouter)
+    this.app.use('/imagens', ImagesRouter)
   }
 
   public start (PORT: string | number): void {

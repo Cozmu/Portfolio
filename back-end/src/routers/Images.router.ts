@@ -1,10 +1,11 @@
 import { Router } from 'express'
-import ImagensController from '../controllers/Imagens.controller'
+import ImagesController from '../controllers/Images.controller'
 
-const imagensController = new ImagensController()
+const imagesController = new ImagesController()
 
 const router = Router()
 
-router.get('/:imgName', imagensController.getAllImagens)
+router.get('/project-details/:imgName', imagesController.getProjectDetailsImages)
+router.get('/projects/:imgsName', imagesController.getProjectsImages)
 
 export default router
