@@ -21,9 +21,8 @@ class ImagesController implements IImagesController {
     res.status(200).send(zipBuffer)
   }
 
-  getProjectsImages (req: Request, res: Response): void { // fix
-    const { imgsName } = req.params
-    res.status(200).sendFile(path.resolve(`src/imgs/${imgsName}.png`))
+  getProjectsImages (req: Request, res: Response): void {
+    // fazer
   }
 }
 

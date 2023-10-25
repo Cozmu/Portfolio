@@ -29,7 +29,7 @@ class App {
   }
 
   private Routers (): void {
-    this.app.use('/imagens', ImagesRouter)
+    this.app.use('/images', ImagesRouter)
   }
 
   public start (PORT: string | number): void {

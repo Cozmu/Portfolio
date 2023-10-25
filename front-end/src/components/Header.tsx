@@ -20,7 +20,7 @@ function Header(): ReactElement {
 
   const unzipFile = async (): Promise<string[]> => {
     const zipData = await fetchZipFile(
-      'http://localhost:3001/imagens/project-details/Recipes-App',
+      'http://localhost:3001/images/project-details/Recipes-App',
     );
     const zip = await JSZip.loadAsync(zipData);
     const fileNames = Object.keys(zip.files);

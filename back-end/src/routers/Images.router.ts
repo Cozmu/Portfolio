@@ -6,6 +6,6 @@ const imagesController = new ImagesController()
 const router = Router()
 
 router.get('/project-details/:imgName', imagesController.getProjectDetailsImages)
-router.get('/projects/:imgsName', imagesController.getProjectsImages)
+router.get('/projects', imagesController.getProjectsImages)
 
 export default router
