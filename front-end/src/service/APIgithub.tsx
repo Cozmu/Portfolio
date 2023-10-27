@@ -1,4 +1,3 @@
-// import { type OctokitResponse } from '@octokit/types';
 import { Octokit } from 'octokit';
 
 const projects: string[] = [
