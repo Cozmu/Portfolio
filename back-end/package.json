@@ -2,7 +2,7 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/server",
+  "main": "./dist/server.js",
   "type": "module",
   "scripts": {
     "build": "npx -y tsc",
