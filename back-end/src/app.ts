@@ -13,7 +13,10 @@ class App {
 
   private config (): void {
     const accessControl: express.RequestHandler = (req, res, next) => {
-      const allowedOrigins = ['http://localhost:5173', 'http://example2.com']
+      const allowedOrigins = [
+        'http://localhost:5173',
+        'https://portfolio-nine-murex-65.vercel.app/'
+      ]
 
       const origin = req.headers.origin ?? '' // se nao vir nada vai ser tornar uma string vazia
       if (allowedOrigins.includes(origin)) {
