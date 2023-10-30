@@ -2,11 +2,11 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/server.js",
+  "main": "./dist/server.ts",
   "type": "module",
   "scripts": {
-    "build": "npx -y tsc",
     "dev": "nodemon --watch \"./src/**\" --exec ts-node ./src/server.ts",
+    "build": "npx -y tsc",
     "prestart": "npm run build",
     "start": "node .",
     "vercel-build": "echo FUNCIONA"
