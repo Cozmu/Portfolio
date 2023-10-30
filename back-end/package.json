@@ -2,14 +2,13 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/server.ts",
+  "main": "./dist/server",
   "type": "module",
   "scripts": {
     "dev": "nodemon --watch \"./src/**\" --exec ts-node ./src/server.ts",
-    "build": "npx -y tsc",
+    "build": "tsc",
     "prestart": "npm run build",
-    "start": "node .",
-    "vercel-build": "echo FUNCIONA"
+    "start": "node ."
   },
   "keywords": [],
   "author": "",
