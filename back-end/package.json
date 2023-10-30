@@ -9,7 +9,7 @@
     "dev": "nodemon --watch \"./src/**\" --exec ts-node ./src/server.ts",
     "prestart": "npm run build",
     "start": "node .",
-    "vercel-build": "npm start"
+    "vercel-build": "echo DEU CERTO"
   },
   "keywords": [],
   "author": "",

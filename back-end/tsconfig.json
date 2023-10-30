@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
+    "api/*.ts",
     "src/**/*.ts"
   ],
   "exclude": [
