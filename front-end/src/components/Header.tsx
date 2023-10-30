@@ -3,8 +3,13 @@ import { NavLink } from 'react-router-dom';
 import JSZip from 'jszip';
 import { getBinaryContent } from 'jszip-utils';
 
+interface IunzipFile {
+  url: string;
+  fileName: string;
+}
+
 function Header(): ReactElement {
-  const [img, setImg] = useState<string[]>();
+  const [img, setImg] = useState<IunzipFile[]>();
 
   const fetchZipFile = async (url: string): Promise<ArrayBuffer> => {
     return await new Promise<ArrayBuffer>((resolve, reject) => {
@@ -18,8 +23,10 @@ function Header(): ReactElement {
     });
   };
 
-  const unzipFile = async (): Promise<string[]> => {
-    const zipData = await fetchZipFile('http://localhost:3001/images/projects');
+  const unzipFile = async (): Promise<IunzipFile[]> => {
+    const zipData = await fetchZipFile(
+      'http://localhost:3001/images/project-details/Delivery-App',
+    );
     const zip = await JSZip.loadAsync(zipData);
     const fileNames = Object.keys(zip.files);
 
@@ -27,7 +34,9 @@ function Header(): ReactElement {
       fileNames.map(async (fileName) => {
         const file = zip.files[fileName];
         const blob = await file.async('blob');
-        return URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
+
+        return { fileName, url };
       }),
     );
 
@@ -46,11 +55,11 @@ function Header(): ReactElement {
 
   return (
     <header>
-      {/* {img?.map((urlDoArquivo, index) => (
+      {img?.map((urlDoArquivo, index) => (
         <div key={index}>
-          <img src={urlDoArquivo} alt='' width={200} />
+          <img src={urlDoArquivo.url} alt='' width={200} />
         </div>
-      ))} */}
+      ))}
       <nav>
         <NavLink to='/'>Sobre</NavLink>
         <NavLink to='/projetos'>Projetos</NavLink>
