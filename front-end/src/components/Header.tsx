@@ -46,11 +46,11 @@ function Header(): ReactElement {
 
   return (
     <header>
-      {img?.map((urlDoArquivo, index) => (
+      {/* {img?.map((urlDoArquivo, index) => (
         <div key={index}>
           <img src={urlDoArquivo} alt='' width={200} />
         </div>
-      ))}
+      ))} */}
       <nav>
         <NavLink to='/'>Sobre</NavLink>
         <NavLink to='/projetos'>Projetos</NavLink>
