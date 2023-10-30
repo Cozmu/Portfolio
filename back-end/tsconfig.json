@@ -8,14 +8,14 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "outDir": "./dist",
-    "rootDir":".",
+    "rootDir":"./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "./api/**/*.ts",
+    // "./api/**/*.ts",
     "./src/**/*.ts"
   ],
   "exclude": [
