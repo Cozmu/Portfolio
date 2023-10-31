@@ -1,5 +1,5 @@
 import express from 'express'
-import ImagesRouter from './routers/Images.router'
+import ImagesRouter from './routers/Images.router.js'
 import 'dotenv/config'
 
 class App {

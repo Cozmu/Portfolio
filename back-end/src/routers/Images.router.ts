@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import ImagesController from '../controllers/Images.controller'
+import ImagesController from '../controllers/Images.controller.js'
 
 const imagesController = new ImagesController()
 

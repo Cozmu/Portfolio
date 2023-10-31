@@ -1,6 +1,6 @@
 import { type Request, type Response } from 'express'
-import type IImagesController from './interfaces/IImages.controller'
-import getPNGFilesDirectory from '../services/Imagens.service'
+import type IImagesController from './interfaces/IImages.controller.js'
+import getPNGFilesDirectory from '../services/Imagens.service.js'
 import AdmZip from 'adm-zip'
 import path from 'path'
 

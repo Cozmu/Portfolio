@@ -4,8 +4,8 @@
     "experimentalSpecifierResolution": "node"
   },
   "compilerOptions": {
-    "target": "ES2016",
-    "module": "ESNext",
+    "target": "ESNext",
+    "module": "NodeNext",
     "lib": ["ESNext", "DOM"],
     "outDir": "./dist",
     "rootDir":"./src",
@@ -15,7 +15,6 @@
     "forceConsistentCasingInFileNames": true,
   },
   "include": [
-    // "./api/**/*.ts",
     "./src/**/*.ts"
   ],
   "exclude": [
