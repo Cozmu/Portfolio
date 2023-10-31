@@ -25,7 +25,8 @@ function Header(): ReactElement {
 
   const unzipFile = async (): Promise<IunzipFile[]> => {
     const zipData = await fetchZipFile(
-      'http://localhost:3001/images/project-details/Delivery-App',
+      // eslint-disable-next-line max-len
+      'https://ap-portfolio-uej5.onrender.com/images/project-details/Delivery-App',
     );
     const zip = await JSZip.loadAsync(zipData);
     const fileNames = Object.keys(zip.files);

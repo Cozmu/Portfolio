@@ -1,6 +1,7 @@
 import express from 'express'
 import ImagesRouter from './routers/Images.router.js'
 import 'dotenv/config'
+import path from 'path'
 
 class App {
   public app: express.Express
@@ -33,7 +34,9 @@ class App {
   }
 
   private Routers (): void {
-    this.app.get('/', (_req, res) => { res.status(200).json({ message: 'Hello World' }) })
+    this.app.get('/', (_req, res) => {
+      res.status(200).sendFile(path.resolve('imgs/Delivery-App-1.png'))
+    })
     this.app.use('/images', ImagesRouter)
   }
 
