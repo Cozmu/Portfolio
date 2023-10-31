@@ -9,14 +9,14 @@ class App {
     }
     config() {
         const accessControl = (req, res, next) => {
-            // const allowedOrigins = [
-            //   'http://localhost:5173',
-            //   'https://portfolio-nine-murex-65.vercel.app/'
-            // ]
-            // const origin = req.headers.origin ?? '' // se nao vir nada vai ser tornar uma string vazia
-            // if (allowedOrigins.includes(origin)) {
-            // }
-            res.header('Access-Control-Allow-Origin', '*');
+            const allowedOrigins = [
+                'http://localhost:5173',
+                'http://ex.com'
+            ];
+            const origin = req.headers.origin ?? ''; // se nao vir nada vai ser tornar uma string vazia
+            if (allowedOrigins.includes(origin)) {
+                res.header('Access-Control-Allow-Origin', origin);
+            }
             res.header('Access-Control-Allow-Methods', 'GET');
             res.header('Access-Control-Allow-Headers', '*');
             next();
