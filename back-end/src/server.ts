@@ -1,5 +1,5 @@
 import express from 'express'
-// import ImagesRouter from './routers/Images.router'
+import ImagesRouter from './routers/Images.router'
 import 'dotenv/config'
 
 class App {
@@ -34,7 +34,7 @@ class App {
 
   private Routers (): void {
     this.app.get('/', (_req, res) => { res.status(200).json({ message: 'Hello World' }) })
-    // this.app.use('/images', ImagesRouter)
+    this.app.use('/images', ImagesRouter)
   }
 
   public start (PORT: string | number): void {
