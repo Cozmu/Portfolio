@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "nodemon --watch \"./src/**\" --exec ts-node ./src/server.ts",
     "build": "tsc",
-    "prestart": "npm run build",
     "start": "node ."
   },
   "keywords": [],
