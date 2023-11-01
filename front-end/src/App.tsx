@@ -4,9 +4,11 @@ import HomePage from './pages/Home';
 
 function App(): ReactElement {
   return (
-    <Routes>
-      <Route path='/' Component={HomePage} />
-    </Routes>
+    <div className='font-Bebas'>
+      <Routes>
+        <Route path='/' Component={HomePage} />
+      </Routes>
+    </div>
   );
 }
 

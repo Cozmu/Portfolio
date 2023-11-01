@@ -1,25 +1,11 @@
-import { type ReactElement, useEffect } from 'react';
+import { type ReactElement } from 'react';
 import Header from '../components/Header';
-import request from '../service/APIgithub';
 
 function HomePage(): ReactElement {
-  const response = async (): Promise<object[]> => {
-    const x = request();
-    return await x;
-  };
-
-  useEffect(() => {
-    response()
-      .then((result) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   return (
     <div>
       <Header />
-      <p>HomePage</p>
+      <h1 className='text-7xl'>Whereas recognition of the inherent dignity</h1>
     </div>
   );
 }
