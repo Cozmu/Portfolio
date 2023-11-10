@@ -1,7 +1,11 @@
 import { type ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 
-function Header(): ReactElement {
+interface IPropsHeader {
+  home?: boolean;
+}
+
+function Header({ home }: IPropsHeader): ReactElement {
   return (
     <header>
       <nav>
