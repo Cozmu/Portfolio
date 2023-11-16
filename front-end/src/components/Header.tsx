@@ -1,11 +1,14 @@
-import { type ReactElement } from 'react';
+import { type ReactElement, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import PortfolioContext from '../context/PortfolioContext';
 
 interface IPropsHeader {
   home?: boolean;
 }
 
 function Header({ home }: IPropsHeader): ReactElement {
+  const { setToggleBaseColors, toggleBaseColors } =
+    useContext(PortfolioContext);
   return (
     <header>
       <nav>
@@ -14,7 +17,13 @@ function Header({ home }: IPropsHeader): ReactElement {
         <NavLink to='/certificados'>Certificados</NavLink>
       </nav>
       <div>
-        <button>DARCK/LIGHT</button>
+        <button
+          onClick={() => {
+            setToggleBaseColors(toggleBaseColors === 'dark' ? 'light' : 'dark');
+          }}
+        >
+          DARCK/LIGHT
+        </button>
       </div>
     </header>
   );

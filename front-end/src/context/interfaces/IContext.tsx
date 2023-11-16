@@ -1,5 +1,7 @@
 interface IGlobalContext {
   projects: object[] | undefined;
+  toggleBaseColors: string;
+  setToggleBaseColors: (value: string) => void;
 }
 
 interface IProps {

@@ -4,7 +4,11 @@ import { type IProps } from './interfaces/IContext';
 import request from '../service/APIgithub';
 
 function PortfolioProvider({ children }: IProps): JSX.Element {
+  const localBaseColors = localStorage.getItem('baseColors');
   const [projects, setProjects] = useState<object[]>();
+  const [toggleBaseColors, setToggleBaseColors] = useState(
+    localBaseColors ?? 'dark',
+  );
 
   const serviceAPI = async (): Promise<object[]> => {
     const result = await request();
@@ -21,11 +25,21 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
       });
   }, []);
 
+  useEffect(() => {
+    if (toggleBaseColors === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [toggleBaseColors]);
+
   const values = useMemo(
     () => ({
       projects,
+      toggleBaseColors,
+      setToggleBaseColors,
     }),
-    [projects],
+    [projects, toggleBaseColors],
   );
 
   return (

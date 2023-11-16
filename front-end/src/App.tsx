@@ -8,7 +8,7 @@ import ProjectDetails from './pages/ProjectDetails';
 
 function App(): ReactElement {
   return (
-    <div className='font-Bebas bg-body text-slate-100 h-screen'>
+    <div className={`bg-white dark:bg-black text-base h-screen font-Bebas`}>
       <Routes>
         <Route path='/' Component={HomePage} />
         <Route path='/about' Component={About} />
