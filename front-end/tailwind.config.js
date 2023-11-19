@@ -8,13 +8,14 @@ export default {
   theme: {
     extend: {
       colors: {
+        'main': '#0d0d0d',
         'body': '#040404',
-        'base': '#646cff', // rename
+        'tertiary': '#646cff', // rename
         'base2': '#535bf2', // rename preference
       },
       fontFamily:{
         Bebas: ['Bebas Neue', 'sans-serif'],
-        Oswald: ['Oswald', 'sans-serif']
+        Oswald: ['Oswald', 'Bebas Neue', 'sans-serif']
       },
     },
   },
