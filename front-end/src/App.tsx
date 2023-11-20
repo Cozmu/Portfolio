@@ -9,7 +9,8 @@ import ProjectDetails from './pages/ProjectDetails';
 function App(): ReactElement {
   return (
     <div
-      className={`bg-white dark:bg-black text-zinc-400 h-screen font-Oswald`}
+      className={`bg-white dark:bg-black
+       dark:text-zinc-400 h-screen font-Oswald`}
     >
       <Routes>
         <Route path='/' Component={HomePage} />
