@@ -12,6 +12,7 @@ export default {
         'body': '#040404',
         'tertiary': '#646cff', // rename
         'base2': '#535bf2', // rename preference
+        'contrast': '#4b54ff',
       },
       fontFamily:{
         Bebas: ['Bebas Neue', 'sans-serif'],

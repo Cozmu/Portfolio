@@ -22,7 +22,7 @@ function HomePage(): ReactElement {
               {' '}
               Desenvolvedor Full-Stack
             </span>
-            com
+            <span> com </span>
             <span> especialidades </span>
             <span className='dark:text-slate-50'>
               JavaScript/Typescript e Node com Express
