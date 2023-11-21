@@ -7,9 +7,11 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      boxShadow: {
+        'box-shadow': 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+      },
       colors: {
-        'main': '#0d0d0d',
-        'body': '#040404',
+        'main-dark': '#0d0d0d',
         'tertiary': '#646cff', // rename
         'base2': '#535bf2', // rename preference
         'contrast': '#4b54ff',

@@ -1,7 +1,13 @@
 import { type ReactElement } from 'react';
+import Header from '../components/Header';
 
 function Projects(): ReactElement {
-  return <div>Projects</div>;
+  return (
+    <div>
+      <Header />
+      Projects
+    </div>
+  );
 }
 
 export default Projects;

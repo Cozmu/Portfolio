@@ -10,7 +10,9 @@ function HomePage(): ReactElement {
   return (
     <main
       className='w-11/12 h-screen px-6 m-auto
-       dark:bg-main dark:border-x-white'
+        shadow-md bg-white
+        ring-1 ring-zinc-100 dark:ring-zinc-100/10 
+        dark:bg-main-dark'
     >
       <Header home={true} />
       <section>
@@ -46,7 +48,7 @@ function HomePage(): ReactElement {
             100% disposto a iniciar minha carreira e fazer a diferença na área
             da
             <span> tecnologia. </span>
-            <span className='text-slate-50'>
+            <span className='dark:text-slate-50'>
               Prontos para trabalharmos juntos?
             </span>
           </p>

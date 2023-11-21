@@ -9,7 +9,7 @@ import ProjectDetails from './pages/ProjectDetails';
 function App(): ReactElement {
   return (
     <div
-      className={`bg-white dark:bg-black
+      className={`bg-gray-50 dark:bg-black
        dark:text-zinc-400 h-screen font-Oswald`}
     >
       <Routes>
