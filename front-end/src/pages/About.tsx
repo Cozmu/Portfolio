@@ -4,7 +4,7 @@ import SocialMedias from '../components/SocialMedias';
 
 function About(): ReactElement {
   return (
-    <main>
+    <>
       <Header />
       <section>
         <h1></h1>
@@ -16,7 +16,7 @@ function About(): ReactElement {
         <img src='' alt='' />
         <SocialMedias />
       </section>
-    </main>
+    </>
   );
 }
 

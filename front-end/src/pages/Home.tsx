@@ -8,15 +8,13 @@ import Experiences from '../components/Experiences';
 
 function HomePage(): ReactElement {
   return (
-    <main
-      className='w-11/12 h-screen px-6 m-auto
-        shadow-md bg-white
-        ring-1 ring-zinc-100 dark:ring-zinc-100/10 
-        dark:bg-main-dark'
-    >
+    <>
       <Header home={true} />
-      <section>
-        <h1>Olá, meu nome e Jorge Wellington</h1>
+      <section className=''>
+        <div>
+          <p className='text-contrast'>Olá, meu nome é</p>
+          <h1> Jorge Wellington</h1>
+        </div>
         <div className='w-1/2'>
           <p className='text-lg w-full'>
             Sou um
@@ -65,7 +63,7 @@ function HomePage(): ReactElement {
         </nav>
         <Experiences />
       </section>
-    </main>
+    </>
   );
 }
 
