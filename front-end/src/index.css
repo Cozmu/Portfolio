@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.class-animation {
+  animation: x 1ms ease-in-out;
+  animation-timeline: view();
+}
+/* corrigir */
+@keyframes x {
+  from {
+    transform: translate(0, 1600px);
+    scale: 150; 
+  }
+  to {
+    transform: translate(0, 0);
+    scale: 1;
+  }
+}

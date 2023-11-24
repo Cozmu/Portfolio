@@ -13,17 +13,16 @@ function Header({ home }: IPropsHeader): ReactElement {
   const { setToggleBaseColors, toggleBaseColors } =
     useContext(PortfolioContext);
   const { pathname } = useLocation();
-  console.log(pathname, pathname === '/projects');
 
   return (
     <header className='flex items-center justify-between p-6'>
-      <NavLink className='' to='/'>
+      <NavLink className='class-animation' to='/'>
         <div
-          className='rounded-full flex items-center justify-center 
+          className='rounded-full flex items-center justify-center
             w-10 h-10 shadow-box-shadow bg-slate-50  dark:bg-zinc-800'
         >
           <img
-            className='object-cover rounded-full w-9 h-9'
+            className=' object-cover rounded-full w-9 h-9'
             src={perfil}
             alt='perfil'
           />
