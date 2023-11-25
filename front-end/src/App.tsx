@@ -8,11 +8,11 @@ import ProjectDetails from './pages/ProjectDetails';
 
 function App(): ReactElement {
   return (
-    <div
+    <main
       className={`bg-gray-50 dark:bg-black
        dark:text-zinc-400 font-Oswald`}
     >
-      <main
+      <div
         className='w-11/12 px-6 m-auto
         shadow-md bg-white
         ring-1 ring-zinc-100 dark:ring-zinc-100/10 
@@ -25,8 +25,8 @@ function App(): ReactElement {
           <Route path='/projects' Component={Projects} />
           <Route path='/projects/:projectName' Component={ProjectDetails} />
         </Routes>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 
