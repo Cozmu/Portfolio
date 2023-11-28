@@ -32,7 +32,7 @@
     "rules": {
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
-        "max-len": ["error", { "code": 80 }],
+        "max-len": ["error", { "code": 90 }],
         "@typescript-eslint/explicit-function-return-type": "error",
         "indent": ["error", 2],
         "react/jsx-closing-tag-location": ["error", { "nonEmpty": "after-props", "selfClosing": "after-props" }],

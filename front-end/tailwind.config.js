@@ -7,13 +7,16 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      transitionProperty: {
+        'translate': 'translate'
+      },
       boxShadow: {
         'box-shadow': 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
       },
       colors: {
         'main-dark': '#0d0d0d',
         'tertiary': '#646cff', // rename
-        'base2': '#535bf2', // rename preference
+        'base2': '#610C9F', // rename preference
         'contrast': '#4b54ff',
       },
       fontFamily:{
