@@ -13,7 +13,7 @@ interface IPropsHeader {
 
 function Header({ home }: IPropsHeader): ReactElement {
   const isHome = home === true;
-  const animation = `translate-y-80 -translate-x-28 duration-1000 ease-in-out scale-[7]`;
+  const animation = `translate-y-80 -translate-x-28 duration-700 ease-in-out scale-[7]`;
   const { setToggleBaseColors, toggleBaseColors } =
     useContext(PortfolioContext);
   const { pathname } = useLocation();
@@ -28,9 +28,9 @@ function Header({ home }: IPropsHeader): ReactElement {
       scale: 1,
       scrollTrigger: {
         trigger: '#profile-picture',
-        markers: true,
         start: 'top 220rem',
-        end: 'bottom 470rem',
+        end: 'bottom 490rem',
+        markers: false,
         scrub: true,
       },
     });
@@ -40,8 +40,31 @@ function Header({ home }: IPropsHeader): ReactElement {
     };
   }, []);
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('#header-container', {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: '#header-container',
+        start: 'bottom 10rem',
+        markers: false,
+        scrub: true,
+      },
+    });
+
+    return () => {
+      gsap.killTweensOf('#header-container');
+    };
+  }, []);
+
   return (
-    <header className='flex fixed items-center justify-between p-6 mx-10 w-10/12'>
+    <header
+      id='header-container'
+      className={`flex fixed items-center pb-28
+      duration-500 ease-in-out transition-opacity opacity-100
+      justify-between p-6 mx-10 w-10/12`}
+    >
       <div>
         <button
           className='rounded-full w-14  h-10 flex justify-center items-center
@@ -124,7 +147,7 @@ function Header({ home }: IPropsHeader): ReactElement {
             id='profile-picture'
             className={`object-cover rounded${
               isHome ? '' : '-full w-9 h-9'
-            } w-10 h-10 duration-1000 ease-in-out`}
+            } w-10 h-10 duration-700 ease-in-out`}
             src={perfil}
             alt='perfil'
           />
