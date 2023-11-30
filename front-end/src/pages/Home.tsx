@@ -10,14 +10,14 @@ function HomePage(): ReactElement {
   return (
     <>
       <Header home={true} />
-      <section className=' mt-32 p-6 mx-10'>
-        <div>
+      <section className='p-6 mx-10'>
+        <div className='mt-52'>
           <p className='text-contrast w-full text-lg'>Olá, meu nome é</p>
           <h1 className='text-7xl pb-6 dark:text-slate-50 text-black'>
             Jorge Wellington...
           </h1>
         </div>
-        <div className='w-2/3'>
+        <div className='w-3/5'>
           <p className='text-lg w-full'>
             Sou um
             <span className='dark:text-slate-50 text-black'>

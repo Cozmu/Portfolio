@@ -13,6 +13,7 @@ interface IPropsHeader {
 
 function Header({ home }: IPropsHeader): ReactElement {
   const isHome = home === true;
+  const animation = `translate-y-80 -translate-x-28 duration-1000 ease-in-out scale-[7]`;
   const { setToggleBaseColors, toggleBaseColors } =
     useContext(PortfolioContext);
   const { pathname } = useLocation();
@@ -23,12 +24,13 @@ function Header({ home }: IPropsHeader): ReactElement {
     gsap.to('#profile-picture', {
       y: 0,
       x: 0,
-      borderRadius: '100%',
+      borderRadius: 100,
+      scale: 1,
       scrollTrigger: {
         trigger: '#profile-picture',
         markers: true,
-        start: 'top 320rem',
-        end: 'bottom 330rem',
+        start: 'top 220rem',
+        end: 'bottom 470rem',
         scrub: true,
       },
     });
@@ -39,7 +41,7 @@ function Header({ home }: IPropsHeader): ReactElement {
   }, []);
 
   return (
-    <header className='flex items-center justify-between p-6 mx-10'>
+    <header className='flex fixed items-center justify-between p-6 mx-10 w-10/12'>
       <div>
         <button
           className='rounded-full w-14  h-10 flex justify-center items-center
@@ -112,15 +114,17 @@ function Header({ home }: IPropsHeader): ReactElement {
       <NavLink className='' to='/'>
         <div
           id='profile-picture'
-          className={`rounded-${
-            isHome && 'full'
+          className={`rounded${
+            isHome ? '' : '-full'
           } flex items-center justify-center
-          ${isHome && `translate-y-80-translate-x-20 duration-1000 ease-in-out`}
+          ${isHome && animation}
           w-10 h-10 shadow-box-shadow bg-slate-50  dark:bg-zinc-800`}
         >
           <img
             id='profile-picture'
-            className={`object-cover rounded-${isHome && 'full'} w-9 h-9`}
+            className={`object-cover rounded${
+              isHome ? '' : '-full w-9 h-9'
+            } w-10 h-10 duration-1000 ease-in-out`}
             src={perfil}
             alt='perfil'
           />
