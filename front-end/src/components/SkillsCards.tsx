@@ -3,7 +3,7 @@ import skills from '../service/Skills';
 
 function SkillsCards(): ReactElement {
   return (
-    <div className='flex'>
+    <div className='grid'>
       {skills.map(({ id, name, time }) => {
         const today = new Date();
         const date = new Date(time);
@@ -12,7 +12,7 @@ function SkillsCards(): ReactElement {
         return (
           <section key={id}>
             <p>{name}</p>
-            <p>{monthus}</p>
+            <p>{`${monthus} meses de experiência`}</p>
             <i
               className={`devicon-${name.toLowerCase()}-${
                 name === 'Express' ? 'original' : 'plain'

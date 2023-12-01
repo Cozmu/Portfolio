@@ -12,6 +12,7 @@
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.11.2",
+    "@emailjs/browser": "^3.11.0",
     "dotenv": "^16.3.1",
     "gsap": "^3.12.2",
     "jszip": "^3.10.1",
