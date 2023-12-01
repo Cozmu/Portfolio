@@ -113,7 +113,7 @@ function Header({ home }: IPropsHeader): ReactElement {
           {pathname === '/projects' && (
             <span
               className='absolute w-10 inset-x-0 
-                -bottom-px h-px bg-gradient-to-r 
+                -bottom-px h-px bg-gradient-to-r
                 from-tertiary/0 via-contrast to-tertiary/0 '
             />
           )}

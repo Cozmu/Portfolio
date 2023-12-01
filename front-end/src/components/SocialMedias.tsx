@@ -2,7 +2,7 @@ import { type ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaLinkedin } from 'react-icons/fa6';
 import { FaGithub } from 'react-icons/fa';
-import { IoLogoWhatsapp } from 'react-icons/io5';
+import { MdOutlineWhatsapp } from 'react-icons/md';
 
 function SocialMedias(): ReactElement {
   return (
@@ -22,7 +22,7 @@ function SocialMedias(): ReactElement {
       </div>
       <div>
         <NavLink to='https://wa.me/5593988078317' target='_black'>
-          <IoLogoWhatsapp className='w-6 h-6' />
+          <MdOutlineWhatsapp className='w-6 h-6' />
         </NavLink>
       </div>
     </section>
