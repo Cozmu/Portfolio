@@ -1,5 +1,5 @@
 import { useState, type ReactElement, type FormEvent } from 'react';
-import emailjs from '@emailjs/browser'; // utilizar
+import emailjs from '@emailjs/browser';
 
 interface Iform {
   name: string;
@@ -7,7 +7,7 @@ interface Iform {
   message: string;
 }
 
-interface IhandleChageParameters {
+interface Itarget {
   target: {
     name: string;
     value: string;
@@ -21,9 +21,7 @@ function ContactCard(): ReactElement {
     message: '',
   });
 
-  const handleChange = ({
-    target: { name, value },
-  }: IhandleChageParameters): void => {
+  const handleChange = ({ target: { name, value } }: Itarget): void => {
     setForm({
       ...form,
       [name]: value,
@@ -32,7 +30,31 @@ function ContactCard(): ReactElement {
 
   const emailSubmite = (e: FormEvent): void => {
     e.preventDefault();
-    console.log(e);
+
+    const templateParams = {
+      from_name: form.name,
+      message: form.message,
+      email: form.email,
+    };
+    console.log(import.meta.env.VITE_SERVICE_ID);
+
+    emailjs
+      .send(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        templateParams,
+        'E4aXm28kBpk_o-4yG',
+      )
+      .then(
+        (response) => {
+          // fazer esquema para ficar um loading enquanto envia
+          console.log('STATUS', response.status);
+          setForm({ name: '', email: '', message: '' });
+        },
+        (err) => {
+          console.log('ERRO', err);
+        },
+      );
   };
 
   return (
@@ -44,6 +66,7 @@ function ContactCard(): ReactElement {
             handleChange(event);
           }}
           name='name'
+          value={form.name}
         />
       </label>
       <label htmlFor=''>
@@ -53,6 +76,7 @@ function ContactCard(): ReactElement {
             handleChange(event);
           }}
           name='email'
+          value={form.email}
         />
       </label>
       <label htmlFor=''>
@@ -61,6 +85,7 @@ function ContactCard(): ReactElement {
             handleChange(event);
           }}
           name='message'
+          value={form.message}
         />
       </label>
       <input type='submit' value='Enviar' />
