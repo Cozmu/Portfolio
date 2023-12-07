@@ -1,5 +1,13 @@
-import { useState, type ReactElement, type FormEvent } from 'react';
+import {
+  useState,
+  type ReactElement,
+  type FormEvent,
+  useRef,
+  useEffect,
+  useContext,
+} from 'react';
 import emailjs from '@emailjs/browser';
+import PortfolioContext from '../context/PortfolioContext';
 
 interface Iform {
   name: string;
@@ -15,6 +23,8 @@ interface Itarget {
 }
 
 function ContactCard(): ReactElement {
+  const { setContactCard } = useContext(PortfolioContext);
+  const reference = useRef(null);
   const [form, setForm] = useState<Iform>({
     name: '',
     email: '',
@@ -36,7 +46,6 @@ function ContactCard(): ReactElement {
       message: form.message,
       email: form.email,
     };
-    console.log(import.meta.env.VITE_SERVICE_ID);
 
     emailjs
       .send(
@@ -57,8 +66,15 @@ function ContactCard(): ReactElement {
       );
   };
 
+  useEffect(() => {
+    const el = reference.current;
+    console.log(el);
+
+    setContactCard(el);
+  }, []);
+
   return (
-    <form onSubmit={emailSubmite}>
+    <form onSubmit={emailSubmite} ref={reference}>
       <label htmlFor=''>
         <input
           type='text'

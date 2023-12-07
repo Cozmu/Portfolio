@@ -2,6 +2,8 @@ interface IGlobalContext {
   projects: object[] | undefined;
   toggleBaseColors: string;
   setToggleBaseColors: (value: string) => void;
+  setContactCard: (value: React.ReactNode) => void;
+  contactCard: React.ReactNode;
 }
 
 interface IProps {

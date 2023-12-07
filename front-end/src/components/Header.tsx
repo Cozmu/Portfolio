@@ -19,6 +19,7 @@ function Header({ home }: IPropsHeader): ReactElement {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // animação buga quando troca de resolução (troca de tela)
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to('#profile-picture', {
@@ -85,7 +86,7 @@ function Header({ home }: IPropsHeader): ReactElement {
       <nav
         className='dark:bg-zinc-900 w-1/4 flex items-center
           h-10 rounded-full justify-around text-sm 
-          shadow-box-shadow
+          shadow-box-shadow text-black
           dark:text-slate-50
           dark:shadow dark:shadow-zinc-800'
       >

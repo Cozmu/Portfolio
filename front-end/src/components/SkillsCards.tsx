@@ -12,8 +12,9 @@ function SkillsCards(): ReactElement {
         return (
           <section
             className={`grid grid-rows-2 grid-cols-2 dark:bg-zinc-900
-            hover:text-tertiary hover:dark:bg-zinc-800/60 duration-300
-            h-24 rounded p-4 gap-1`}
+            hover:dark:text-tertiary hover:dark:bg-zinc-800/60 hover:duration-300
+            h-24 rounded p-4 gap-1 shadow-box-shadow bg-gray-200/80 text-black
+            hover:text-contrast dark:text-zinc-400`}
             key={id}
           >
             <p className=''>{name}</p>

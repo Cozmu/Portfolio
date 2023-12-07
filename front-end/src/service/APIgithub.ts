@@ -11,7 +11,7 @@ const projects: string[] = [
 
 const request = async (): Promise<Array<{ data: object }>> => {
   const octokit = new Octokit({
-    // metodo para acessar variaveis de ambiente com vite
+    // metodo para acessar variaveis de ambiente com vites
     auth: import.meta.env.GITHUB_TOKEN,
   });
   return await Promise.all(

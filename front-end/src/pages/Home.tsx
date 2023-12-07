@@ -5,6 +5,7 @@ import SkillsCards from '../components/SkillsCards';
 import ContactCard from '../components/ContactCard';
 import Highlights from '../components/Highlights';
 import Experiences from '../components/Experiences';
+import skills from '../service/Skills';
 
 function HomePage(): ReactElement {
   return (
@@ -56,17 +57,38 @@ function HomePage(): ReactElement {
             </span>
           </p>
         </div>
-        <SocialMedias />
+        <div className='flex flex-col'>
+          <section className='flex gap-4 py-4 mt-2'>
+            {skills
+              .filter(({ name }) => name === 'TypeScript' || name === 'NodeJS')
+              .map(({ id, name }) => (
+                <div
+                  className={`p-1 rounded h-8 w-20 text-center
+                   dark:text-contrast dark:bg-contrast/40 bg-tertiary/40 text-contrast`}
+                  key={id}
+                >
+                  <p className='w-full h-full'>{name}</p>
+                </div>
+              ))}
+          </section>
+          <SocialMedias />
+        </div>
       </section>
-      <section className='p-6 mx-10'>
+      <section className='p-6 mx-10 border-t border-zinc-400/20 flex flex-col gap-3'>
+        <p className='text-lg text-contrast'>. . /conhecimentos</p>
+        <h3 className='text-black dark:text-white text-3xl mb-11'>
+          Competências
+        </h3>
         <SkillsCards />
       </section>
-      <section>
-        <nav>
-          <ContactCard />
-          <Highlights />
-        </nav>
+      <section
+        className={`p-6 mx-10 border-t border-zinc-400/20 grid grid-cols-2 grid-rows-2`}
+      >
         <Experiences />
+        <nav>
+          <Highlights />
+          <ContactCard />
+        </nav>
       </section>
     </>
   );
