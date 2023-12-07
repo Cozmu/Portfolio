@@ -58,7 +58,7 @@ function HomePage(): ReactElement {
         </div>
         <SocialMedias />
       </section>
-      <section>
+      <section className='p-6 mx-10'>
         <SkillsCards />
       </section>
       <section>
