@@ -9,6 +9,7 @@ import {
 import emailjs from '@emailjs/browser';
 import PortfolioContext from '../context/PortfolioContext';
 import { IoAlertCircleOutline } from 'react-icons/io5';
+import Loading from './Loading';
 
 interface Iform {
   name: string;
@@ -24,14 +25,15 @@ interface Itarget {
 }
 
 function ContactCard(): ReactElement {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formValid, setFormValid] = useState<string>('');
-  const { setContactCard } = useContext(PortfolioContext);
-  const reference = useRef(null);
   const [form, setForm] = useState<Iform>({
     name: '',
     email: '',
     message: '',
   });
+  const { setContactCard } = useContext(PortfolioContext);
+  const reference = useRef(null);
 
   const handleChange = ({ target: { name, value } }: Itarget): void => {
     setForm({
@@ -52,6 +54,7 @@ function ContactCard(): ReactElement {
     } else if (!emailIsValide) {
       setFormValid('Email invalido');
     } else {
+      setFormValid('');
       return true;
     }
   };
@@ -66,6 +69,7 @@ function ContactCard(): ReactElement {
     const isValid = validadeForm(templateParams);
 
     if (isValid) {
+      setIsLoading(true);
       emailjs
         .send(
           import.meta.env.VITE_SERVICE_ID,
@@ -78,6 +82,7 @@ function ContactCard(): ReactElement {
             // fazer esquema para ficar um loading enquanto envia
             console.log('STATUS', response.status);
             setForm({ name: '', email: '', message: '' });
+            setIsLoading(false);
           },
           (err) => {
             console.log('ERRO', err);
@@ -91,10 +96,27 @@ function ContactCard(): ReactElement {
     setContactCard(el);
   }, []);
 
+  if (isLoading) {
+    return (
+      <section
+        className={`flex flex-col p-3 border gap-3 items-center 
+          border-zinc-400/20 rounded mt-10`}
+      >
+        <div className='w-full flex flex-col gap-2 mb-11'>
+          <p className='text-lg text-contrast'>. . /contato</p>
+          <h3 className='text-black dark:text-white text-3xl'>
+            Vamos trabalhar juntos? Entre em contato
+          </h3>
+        </div>
+        <Loading />
+      </section>
+    );
+  }
+
   return (
     <form
       className={`flex flex-col p-3 border gap-3 items-center 
-      h-3/4 border-zinc-400/20 rounded mt-10`}
+      border-zinc-400/20 rounded relative `}
       onSubmit={emailSubmite}
       ref={reference}
     >
@@ -142,14 +164,17 @@ function ContactCard(): ReactElement {
         />
       </label>
       {formValid?.length > 1 && (
-        <span className={`text-red-600 w-full flex items-center gap-1`}>
+        <span
+          className={`text-red-600 absolute w-full 
+            left-3 top-[28.5rem] flex items-center gap-1`}
+        >
           <IoAlertCircleOutline />
           {formValid}
         </span>
       )}
       <input
         className={`bg-tertiary dark:bg-contrast cursor-pointer dark:text-white 
-        text-black hover:dark:bg-tertiary hover:bg-contrast p-3 rounded w-2/4 my-7`}
+        text-black hover:dark:bg-tertiary hover:bg-contrast p-3 rounded w-2/4 my-4 mt-8`}
         type='submit'
         value='Enviar'
       />

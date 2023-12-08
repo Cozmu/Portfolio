@@ -83,13 +83,11 @@ function HomePage(): ReactElement {
       </section>
       <section
         className={`p-6 mx-10 border-t border-zinc-400/20 
-        gap-5 grid grid-cols-2 grid-rows-2`}
+        gap-8 grid grid-cols-2 grid-rows-2`}
       >
         <Highlights />
-        <nav>
-          <Experiences />
-          <ContactCard />
-        </nav>
+        <Experiences />
+        <ContactCard />
       </section>
     </>
   );

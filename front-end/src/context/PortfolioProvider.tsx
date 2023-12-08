@@ -28,9 +28,19 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
 
   useEffect(() => {
     if (toggleBaseColors === 'dark') {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('scrollbar-track-gray-300');
+      document.documentElement.classList.add(
+        'dark',
+        'scrollbar-track-zinc-900',
+        'overflow-y-scroll',
+      );
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove(
+        'dark',
+        'scrollbar-track-zinc-900',
+        'overflow-y-scroll',
+      );
+      document.documentElement.classList.add('scrollbar-track-gray-300');
     }
   }, [toggleBaseColors]);
 
