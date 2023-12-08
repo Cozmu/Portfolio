@@ -9,6 +9,7 @@ import {
 import emailjs from '@emailjs/browser';
 import PortfolioContext from '../context/PortfolioContext';
 import { IoAlertCircleOutline } from 'react-icons/io5';
+import { MdCheckCircleOutline } from 'react-icons/md';
 import Loading from './Loading';
 
 interface Iform {
@@ -25,7 +26,8 @@ interface Itarget {
 }
 
 function ContactCard(): ReactElement {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSend, setIsSend] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formValid, setFormValid] = useState<string>('');
   const [form, setForm] = useState<Iform>({
     name: '',
@@ -83,6 +85,7 @@ function ContactCard(): ReactElement {
             console.log('STATUS', response.status);
             setForm({ name: '', email: '', message: '' });
             setIsLoading(false);
+            setIsSend(true);
           },
           (err) => {
             console.log('ERRO', err);
@@ -90,6 +93,12 @@ function ContactCard(): ReactElement {
         );
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsSend(false);
+    }, 2000);
+  }, [isSend]);
 
   useEffect(() => {
     const el = reference.current;
@@ -100,7 +109,7 @@ function ContactCard(): ReactElement {
     return (
       <section
         className={`flex flex-col p-3 border gap-3 items-center 
-          border-zinc-400/20 rounded mt-10`}
+          border-zinc-400/20 rounded h-full`}
       >
         <div className='w-full flex flex-col gap-2 mb-11'>
           <p className='text-lg text-contrast'>. . /contato</p>
@@ -116,7 +125,7 @@ function ContactCard(): ReactElement {
   return (
     <form
       className={`flex flex-col p-3 border gap-3 items-center 
-      border-zinc-400/20 rounded relative `}
+      border-zinc-400/20 rounded relative h-full`}
       onSubmit={emailSubmite}
       ref={reference}
     >
@@ -170,6 +179,15 @@ function ContactCard(): ReactElement {
         >
           <IoAlertCircleOutline />
           {formValid}
+        </span>
+      )}
+      {isSend && (
+        <span
+          className={`text-green-600 absolute w-full 
+            left-3 top-[28.5rem] flex items-center gap-1`}
+        >
+          <MdCheckCircleOutline />
+          Mensagem enviada
         </span>
       )}
       <input
