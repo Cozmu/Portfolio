@@ -82,11 +82,12 @@ function HomePage(): ReactElement {
         <SkillsCards />
       </section>
       <section
-        className={`p-6 mx-10 border-t border-zinc-400/20 grid grid-cols-2 grid-rows-2`}
+        className={`p-6 mx-10 border-t border-zinc-400/20 
+        gap-5 grid grid-cols-2 grid-rows-2`}
       >
-        <Experiences />
+        <Highlights />
         <nav>
-          <Highlights />
+          <Experiences />
           <ContactCard />
         </nav>
       </section>

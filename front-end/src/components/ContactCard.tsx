@@ -8,6 +8,7 @@ import {
 } from 'react';
 import emailjs from '@emailjs/browser';
 import PortfolioContext from '../context/PortfolioContext';
+import { IoAlertCircleOutline } from 'react-icons/io5';
 
 interface Iform {
   name: string;
@@ -23,6 +24,8 @@ interface Itarget {
 }
 
 function ContactCard(): ReactElement {
+  const [formValid, setFormValid] = useState<boolean>(false);
+  const [emailValidade, setEmailValidade] = useState<boolean>(false);
   const { setContactCard } = useContext(PortfolioContext);
   const reference = useRef(null);
   const [form, setForm] = useState<Iform>({
@@ -38,45 +41,75 @@ function ContactCard(): ReactElement {
     });
   };
 
+  const validadeForm = ({ email, message, name }: Iform): void => {
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailIsValide = regexEmail.test(email);
+
+    setEmailValidade(emailIsValide);
+    setFormValid(name.length > 1 || email.length > 1 || message.length > 1);
+  };
+
   const emailSubmite = (e: FormEvent): void => {
     e.preventDefault();
-
     const templateParams = {
-      from_name: form.name,
+      name: form.name,
       message: form.message,
       email: form.email,
     };
+    validadeForm(templateParams);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        templateParams,
-        'E4aXm28kBpk_o-4yG',
-      )
-      .then(
-        (response) => {
-          // fazer esquema para ficar um loading enquanto envia
-          console.log('STATUS', response.status);
-          setForm({ name: '', email: '', message: '' });
-        },
-        (err) => {
-          console.log('ERRO', err);
-        },
-      );
+    if (formValid && emailValidade) {
+      console.log('entrou');
+      // emailjs
+      //   .send(
+      //     import.meta.env.VITE_SERVICE_ID,
+      //     import.meta.env.VITE_TEMPLATE_ID,
+      //     templateParams,
+      //     'E4aXm28kBpk_o-4yG',
+      //   )
+      //   .then(
+      //     (response) => {
+      //       // fazer esquema para ficar um loading enquanto envia
+      //       console.log('STATUS', response.status);
+      //       setForm({ name: '', email: '', message: '' });
+      //     },
+      //     (err) => {
+      //       console.log('ERRO', err);
+      //     },
+      //   );
+    }
   };
 
   useEffect(() => {
     const el = reference.current;
-    console.log(el);
-
     setContactCard(el);
   }, []);
 
+  const gambi = (): string => {
+    console.log('formValid');
+    if (formValid && !emailValidade) {
+      return 'Email invalido';
+    }
+    return 'Preencha todos os campos';
+  };
+
   return (
-    <form onSubmit={emailSubmite} ref={reference}>
-      <label htmlFor=''>
+    <form
+      className={`flex flex-col p-3 border gap-3 items-center 
+      h-3/4 border-zinc-400/20 rounded mt-10`}
+      onSubmit={emailSubmite}
+      ref={reference}
+    >
+      <div className='w-full flex flex-col gap-2 mb-11'>
+        <p className='text-lg text-contrast'>. . /contato</p>
+        <h3 className='text-black dark:text-white text-3xl'>
+          Vamos trabalhar juntos? Entre em contato
+        </h3>
+      </div>
+      <label className='w-full flex flex-col gap-1' htmlFor=''>
+        <span>Nome:</span>
         <input
+          className='bg-black/0 border-b border-zinc-400/20 outline-none p-1'
           type='text'
           onChange={(event) => {
             handleChange(event);
@@ -85,8 +118,10 @@ function ContactCard(): ReactElement {
           value={form.name}
         />
       </label>
-      <label htmlFor=''>
+      <label className='w-full flex flex-col gap-1' htmlFor=''>
+        <span>E-mail:</span>
         <input
+          className='bg-black/0 border-b border-zinc-400/20 outline-none p-1'
           type='email'
           onChange={(event) => {
             handleChange(event);
@@ -95,16 +130,31 @@ function ContactCard(): ReactElement {
           value={form.email}
         />
       </label>
-      <label htmlFor=''>
+      <label className={`w-full h-40 flex flex-col gap-1`} htmlFor=''>
+        <span>Menssagem:</span>
         <textarea
+          className={`bg-black/0 border-b border-zinc-400/20 
+            outline-none p-1 h-full resize-none`}
           onChange={(event) => {
             handleChange(event);
           }}
+          maxLength={4000}
           name='message'
           value={form.message}
         />
       </label>
-      <input type='submit' value='Enviar' />
+      {(!formValid || emailValidade) && (
+        <span className={`text-red-600 w-full flex items-center gap-1`}>
+          <IoAlertCircleOutline />
+          {gambi()}
+        </span>
+      )}
+      <input
+        className={`bg-tertiary dark:bg-contrast cursor-pointer dark:text-white 
+        text-black hover:dark:bg-tertiary hover:bg-contrast p-3 rounded w-2/4 my-7`}
+        type='submit'
+        value='Enviar'
+      />
     </form>
   );
 }

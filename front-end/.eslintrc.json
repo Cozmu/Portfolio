@@ -38,6 +38,7 @@
         "react/jsx-closing-tag-location": ["error", { "nonEmpty": "after-props", "selfClosing": "after-props" }],
         "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
         "prettier/prettier": "error",
-        "@typescript-eslint/consistent-type-assertions": "off"
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off"
     }
 }

@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilo da barra de rolagem */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Cor de fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+  /* --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity)); */
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+/* Cor do "track" quando você move a barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background-color: #4b54ff;
+  border-radius: 2px;
+}
+
