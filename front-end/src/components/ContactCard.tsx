@@ -24,8 +24,7 @@ interface Itarget {
 }
 
 function ContactCard(): ReactElement {
-  const [formValid, setFormValid] = useState<boolean>(false);
-  const [emailValidade, setEmailValidade] = useState<boolean>(false);
+  const [formValid, setFormValid] = useState<string>('');
   const { setContactCard } = useContext(PortfolioContext);
   const reference = useRef(null);
   const [form, setForm] = useState<Iform>({
@@ -41,12 +40,20 @@ function ContactCard(): ReactElement {
     });
   };
 
-  const validadeForm = ({ email, message, name }: Iform): void => {
+  const validadeForm = ({
+    email,
+    message,
+    name,
+  }: Iform): boolean | undefined => {
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const emailIsValide = regexEmail.test(email);
-
-    setEmailValidade(emailIsValide);
-    setFormValid(name.length > 1 || email.length > 1 || message.length > 1);
+    if (!email || !message || !name) {
+      setFormValid('Preencha todos os campos');
+    } else if (!emailIsValide) {
+      setFormValid('Email invalido');
+    } else {
+      return true;
+    }
   };
 
   const emailSubmite = (e: FormEvent): void => {
@@ -56,27 +63,26 @@ function ContactCard(): ReactElement {
       message: form.message,
       email: form.email,
     };
-    validadeForm(templateParams);
+    const isValid = validadeForm(templateParams);
 
-    if (formValid && emailValidade) {
-      console.log('entrou');
-      // emailjs
-      //   .send(
-      //     import.meta.env.VITE_SERVICE_ID,
-      //     import.meta.env.VITE_TEMPLATE_ID,
-      //     templateParams,
-      //     'E4aXm28kBpk_o-4yG',
-      //   )
-      //   .then(
-      //     (response) => {
-      //       // fazer esquema para ficar um loading enquanto envia
-      //       console.log('STATUS', response.status);
-      //       setForm({ name: '', email: '', message: '' });
-      //     },
-      //     (err) => {
-      //       console.log('ERRO', err);
-      //     },
-      //   );
+    if (isValid) {
+      emailjs
+        .send(
+          import.meta.env.VITE_SERVICE_ID,
+          import.meta.env.VITE_TEMPLATE_ID,
+          templateParams,
+          'E4aXm28kBpk_o-4yG',
+        )
+        .then(
+          (response) => {
+            // fazer esquema para ficar um loading enquanto envia
+            console.log('STATUS', response.status);
+            setForm({ name: '', email: '', message: '' });
+          },
+          (err) => {
+            console.log('ERRO', err);
+          },
+        );
     }
   };
 
@@ -84,14 +90,6 @@ function ContactCard(): ReactElement {
     const el = reference.current;
     setContactCard(el);
   }, []);
-
-  const gambi = (): string => {
-    console.log('formValid');
-    if (formValid && !emailValidade) {
-      return 'Email invalido';
-    }
-    return 'Preencha todos os campos';
-  };
 
   return (
     <form
@@ -143,10 +141,10 @@ function ContactCard(): ReactElement {
           value={form.message}
         />
       </label>
-      {(!formValid || emailValidade) && (
+      {formValid?.length > 1 && (
         <span className={`text-red-600 w-full flex items-center gap-1`}>
           <IoAlertCircleOutline />
-          {gambi()}
+          {formValid}
         </span>
       )}
       <input
