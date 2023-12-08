@@ -27,7 +27,7 @@ interface Itarget {
 
 function ContactCard(): ReactElement {
   const [isSend, setIsSend] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formValid, setFormValid] = useState<string>('');
   const [form, setForm] = useState<Iform>({
     name: '',
@@ -36,6 +36,12 @@ function ContactCard(): ReactElement {
   });
   const { setContactCard } = useContext(PortfolioContext);
   const reference = useRef(null);
+  const measures = {
+    mainW: 'full',
+    mainH: '96',
+    W: '4',
+    H: '4',
+  };
 
   const handleChange = ({ target: { name, value } }: Itarget): void => {
     setForm({
@@ -117,7 +123,7 @@ function ContactCard(): ReactElement {
             Vamos trabalhar juntos? Entre em contato
           </h3>
         </div>
-        <Loading />
+        <Loading measures={measures} />
       </section>
     );
   }
