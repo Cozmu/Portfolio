@@ -16,9 +16,9 @@ function HomePage(): ReactElement {
     gsap.to('#header-container', {
       display: 'none',
       scrollTrigger: {
-        trigger: '#name',
-        start: 'bottom 60rem',
-        end: 'bottom 60rem',
+        trigger: '#description',
+        start: 'center 60rem',
+        end: 'center 60rem',
         markers: false,
         scrub: true,
       },
@@ -40,7 +40,7 @@ function HomePage(): ReactElement {
           </h1>
         </div>
         <div className='w-3/5'>
-          <p className='text-lg w-full'>
+          <p id='description' className='text-lg w-full'>
             Sou um
             <span className='dark:text-slate-50 text-black'>
               {' '}
@@ -79,7 +79,7 @@ function HomePage(): ReactElement {
           </p>
         </div>
         <div className='flex flex-col'>
-          <section className='flex gap-4 py-4 mt-2'>
+          <section id='skills' className='flex gap-4 py-4 mt-2'>
             {skills
               .filter(({ name }) => name === 'TypeScript' || name === 'NodeJS')
               .map(({ id, name }) => (

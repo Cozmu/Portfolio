@@ -54,17 +54,6 @@ function Header({ home }: IPropsHeader): ReactElement {
       },
     });
 
-    // gsap.to('#header-container', {
-    //   display: 'none',
-    //   scrollTrigger: {
-    //     trigger: '#header-container',
-    //     start: 'bottom 120rem',
-    //     end: 'bottom 120rem',
-    //     markers: true,
-    //     scrub: true,
-    //   },
-    // });
-
     return () => {
       gsap.killTweensOf('#header-container');
     };
