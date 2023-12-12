@@ -36,12 +36,6 @@ function ContactCard(): ReactElement {
   });
   const { setContactCard } = useContext(PortfolioContext);
   const reference = useRef(null);
-  const measures = {
-    mainW: 'full',
-    mainH: '96',
-    W: '4',
-    H: '4',
-  };
 
   const handleChange = ({ target: { name, value } }: Itarget): void => {
     setForm({
@@ -115,7 +109,7 @@ function ContactCard(): ReactElement {
     return (
       <section
         className={`flex flex-col p-3 border gap-3 items-center 
-          border-zinc-400/20 rounded h-full`}
+          border-zinc-400/20 rounded h-full w-full`}
       >
         <div className='w-full flex flex-col gap-2 mb-11'>
           <p className='text-lg text-contrast'>. . /contato</p>
@@ -123,7 +117,12 @@ function ContactCard(): ReactElement {
             Vamos trabalhar juntos? Entre em contato
           </h3>
         </div>
-        <Loading measures={measures} />
+        <section
+          className={`flex items-center justify-center gap-1 
+          h-96 w-full`}
+        >
+          <Loading measures={{ W: 'w-4', H: 'h-4' }} />
+        </section>
       </section>
     );
   }
