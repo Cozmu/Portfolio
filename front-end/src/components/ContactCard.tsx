@@ -27,15 +27,19 @@ interface Itarget {
 
 function ContactCard(): ReactElement {
   const [isSend, setIsSend] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formValid, setFormValid] = useState<string>('');
   const [form, setForm] = useState<Iform>({
     name: '',
     email: '',
     message: '',
   });
-  const { setContactCard } = useContext(PortfolioContext);
+  const { setContactCard, toggleBaseColors } = useContext(PortfolioContext);
   const reference = useRef(null);
+  const isDark =
+    toggleBaseColors === 'dark'
+      ? 'scrollbar-track-zinc-900'
+      : 'scrollbar-track-gray-300';
 
   const handleChange = ({ target: { name, value } }: Itarget): void => {
     setForm({
@@ -129,7 +133,7 @@ function ContactCard(): ReactElement {
 
   return (
     <form
-      className={`flex flex-col p-3 border gap-3 items-center 
+      className={`flex flex-col p-3 border gap-3 items-center
       border-zinc-400/20 rounded relative h-full`}
       onSubmit={emailSubmite}
       ref={reference}
@@ -168,7 +172,8 @@ function ContactCard(): ReactElement {
         <span>Menssagem:</span>
         <textarea
           className={`bg-black/0 border-b border-zinc-400/20 
-            outline-none p-1 h-full resize-none`}
+            scrollbar-thin ${isDark} scrollbar-thumb-contrast
+            outline-none p-1 h-full resize-none `}
           onChange={(event) => {
             handleChange(event);
           }}

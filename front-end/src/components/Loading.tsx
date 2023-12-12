@@ -11,16 +11,16 @@ function Loading({ measures: { H, W } }: Imeasures): ReactElement {
   return (
     <>
       <div
-        className={`rounded-full bg-contrast/75 ${W} ${H}`}
-        style={{ animation: 'pulse 1.5s infinite', animationDelay: '0s' }}
+        className={`rounded-full animate-loading bg-contrast/75 ${W} ${H}`}
+        style={{ animationDelay: '0s' }}
       />
       <div
-        className={`rounded-full bg-contrast/75 ${W} ${H}`}
-        style={{ animation: 'pulse 1.5s infinite', animationDelay: '0.5s' }}
+        className={`rounded-full animate-loading bg-contrast/75 ${W} ${H}`}
+        style={{ animationDelay: '0.5s' }}
       />
       <div
-        className={`rounded-full bg-contrast/75 ${W} ${H}`}
-        style={{ animation: 'pulse 1.5s infinite', animationDelay: '0.8s' }}
+        className={`rounded-full animate-loading bg-contrast/75 ${W} ${H}`}
+        style={{ animationDelay: '0.8s' }}
       />
     </>
   );
