@@ -27,7 +27,7 @@ interface Itarget {
 
 function ContactCard(): ReactElement {
   const [isSend, setIsSend] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formValid, setFormValid] = useState<string>('');
   const [form, setForm] = useState<Iform>({
     name: '',

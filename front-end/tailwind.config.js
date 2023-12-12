@@ -10,12 +10,19 @@ export default {
   theme: {
     extend: {
       animation: {
-        'loading': 'keyLoading 1.5s infinite'
+        'loading': 'keyLoading 1.5s infinite',
+        'typing': 'typing 2.5s steps(11), blinking 0.5s infinite step-end alternate',
       },
       keyframes: {
         keyLoading: {
           '0%, 100%': { opacity: 1, transform: scale(1) },
           '50%': { opacity: 0.5, transform: scale(0.95) },
+        },
+        typing: {
+          'from': { width: 0 }
+        },
+        blinking: { 
+          '50%': { borderColor: 'transparent' } 
         }
       },
       boxShadow: {
