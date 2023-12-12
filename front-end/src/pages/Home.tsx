@@ -1,4 +1,4 @@
-import { type ReactElement } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import Header from '../components/Header';
 import SocialMedias from '../components/SocialMedias';
 import SkillsCards from '../components/SkillsCards';
@@ -6,15 +6,36 @@ import ContactCard from '../components/ContactCard';
 import Highlights from '../components/Highlights';
 import Experiences from '../components/Experiences';
 import skills from '../service/Skills';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 function HomePage(): ReactElement {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('#header-container', {
+      display: 'none',
+      scrollTrigger: {
+        trigger: '#name',
+        start: 'bottom 60rem',
+        end: 'bottom 60rem',
+        markers: false,
+        scrub: true,
+      },
+    });
+
+    return () => {
+      gsap.killTweensOf('#header-container');
+    };
+  }, []);
+
   return (
     <>
       <Header home={true} />
       <section className='p-6 mx-10'>
         <div className='mt-52'>
           <p className='text-contrast w-full text-lg'>Olá, meu nome é</p>
-          <h1 className='text-7xl pb-6 dark:text-slate-50 text-black'>
+          <h1 id='name' className='text-7xl pb-6 dark:text-slate-50 text-black'>
             Jorge Wellington...
           </h1>
         </div>

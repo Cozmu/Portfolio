@@ -38,7 +38,7 @@ function Experiences(): ReactElement {
         <p
           ref={elementRef}
           className={`w-[9ch] whitespace-nowrap overflow-hidden 
-            text-center text-lg border-r-2 border-contrast`}
+            text-center text-lg border-r-2 dark:border-contrast border-tertiary`}
         >
           Em breve...
         </p>
