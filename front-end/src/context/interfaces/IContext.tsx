@@ -4,6 +4,8 @@ interface IGlobalContext {
   setToggleBaseColors: (value: string) => void;
   setContactCard: (value: React.ReactNode) => void;
   contactCard: React.ReactNode;
+  setPulseContactCard: (value: boolean) => void;
+  pulseContactCard: boolean;
 }
 
 interface IProps {

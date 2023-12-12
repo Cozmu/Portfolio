@@ -6,10 +6,11 @@ import { MdOutlineWhatsapp } from 'react-icons/md';
 import PortfolioContext from '../context/PortfolioContext';
 
 function SocialMedias(): ReactElement {
-  const { contactCard } = useContext(PortfolioContext);
+  const { contactCard, setPulseContactCard } = useContext(PortfolioContext);
 
   const scrollToContactField = (): void => {
     if (contactCard instanceof Element) {
+      setPulseContactCard(true);
       contactCard.scrollIntoView({ behavior: 'smooth' });
     }
   };

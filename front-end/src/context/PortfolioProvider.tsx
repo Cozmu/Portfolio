@@ -4,6 +4,7 @@ import { type IProps } from './interfaces/IContext';
 import request from '../service/APIgithub';
 
 function PortfolioProvider({ children }: IProps): JSX.Element {
+  const [pulseContactCard, setPulseContactCard] = useState<boolean>(false);
   const [contactCard, setContactCard] = useState<React.ReactNode>();
   const localBaseColors = localStorage.getItem('baseColors');
   const [projects, setProjects] = useState<object[]>();
@@ -47,12 +48,14 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
   const values = useMemo(
     () => ({
       projects,
-      setContactCard,
       contactCard,
       toggleBaseColors,
+      pulseContactCard,
+      setContactCard,
       setToggleBaseColors,
+      setPulseContactCard,
     }),
-    [projects, toggleBaseColors, contactCard],
+    [projects, toggleBaseColors, contactCard, pulseContactCard],
   );
 
   return (

@@ -34,7 +34,12 @@ function ContactCard(): ReactElement {
     email: '',
     message: '',
   });
-  const { setContactCard, toggleBaseColors } = useContext(PortfolioContext);
+  const {
+    setContactCard,
+    toggleBaseColors,
+    setPulseContactCard,
+    pulseContactCard,
+  } = useContext(PortfolioContext);
   const reference = useRef(null);
   const isDark =
     toggleBaseColors === 'dark'
@@ -105,6 +110,12 @@ function ContactCard(): ReactElement {
   }, [isSend]);
 
   useEffect(() => {
+    setTimeout(() => {
+      setPulseContactCard(false);
+    }, 2000);
+  }, [pulseContactCard]);
+
+  useEffect(() => {
     const el = reference.current;
     setContactCard(el);
   }, []);
@@ -132,8 +143,9 @@ function ContactCard(): ReactElement {
   }
 
   return (
-    <form
+    <form // mudar animação para essa: https://www.youtube.com/watch?v=ti4v_HVIMLw&t=762s
       className={`flex flex-col p-3 border gap-3 items-center
+      ${pulseContactCard && 'animate-pulse'}
       border-zinc-400/20 rounded relative h-full`}
       onSubmit={emailSubmite}
       ref={reference}
