@@ -63,6 +63,7 @@ function Header({ home }: IPropsHeader): ReactElement {
     <header
       id='header-container'
       className={`flex fixed items-center pb-28
+      ${!home && 'flex-row-reverse'}
       duration-500 ease-in-out transition-opacity opacity-100
       justify-between p-6 mx-10 w-10/12`}
     >

@@ -92,7 +92,7 @@ function HomePage(): ReactElement {
                 </div>
               ))}
           </section>
-          <SocialMedias />
+          <SocialMedias home={true} />
         </div>
       </section>
       <section className='p-6 mx-10 border-t border-zinc-400/20 flex flex-col gap-3'>
