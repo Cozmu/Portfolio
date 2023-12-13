@@ -5,7 +5,7 @@ import SkillsCards from '../components/SkillsCards';
 import ContactCard from '../components/ContactCard';
 import Highlights from '../components/Highlights';
 import Experiences from '../components/Experiences';
-import skills from '../service/Skills';
+import skills from '../service/date';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

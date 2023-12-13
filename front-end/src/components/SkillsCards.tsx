@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react';
-import skills from '../service/Skills';
+import skills from '../service/date';
 
 function SkillsCards(): ReactElement {
   return (
