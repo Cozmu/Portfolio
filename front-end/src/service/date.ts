@@ -10,6 +10,7 @@ interface Icertificates {
   issuingOrganization: string;
   emission: string;
   description: string;
+  link: string;
 }
 
 const skills: Iskills[] = [
@@ -87,6 +88,7 @@ const certificates: Icertificates[] = [
       conteúdos como: Unix & Bash, Git, JS Básico & DOM, HTML, CSS, 
       JS ES6, Higher Order Functions e Testes Unitários, assim como 
       metodologias ágeis e habilidades comportamentais.`,
+    link: 'https://www.credential.net/181a95b3-b8dc-465f-ac06-35f2bd61bfe1#gs.ll3ewv',
   },
   {
     id: 2,
@@ -99,6 +101,8 @@ const certificates: Icertificates[] = [
       e Eventos, Componentes Controlados, Ciclo de Vida, Router, Testes 
       com RTL, Redux com React, Context API, React Hooks, metodologias 
       ágeis e habilidades comportamentais.`,
+    link: `https://www.credential.net/a0fb8025-d814-465b-bf77-46a669c4d037
+    ?record_view=true#gs.25hv6h`,
   },
   {
     id: 3,
@@ -111,6 +115,7 @@ const certificates: Icertificates[] = [
       Docker, banco de dados SQL e NoSQL, Node.js e Express, Mocha, Chai e Sinon, 
       construção de APIs em camadas, REST, JWT, ORM/ODM, Deploy, TypeScript, POO, 
       SOLID, conceitos de CI/CD com Github Actions.`,
+    link: 'https://www.credential.net/8d0c40b5-5be3-4fb9-9144-a4b3a33c65ca#gs.25hwx1',
   },
   {
     id: 4,
@@ -121,6 +126,7 @@ const certificates: Icertificates[] = [
       da Trybe, que aborda conteúdos relacionados a Ciência da Computação, incluindo 
       Python e OOP, Algoritmos e Complexidade, Estrutura de Dados e Resolução de 
       Problemas, metodologias ágeis e habilidades comportamentais.`,
+    link: 'https://www.credential.net/ecbba56d-bbaa-4b7a-a510-3b40593f3e30#gs.25hwkb',
   },
   {
     id: 5,
@@ -135,6 +141,7 @@ const certificates: Icertificates[] = [
       Django REST Framework, MongoDB, SSR, Docker e Deployment. Além disso, 
       concluiu 100 horas/aula de conteúdos revisionais de Carreira, incluindo 
       revisões de Front-end e Back-end e um desafio full stack.`,
+    link: 'https://www.credential.net/8e68c0a4-69b3-487e-ad3a-18b358ade26e#gs.25hwmw',
   },
   {
     id: 6,
@@ -149,6 +156,8 @@ const certificates: Icertificates[] = [
       arquivos - Salvar como e Impressão. Movimentação de Cursor pelo Teclado. Fórmulas 
       Básicas. Classificação. Conectando planilhas. Filtro. Formatação Condicional. 
       Fórmulas Avançadas: Procv, SE.`,
+    link: `https://estudandoead.com/ibq/loja_virtual/
+    verificar_certificado.php?codigoc=CERT63a20c182ed9e`,
   },
 ];
 

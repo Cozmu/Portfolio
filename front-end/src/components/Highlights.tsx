@@ -5,7 +5,7 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 
 function Highlights(): ReactElement {
   return (
-    <div className='row-span-2 flex flex-col gap-3'>
+    <div className='row-span-2 flex flex-col gap-2'>
       <p className='text-lg text-contrast'>. . /destaques</p>
       <h3 className='text-black dark:text-white text-3xl'>Projetos</h3>
       <ProjectsCards />

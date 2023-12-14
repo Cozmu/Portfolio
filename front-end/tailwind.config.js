@@ -9,6 +9,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      transitionProperty: {
+        'width': 'width'
+      },
       animation: {
         'loading': 'keyLoading 1.5s infinite',
         'typing': 'typing 2.5s steps(11), blinking 0.5s infinite step-end alternate',
