@@ -9,6 +9,9 @@ function About(): ReactElement {
       <Header />
       <div className='flex p-6 mx-10 pt-40 gap-10 justify-center'>
         <section className='w-1/2'>
+          <p className='text-lg dark:text-contrast text-tertiary tex'>
+            . . /sobre mim
+          </p>
           <h1></h1>
           <p></p>
           <p></p>

@@ -6,6 +6,7 @@ interface IGlobalContext {
   contactCard: React.ReactNode;
   setPulseContactCard: (value: boolean) => void;
   pulseContactCard: boolean;
+  setProjects: (value: object[]) => void;
 }
 
 interface IProps {

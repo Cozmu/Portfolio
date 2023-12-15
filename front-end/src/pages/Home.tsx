@@ -96,7 +96,9 @@ function HomePage(): ReactElement {
         </div>
       </section>
       <section className='p-6 mx-10 border-t border-zinc-400/20 flex flex-col gap-3'>
-        <p className='text-lg text-contrast'>. . /conhecimentos</p>
+        <p className='text-lg dark:text-contrast text-tertiary'>
+          . . /conhecimentos
+        </p>
         <h3 className='text-black dark:text-white text-3xl mb-11'>
           Competências
         </h3>

@@ -30,7 +30,9 @@ function Experiences(): ReactElement {
       className={`flex items-start justify-start p-3 border
        border-zinc-400/20 rounded h-full flex-col gap-2`}
     >
-      <p className='text-lg text-contrast'>. . /experiências</p>
+      <p className='text-lg dark:text-contrast text-contrast'>
+        . . /experiências
+      </p>
       <h3 className='text-black dark:text-white text-3xl'>
         Experiências Profissionais
       </h3>

@@ -6,7 +6,7 @@ import { FaPaperclip } from 'react-icons/fa6';
 
 function Certificates(): ReactElement {
   return (
-    <div className=''>
+    <div className='pb-20'>
       <Header />
       <div className='p-6 mx-10 pt-56'>
         <section className='flex flex-col gap-2 mb-11'>

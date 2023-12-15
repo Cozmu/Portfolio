@@ -127,7 +127,9 @@ function ContactCard(): ReactElement {
           border-zinc-400/20 rounded h-full w-full`}
       >
         <div className='w-full flex flex-col gap-2 mb-11'>
-          <p className='text-lg text-contrast'>. . /contato</p>
+          <p className='text-lg dark:text-contrast text-contrast'>
+            . . /contato
+          </p>
           <h3 className='text-black dark:text-white text-3xl'>
             Vamos trabalhar juntos? Entre em contato
           </h3>
@@ -151,7 +153,7 @@ function ContactCard(): ReactElement {
       ref={reference}
     >
       <div className='w-full flex flex-col gap-2 mb-11'>
-        <p className='text-lg text-contrast'>. . /contato</p>
+        <p className='text-lg dark:text-contrast text-tertiary'>. . /contato</p>
         <h3 className='text-black dark:text-white text-3xl'>
           Vamos trabalhar juntos? Entre em contato
         </h3>
