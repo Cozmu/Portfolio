@@ -15,7 +15,12 @@ function Certificates(): ReactElement {
             Minhas Certificações estudantis
           </h1>
         </section>
-        <ul className='flex flex-col gap-10 pl-9 ml-4'>
+        <ul
+          className={`flex flex-col gap-14 relative
+            before:content-[''] before:absolute before:top-1 before:bg-zinc-500 
+            before:w-[1px] before:h-full before:left-6
+        `}
+        >
           {certificates.map(
             ({
               id,
@@ -25,14 +30,21 @@ function Certificates(): ReactElement {
               description,
               link,
             }) => (
-              <li className={``} key={id}>
+              <li
+                className={`pl-9 ml-4 relative
+                before:content-[''] before:absolute before:top-1 before:bg-main-dark 
+                before:w-4 before:h-4 before:left-0 before:rounded-full before:border-2
+                before:border-zinc-300
+              `}
+                key={id}
+              >
                 <p
                   className={`dark:text-white flex items-center gap-1 text-black `}
                 >
                   <NavLink
-                    className={`
+                    className={`relative
                     after:content-[''] after:w-0 after:h-[1px] 
-                  after:bg-white after:absolute relative after:left-0 after:bottom-0
+                  after:bg-white after:absolute after:left-0 after:bottom-0
                     after:hover:w-full after:ease-in-out after:duration-300 
                     after:transition-width
                   `}
