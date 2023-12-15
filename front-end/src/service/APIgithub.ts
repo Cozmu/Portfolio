@@ -56,5 +56,5 @@ const filterDate = async (): Promise<Irequest[]> => {
   return arrayFiltered;
 };
 
-export { projects };
+export { projects, type Irequest };
 export default filterDate;

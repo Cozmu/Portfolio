@@ -1,12 +1,13 @@
 import { useMemo, useEffect, useState } from 'react';
 import PortfolioContext from './PortfolioContext';
 import { type IProps } from './interfaces/IContext';
+import { type Irequest } from '../service/APIgithub';
 
 function PortfolioProvider({ children }: IProps): JSX.Element {
   const [pulseContactCard, setPulseContactCard] = useState<boolean>(false);
   const [contactCard, setContactCard] = useState<React.ReactNode>();
   const localBaseColors = localStorage.getItem('baseColors'); // implementar
-  const [projects, setProjects] = useState<object[]>();
+  const [projects, setProjects] = useState<Irequest[]>();
   const [toggleBaseColors, setToggleBaseColors] = useState<string>(
     localBaseColors ?? 'dark',
   );

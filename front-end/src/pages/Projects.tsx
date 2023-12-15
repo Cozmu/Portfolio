@@ -1,13 +1,13 @@
 import { useContext, type ReactElement, useEffect } from 'react';
 import Header from '../components/Header';
 import PortfolioContext from '../context/PortfolioContext';
-import filterDate from '../service/APIgithub';
+import filterDate, { type Irequest } from '../service/APIgithub';
 import unzipFile from '../service/ImagesAPI';
 
 function Projects(): ReactElement {
   const { setProjects } = useContext(PortfolioContext);
 
-  const serviceAPI = async (): Promise<object[]> => {
+  const serviceAPI = async (): Promise<Irequest[]> => {
     const imgRequest = await unzipFile();
     const result = await filterDate();
     console.log(result);
@@ -28,7 +28,12 @@ function Projects(): ReactElement {
   return (
     <div>
       <Header />
-      Projects
+      {/* {projects?.map((project) => (
+        <div key={project.id}>
+          <p>{project.id}</p>
+          <p>{project.description}</p>
+        </div>
+      ))} */}
     </div>
   );
 }
