@@ -16,7 +16,7 @@ function App(): ReactElement {
         className=' w-11/12 px-6 m-auto
         shadow-md bg-white
         ring-1 ring-zinc-100 dark:ring-zinc-100/10 min-h-screen 
-        dark:bg-main-dark  '
+        dark:bg-main-dark'
       >
         <Routes>
           <Route path='/' Component={HomePage} />
