@@ -18,10 +18,16 @@ const fetchZipFile = async (url: string): Promise<ArrayBuffer> => {
   });
 };
 
-const unzipFile = async (): Promise<IunzipFile[]> => {
+const unzipFile = async (
+  projectName: string,
+  router: string,
+): Promise<IunzipFile[]> => {
+  const urlRost = 'https://ap-portfolio-uej5.onrender.com';
   const zipData = await fetchZipFile(
     // eslint-disable-next-line max-len
-    'https://ap-portfolio-uej5.onrender.com/images/project-details/Delivery-App',
+    `${urlRost}/images/${
+      router === 'project-details' ? `${router}/${projectName}` : router
+    }`,
   );
   const zip = await JSZip.loadAsync(zipData);
   const fileNames = Object.keys(zip.files);

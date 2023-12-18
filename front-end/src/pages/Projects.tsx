@@ -8,7 +8,7 @@ function Projects(): ReactElement {
   const { setProjects } = useContext(PortfolioContext);
 
   const serviceAPI = async (): Promise<Irequest[]> => {
-    const imgRequest = await unzipFile();
+    const imgRequest = await unzipFile('', 'projects');
     const result = await filterDate();
     console.log(result);
     console.log(imgRequest);
