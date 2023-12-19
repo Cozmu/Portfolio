@@ -18,12 +18,19 @@ interface Irequest {
   [key: string]: unknown;
 }
 
+interface Iproject extends Irequest {
+  img: {
+    url: string;
+    fileName: string;
+  };
+}
+
 const request = async (): Promise<Irequest[]> => {
   const octokit = new Octokit({
     // metodo para acessar variaveis de ambiente com vites
     auth: import.meta.env.GITHUB_TOKEN,
   });
-  return await Promise.all(
+  const x = await Promise.all(
     projects.map(async (project: string) => {
       const response = await octokit.request(`GET /repos/Cozmu/${project}`, {
         headers: {
@@ -35,6 +42,8 @@ const request = async (): Promise<Irequest[]> => {
       return response.data;
     }),
   );
+
+  return x;
 };
 
 const filterDate = async (): Promise<Irequest[]> => {
@@ -52,9 +61,10 @@ const filterDate = async (): Promise<Irequest[]> => {
     }
     arrayFiltered.push(filteredObj);
   }
+  console.log('B', arrayFiltered);
 
   return arrayFiltered;
 };
 
-export { projects, type Irequest };
+export { projects, type Irequest, type Iproject };
 export default filterDate;

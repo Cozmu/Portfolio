@@ -37,12 +37,15 @@ const unzipFile = async (
       const file = zip.files[fileName];
       const blob = await file.async('blob');
       const url = URL.createObjectURL(blob);
+      const name = fileName.split('.');
 
-      return { fileName, url };
+      return { fileName: name[0], url };
     }),
   );
+  console.log('A', imageUrls);
 
   return imageUrls;
 };
 
+export { type IunzipFile };
 export default unzipFile;

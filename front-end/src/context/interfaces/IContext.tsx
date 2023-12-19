@@ -1,14 +1,14 @@
-import { type Irequest } from '../../service/APIgithub';
+import { type Iproject } from '../../service/APIgithub';
 
 interface IGlobalContext {
-  projects: Irequest[] | undefined;
+  projects: Iproject[] | undefined;
   toggleBaseColors: string;
   setToggleBaseColors: (value: string) => void;
   setContactCard: (value: React.ReactNode) => void;
   contactCard: React.ReactNode;
   setPulseContactCard: (value: boolean) => void;
   pulseContactCard: boolean;
-  setProjects: (value: Irequest[]) => void;
+  setProjects: (value: Iproject[]) => void;
 }
 
 interface IProps {
