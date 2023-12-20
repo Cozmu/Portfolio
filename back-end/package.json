@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "./dist/server.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon --watch \"./src/**\" --exec ts-node ./src/server.ts",
     "postbuild": "copyfiles -u 1 src/**/*.png dist/",

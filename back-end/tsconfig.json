@@ -1,23 +1,15 @@
 {
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
   "compilerOptions": {
     "target": "ESNext",
-    "module": "NodeNext",  // faz as importações dos arquivos ts ficar com extenção js
+    "module": "CommonJS",
     "lib": ["ESNext", "DOM"],
     "outDir": "./dist",
-    "rootDir":"./src",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "./src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./src/**/*.ts", "api/**/*.ts"],
+  "exclude": ["node_modules"]
 }

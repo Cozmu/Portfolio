@@ -1,5 +1,5 @@
 import fs from 'fs'
-import path from 'path'
+import * as path from 'path'
 
 interface IgetPNGFilesDirectory {
   files: string[]
@@ -7,7 +7,9 @@ interface IgetPNGFilesDirectory {
 }
 
 const getPNGFilesDirectory = (instruction: string[] | string): IgetPNGFilesDirectory => {
-  const dirname = path.dirname(new URL(import.meta.url).pathname)
+  const mainFilename = require.main?.filename
+
+  const dirname = mainFilename ? path.dirname(mainFilename) : ''
   const directory = path.join(dirname, '../imgs')
 
   if (typeof instruction === 'string') {
