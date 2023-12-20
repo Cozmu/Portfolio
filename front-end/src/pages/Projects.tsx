@@ -4,6 +4,7 @@ import PortfolioContext from '../context/PortfolioContext';
 import filterDate, { type Irequest, type Iproject } from '../service/APIgithub';
 import unzipFile, { type IunzipFile } from '../service/ImagesAPI';
 import Loading from '../components/Loading';
+import ProjectsCards from '../components/ProjectsCards';
 
 interface IserviceAPI {
   projects: Irequest[];
@@ -43,6 +44,8 @@ function Projects(): ReactElement {
             result.push(allProperty);
           }
         });
+        console.log('C', result);
+
         setProjects(result);
         setTimeout(() => {
           if (result.length > 0) {
@@ -70,13 +73,13 @@ function Projects(): ReactElement {
   return (
     <div>
       <Header />
-      {/* {state?.map((project) => (
-        <div key={project.fileName}>
-          <p>{project.fileName}</p>
-
-          <img src={project.url} alt='' />
-        </div>
-      ))} */}
+      <div className='pt-52 p-6 mx-10'>
+        <section>
+          <p></p>
+          <h1></h1>
+        </section>
+        <ProjectsCards />
+      </div>
     </div>
   );
 }

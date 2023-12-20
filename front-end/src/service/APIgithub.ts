@@ -61,7 +61,7 @@ const filterDate = async (): Promise<Irequest[]> => {
     }
     arrayFiltered.push(filteredObj);
   }
-  console.log('B', arrayFiltered);
+  console.log('A', arrayFiltered);
 
   return arrayFiltered;
 };
