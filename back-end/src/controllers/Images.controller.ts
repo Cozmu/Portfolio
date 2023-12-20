@@ -32,8 +32,6 @@ const getProjectsImages = (_req: Request, res: Response): void => {
 
   const { files, directory } = getPNGFilesDirectory(filesNames)
 
-  console.log('entrou')
-
   files.forEach(file => {
     const filePath = path.join(directory, file)
     zip.addLocalFile(filePath)
