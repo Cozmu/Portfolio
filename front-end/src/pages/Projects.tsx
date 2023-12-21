@@ -74,9 +74,13 @@ function Projects(): ReactElement {
     <div>
       <Header />
       <div className='pt-52 p-6 mx-10'>
-        <section>
-          <p></p>
-          <h1></h1>
+        <section className='flex flex-col gap-2'>
+          <p className='text-lg dark:text-contrast text-tertiary'>
+            . . /projetos
+          </p>
+          <h1 className='text-black dark:text-white text-3xl mb-11'>
+            Meus projetos
+          </h1>
         </section>
         <ProjectsCards />
       </div>
