@@ -124,7 +124,8 @@ function ContactCard(): ReactElement {
     return (
       <section
         className={`flex flex-col p-3 border gap-3 items-center 
-          border-zinc-400/20 rounded h-full w-full`}
+        dark:border-zinc-400/20 border-zinc-400/40
+          rounded h-full w-full`}
       >
         <div className='w-full flex flex-col gap-2 mb-11'>
           <p className='text-lg dark:text-contrast text-contrast'>
@@ -148,7 +149,8 @@ function ContactCard(): ReactElement {
     <form // mudar animação para essa: https://www.youtube.com/watch?v=ti4v_HVIMLw&t=762s
       className={`flex flex-col p-3 border gap-3 items-center
       ${pulseContactCard && 'animate-pulse'}
-      border-zinc-400/20 rounded relative h-full`}
+      dark:border-zinc-400/20 border-zinc-400/40
+        rounded relative h-full`}
       onSubmit={emailSubmite}
       ref={reference}
     >

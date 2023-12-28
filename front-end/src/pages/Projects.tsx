@@ -78,7 +78,11 @@ function Projects(): ReactElement {
           <p className='text-lg dark:text-contrast text-tertiary'>
             . . /projetos
           </p>
-          <h1 className='text-black dark:text-white text-3xl mb-11'>
+          <h1
+            className={`text-black dark:text-white 
+              text-3xl mb-11 border-b pb-4 
+              dark:border-zinc-400/20 border-zinc-400/40`}
+          >
             Meus projetos
           </h1>
         </section>

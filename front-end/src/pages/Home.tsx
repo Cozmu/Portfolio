@@ -95,7 +95,10 @@ function HomePage(): ReactElement {
           <SocialMedias home={true} />
         </div>
       </section>
-      <section className='p-6 mx-10 border-t border-zinc-400/20 flex flex-col gap-3'>
+      <section
+        className={`p-6 mx-10 border-t dark:border-zinc-400/20 
+          border-zinc-400/40 flex flex-col gap-3`}
+      >
         <p className='text-lg dark:text-contrast text-tertiary'>
           . . /conhecimentos
         </p>
@@ -105,7 +108,7 @@ function HomePage(): ReactElement {
         <SkillsCards />
       </section>
       <section
-        className={`p-6 mx-10 border-t border-zinc-400/20 
+        className={`p-6 mx-10 border-t dark:border-zinc-400/20 border-zinc-400/40
         gap-8 grid grid-cols-2`}
       >
         <Highlights />

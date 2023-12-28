@@ -28,7 +28,8 @@ function Experiences(): ReactElement {
   return (
     <div
       className={`flex items-start justify-start p-3 border
-       border-zinc-400/20 rounded h-full flex-col gap-2`}
+      dark:border-zinc-400/20 border-zinc-400/40 
+        rounded h-full flex-col gap-2`}
     >
       <p className='text-lg dark:text-contrast text-contrast'>
         . . /experiências
