@@ -47,8 +47,7 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
             result.push(allProperty);
           }
         });
-        console.log('C', result);
-
+        // console.log('C', result);
         setProjects(result);
       })
       .catch((error) => {

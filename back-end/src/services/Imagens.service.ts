@@ -13,6 +13,10 @@ const getPNGFilesDirectory = (instruction: string[] | string): IgetPNGFilesDirec
   if (typeof instruction === 'string') {
     const regex = new RegExp(instruction, 'i')
     const files = fs.readdirSync(directory).filter(arquivo => regex.test(arquivo))
+    if (files.length === 0) {
+      const files = fs.readdirSync(directory).filter(arquivo => arquivo === 'back-end.png')
+      return { files, directory }
+    }
     return { files, directory }
   }
   const files: string[] = []

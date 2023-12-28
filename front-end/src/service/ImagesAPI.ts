@@ -19,7 +19,7 @@ const fetchZipFile = async (url: string): Promise<ArrayBuffer> => {
 };
 
 const unzipFile = async (
-  projectName: string,
+  projectName: string | undefined,
   router: string,
 ): Promise<IunzipFile[]> => {
   const urlRost = 'http://localhost:8903'; // http://localhost:8903
@@ -42,7 +42,7 @@ const unzipFile = async (
       return { fileName: name[0], url };
     }),
   );
-  console.log('B', imageUrls);
+  // console.log('B', imageUrls);
 
   return imageUrls;
 };
