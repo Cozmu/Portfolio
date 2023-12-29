@@ -46,7 +46,16 @@ function ProjectDetails(): ReactElement {
     }
   }, [projects, projectName]);
 
-  return <div>ProjectDetails</div>;
+  return (
+    // montar componente
+    <div>
+      {data?.map((e) => (
+        <section key={e.id}>
+          <p>{e.name}</p>
+        </section>
+      ))}
+    </div>
+  );
 }
 
 export default ProjectDetails;
