@@ -1,9 +1,20 @@
-import { useEffect, type ReactElement, useContext } from 'react';
+import { useEffect, type ReactElement, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PortfolioContext from '../context/PortfolioContext';
 import unzipFile, { type IunzipFile } from '../service/ImagesAPI';
+import { type Irequest } from '../service/APIgithub';
+
+interface IprojectDetails extends Irequest {
+  img: [
+    {
+      url: string;
+      fileName: string;
+    },
+  ];
+}
 
 function ProjectDetails(): ReactElement {
+  const [data, setData] = useState<IprojectDetails[]>();
   const { projectName } = useParams();
   const { projects } = useContext(PortfolioContext);
 
@@ -23,9 +34,11 @@ function ProjectDetails(): ReactElement {
               }
               return 'project';
             })
-            .filter((project) => typeof project !== 'string');
+            .filter(
+              (project) => typeof project !== 'string',
+            ) as IprojectDetails[];
 
-          console.log(filterProject);
+          setData(filterProject);
         })
         .catch((err) => {
           console.log(err);
