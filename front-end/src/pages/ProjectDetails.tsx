@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import PortfolioContext from '../context/PortfolioContext';
 import unzipFile, { type IunzipFile } from '../service/ImagesAPI';
 import { type Irequest } from '../service/APIgithub';
+import Header from '../components/Header';
 
 interface IprojectDetails extends Irequest {
   img: [
@@ -49,11 +50,30 @@ function ProjectDetails(): ReactElement {
   return (
     // montar componente
     <div>
-      {data?.map((e) => (
-        <section key={e.id}>
-          <p>{e.name}</p>
-        </section>
-      ))}
+      <Header />
+      <main className='pt-48'>
+        {data?.map(({ id, name, description, img, topics, url }) => (
+          <section key={id}>
+            <h1 className='p-6 mx-10'>{name}</h1>
+            <div className='overflow-hidden relative'>
+              <div className={`flex w-[400%]`}>
+                {img.map(({ url, fileName }) => (
+                  <img
+                    className='w-[60rem] mr-14'
+                    src={url}
+                    key={fileName}
+                    alt={fileName}
+                  />
+                ))}
+                <section className='absolute'>
+                  <button className='w-10 p-2 bg-red-400 m-1'>ir</button>
+                  <button className='w-10 p-2 bg-red-400 m-1'>voltar</button>
+                </section>
+              </div>
+            </div>
+          </section>
+        ))}
+      </main>
     </div>
   );
 }

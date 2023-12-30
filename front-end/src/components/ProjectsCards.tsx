@@ -14,7 +14,6 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
   }
 
   return (
-    // terminar de estilizar
     <div className='grid grid-cols-3 gap-12 my-14'>
       {projects?.map((project) => (
         <NavLink
