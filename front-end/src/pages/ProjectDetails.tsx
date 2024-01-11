@@ -1,9 +1,10 @@
-import {
+import React, {
   useEffect,
   type ReactElement,
   useContext,
   useState,
   useRef,
+  useLayoutEffect,
 } from 'react';
 import { useParams } from 'react-router-dom';
 import PortfolioContext from '../context/PortfolioContext';
@@ -24,31 +25,40 @@ interface IprojectDetails extends Irequest {
   ];
 }
 
+// interface IparamsImg {
+//   url: string;
+//   fileName: string;
+// }
+
 function ProjectDetails(): ReactElement {
   const [data, setData] = useState<IprojectDetails[]>();
   const [savedPosition, setSavedPosition] = useState<number>(0);
   const [index, setIndex] = useState<number>(0);
+  const [imgLength, setImgLength] = useState<number>(0);
+
   const { projectName } = useParams();
   const { projects } = useContext(PortfolioContext);
+
   const sectionsRefs = useRef<Array<HTMLElement | null>>([]);
   const buttonsRefs = useRef<Array<HTMLElement | null>>([]);
-  // const buttonsRefs = document.getElementsByName('buttonsSlide');
 
   const getProjectDetails = async (): Promise<IunzipFile[]> => {
     const projectsIMG = await unzipFile(projectName, 'project-details');
     return projectsIMG;
   };
 
-  // useEffect(() => {
-  //   if (buttonsRefs) {
-  //     console.log(buttonsRefs);
-  //   }
-  // }, [index]);
-
   useEffect(() => {
+    if (data) {
+      const imgLength = data[0]?.img.length || 0;
+      setImgLength(imgLength);
+    }
+  }, [data]);
+
+  useLayoutEffect(() => {
+    console.log(sectionsRefs);
+
     if (buttonsRefs.current.length > 0 && sectionsRefs.current.length > 0) {
       buttonsRefs.current.forEach((button) => {
-        console.log(buttonsRefs.current);
         if (button) {
           const isMatchingIndex = Number(button.id) === index;
           button.style.backgroundColor = isMatchingIndex
@@ -56,6 +66,7 @@ function ProjectDetails(): ReactElement {
             : 'rgb(248 250 252)';
         }
       });
+
       sectionsRefs.current.forEach((section) => {
         if (section) {
           const position = index * 65;
@@ -64,7 +75,7 @@ function ProjectDetails(): ReactElement {
         }
       });
     }
-  }, [index]);
+  }, [index, imgLength]);
 
   useEffect(() => {
     if (projects) {
@@ -99,6 +110,7 @@ function ProjectDetails(): ReactElement {
         } else {
           if (sectionsRefs.current.length - 1 > index) {
             section.style.transform = `translateX(-${savedPosition + 65}rem)`;
+            section.style.transition = 'transform .5s';
             setSavedPosition(savedPosition + 65);
             setIndex(index + 1);
           }
@@ -112,6 +124,7 @@ function ProjectDetails(): ReactElement {
       if (section) {
         if (savedPosition > 0) {
           section.style.transform = `translateX(-${savedPosition - 65}rem)`;
+          section.style.transition = 'transform .5s';
           setSavedPosition(savedPosition - 65);
           setIndex(index - 1);
         }
@@ -127,6 +140,10 @@ function ProjectDetails(): ReactElement {
     }
   };
 
+  // const clonedGenerate = (img: IparamsImg[]): IparamsImg[] => {
+  //   return [...img.slice(-2), ...img, ...img.slice(0, 2)];
+  // };
+
   return (
     <div>
       <Header />
@@ -137,14 +154,13 @@ function ProjectDetails(): ReactElement {
             <div className='relative'>
               <div className={`flex overflow-hidden`}>
                 {img.map(({ url, fileName }, index) => (
-                  <div key={index}>
-                    <section
-                      ref={(el) => (sectionsRefs.current[index] = el)}
-                      className='flex-shrink-0 w-[60rem] mx-10'
-                    >
-                      <img className='w-full' src={url} alt={fileName} />
-                    </section>
-                  </div>
+                  <section
+                    key={index}
+                    ref={(el) => (sectionsRefs.current[index] = el)}
+                    className='flex-shrink-0 w-[60rem] mx-10'
+                  >
+                    <img className='w-full' src={url} alt={fileName} />
+                  </section>
                 ))}
               </div>
               <section className='absolute top-2/4 flex justify-between w-[66.3rem]'>
