@@ -71,6 +71,7 @@ function ProjectDetails(): ReactElement {
         if (section) {
           const position = index * 65;
           section.style.transform = `translateX(-${position}rem)`;
+          section.style.transition = 'transform .5s';
           setSavedPosition(position);
         }
       });
