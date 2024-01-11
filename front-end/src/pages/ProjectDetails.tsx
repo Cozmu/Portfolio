@@ -66,15 +66,18 @@ function ProjectDetails(): ReactElement {
         }
       });
 
+      sectionsRefs.current.forEach((section) => {
+        if (section) {
+          const position = index * (firstTranslate ? 60 : 65);
+
+          section.style.transform = `translateX(-${
+            position - (!firstTranslate ? 10 : 0)
+          }rem)`;
+          section.style.transition = 'transform .5s';
+          setSavedPosition(position);
+        }
+      });
       if (firstTranslate) {
-        sectionsRefs.current.forEach((section) => {
-          if (section) {
-            const position = index * 60;
-            section.style.transform = `translateX(-${position}rem)`;
-            section.style.transition = 'transform .5s';
-            setSavedPosition(position);
-          }
-        });
         setFirstTranslate(!firstTranslate);
       }
     }
