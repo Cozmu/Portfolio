@@ -35,6 +35,7 @@ function ProjectDetails(): ReactElement {
   const [savedPosition, setSavedPosition] = useState<number>(0);
   const [index, setIndex] = useState<number>(2);
   const [imgLength, setImgLength] = useState<number>(0);
+  const [firstTranslate, setFirstTranslate] = useState(true);
 
   const { projectName } = useParams();
   const { projects } = useContext(PortfolioContext);
@@ -55,8 +56,6 @@ function ProjectDetails(): ReactElement {
   }, [data]);
 
   useLayoutEffect(() => {
-    console.log(sectionsRefs);
-
     if (buttonsRefs.current.length > 0 && sectionsRefs.current.length > 0) {
       buttonsRefs.current.forEach((button) => {
         if (button) {
@@ -67,14 +66,17 @@ function ProjectDetails(): ReactElement {
         }
       });
 
-      sectionsRefs.current.forEach((section) => {
-        if (section) {
-          const position = index * 60;
-          section.style.transform = `translateX(-${position}rem)`;
-          section.style.transition = 'transform .5s';
-          setSavedPosition(position);
-        }
-      });
+      if (firstTranslate) {
+        sectionsRefs.current.forEach((section) => {
+          if (section) {
+            const position = index * 60;
+            section.style.transform = `translateX(-${position}rem)`;
+            section.style.transition = 'transform .5s';
+            setSavedPosition(position);
+          }
+        });
+        setFirstTranslate(!firstTranslate);
+      }
     }
   }, [index, imgLength]);
 
@@ -102,7 +104,6 @@ function ProjectDetails(): ReactElement {
   }, [projects, projectName]);
 
   const nextSlide = (): void => {
-    // CORRIGIR MEDIDADAS
     sectionsRefs.current.forEach((section) => {
       if (section) {
         if (savedPosition === 0) {
