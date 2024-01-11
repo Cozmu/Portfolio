@@ -25,15 +25,15 @@ interface IprojectDetails extends Irequest {
   ];
 }
 
-// interface IparamsImg {
-//   url: string;
-//   fileName: string;
-// }
+interface IparamsImg {
+  url: string;
+  fileName: string;
+}
 
 function ProjectDetails(): ReactElement {
   const [data, setData] = useState<IprojectDetails[]>();
   const [savedPosition, setSavedPosition] = useState<number>(0);
-  const [index, setIndex] = useState<number>(0);
+  const [index, setIndex] = useState<number>(2);
   const [imgLength, setImgLength] = useState<number>(0);
 
   const { projectName } = useParams();
@@ -69,7 +69,7 @@ function ProjectDetails(): ReactElement {
 
       sectionsRefs.current.forEach((section) => {
         if (section) {
-          const position = index * 65;
+          const position = index * 60;
           section.style.transform = `translateX(-${position}rem)`;
           section.style.transition = 'transform .5s';
           setSavedPosition(position);
@@ -102,6 +102,7 @@ function ProjectDetails(): ReactElement {
   }, [projects, projectName]);
 
   const nextSlide = (): void => {
+    // CORRIGIR MEDIDADAS
     sectionsRefs.current.forEach((section) => {
       if (section) {
         if (savedPosition === 0) {
@@ -141,9 +142,9 @@ function ProjectDetails(): ReactElement {
     }
   };
 
-  // const clonedGenerate = (img: IparamsImg[]): IparamsImg[] => {
-  //   return [...img.slice(-2), ...img, ...img.slice(0, 2)];
-  // };
+  const clonedGenerate = (img: IparamsImg[]): IparamsImg[] => {
+    return [...img.slice(-2), ...img, ...img.slice(0, 2)];
+  };
 
   return (
     <div>
@@ -154,7 +155,7 @@ function ProjectDetails(): ReactElement {
             <h1 className='p-6 mx-10'>{name}</h1>
             <div className='relative'>
               <div className={`flex overflow-hidden`}>
-                {img.map(({ url, fileName }, index) => (
+                {clonedGenerate(img).map(({ url, fileName }, index) => (
                   <section
                     key={index}
                     ref={(el) => (sectionsRefs.current[index] = el)}
@@ -164,7 +165,10 @@ function ProjectDetails(): ReactElement {
                   </section>
                 ))}
               </div>
-              <section className='absolute top-2/4 flex justify-between w-[66.3rem]'>
+              <section
+                className={`absolute left-[8.6rem] top-2/4 flex 
+                justify-between w-[67.6rem]`}
+              >
                 <button
                   onClick={previousSlide}
                   className='w-10 h-10 text-slate-50'
@@ -184,9 +188,8 @@ function ProjectDetails(): ReactElement {
                 <nav key={i}>
                   <button
                     ref={(el) => (buttonsRefs.current[i] = el)}
-                    // name='buttonsSlide'
                     id={`${i}`}
-                    className={`w-9 bg-slate-50 h-1`}
+                    className={`w-9 h-1`}
                     onClick={(e) => {
                       onControlButtonClick(e);
                     }}
