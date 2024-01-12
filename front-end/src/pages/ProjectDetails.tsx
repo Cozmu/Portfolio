@@ -75,6 +75,12 @@ function ProjectDetails(): ReactElement {
           }rem)`;
           section.style.transition = 'transform .5s';
           setSavedPosition(position);
+          // section.addEventListener('transitionend', () => {
+          //   if (sectionsRefs.current.length - 2 === index) {
+          //     section.style.transition = 'none';
+          //     setIndex(2);
+          //   }
+          // });
         }
       });
       if (firstTranslate) {
@@ -109,17 +115,28 @@ function ProjectDetails(): ReactElement {
   const nextSlide = (): void => {
     sectionsRefs.current.forEach((section) => {
       if (section) {
+        // section.addEventListener('transitionend', () => {
+        //   if (sectionsRefs.current.length - 3 === index) {
+        //     section.style.transition = 'none';
+        //     setIndex(2);
+        //   }
+        // });
         if (savedPosition === 0) {
           section.style.transform = `translateX(-${65}rem)`;
           setSavedPosition(65);
           setIndex(index + 1);
         } else {
-          if (sectionsRefs.current.length - 1 > index) {
+          if (sectionsRefs.current.length - 2 > index) {
             section.style.transform = `translateX(-${savedPosition + 65}rem)`;
             section.style.transition = 'transform .5s';
             setSavedPosition(savedPosition + 65);
             setIndex(index + 1);
           }
+          // console.log(
+          //   sectionsRefs.current.length - 2,
+          //   index,
+          //   sectionsRefs.current.length - 2 > index,
+          // );
         }
       }
     });
@@ -128,7 +145,7 @@ function ProjectDetails(): ReactElement {
   const previousSlide = (): void => {
     sectionsRefs.current.forEach((section) => {
       if (section) {
-        if (savedPosition > 0) {
+        if (index > 1) {
           section.style.transform = `translateX(-${savedPosition - 65}rem)`;
           section.style.transition = 'transform .5s';
           setSavedPosition(savedPosition - 65);
@@ -188,7 +205,7 @@ function ProjectDetails(): ReactElement {
               </section>
             </div>
             <div className='flex gap-2 mx-10 pt-5'>
-              {img.map((_e, i) => (
+              {clonedGenerate(img).map((_e, i) => (
                 <nav key={i}>
                   <button
                     ref={(el) => (buttonsRefs.current[i] = el)}
