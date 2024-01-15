@@ -36,6 +36,7 @@ function ProjectDetails(): ReactElement {
   const [index, setIndex] = useState<number>(2);
   const [imgLength, setImgLength] = useState<number>(0);
   const [firstTranslate, setFirstTranslate] = useState(true);
+  const [currentSession, setCurrentSession] = useState<HTMLElement>();
 
   const { projectName } = useParams();
   const { projects } = useContext(PortfolioContext);
@@ -75,8 +76,14 @@ function ProjectDetails(): ReactElement {
           }rem)`;
           section.style.transition = 'transform .5s';
           setSavedPosition(position);
+
+          if (index === Number(section.id)) {
+            // capturado fora do loop
+            setCurrentSession(section);
+          }
+
           // section.addEventListener('transitionend', () => {
-          //   if (sectionsRefs.current.length - 2 === index) {
+          //   if (sectionsRefs.current.length - 2 === Number(section.id)) {
           //     section.style.transition = 'none';
           //     setIndex(2);
           //   }
@@ -131,6 +138,8 @@ function ProjectDetails(): ReactElement {
             section.style.transition = 'transform .5s';
             setSavedPosition(savedPosition + 65);
             setIndex(index + 1);
+          } else {
+            console.log(section.id);
           }
           // console.log(
           //   sectionsRefs.current.length - 2,
@@ -179,6 +188,7 @@ function ProjectDetails(): ReactElement {
                 {clonedGenerate(img).map(({ url, fileName }, index) => (
                   <section
                     key={index}
+                    id={`${index}`}
                     ref={(el) => (sectionsRefs.current[index] = el)}
                     className='flex-shrink-0 w-[60rem] mx-10'
                   >
