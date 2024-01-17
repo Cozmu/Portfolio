@@ -36,6 +36,7 @@ function ProjectDetails(): ReactElement {
   const [index, setIndex] = useState<number>(2);
   const [imgLength, setImgLength] = useState<number>(0);
   const [firstTranslate, setFirstTranslate] = useState(true);
+  const [endTranslate, setEndTranslate] = useState(false);
   const [currentSession, setCurrentSession] = useState<HTMLElement>();
 
   const { projectName } = useParams();
@@ -70,31 +71,51 @@ function ProjectDetails(): ReactElement {
       sectionsRefs.current.forEach((section) => {
         if (section) {
           const position = index * (firstTranslate ? 60 : 65);
-
           section.style.transform = `translateX(-${
             position - (!firstTranslate ? 10 : 0)
           }rem)`;
-          section.style.transition = 'transform .5s';
+          section.style.transition =
+            firstTranslate || endTranslate ? 'none' : 'transform .5s';
           setSavedPosition(position);
 
           if (index === Number(section.id)) {
-            // capturado fora do loop
             setCurrentSession(section);
           }
-
-          // section.addEventListener('transitionend', () => {
-          //   if (sectionsRefs.current.length - 2 === Number(section.id)) {
-          //     section.style.transition = 'none';
-          //     setIndex(2);
-          //   }
-          // });
         }
       });
+
+      if (endTranslate) {
+        setEndTranslate(!endTranslate);
+      }
       if (firstTranslate) {
         setFirstTranslate(!firstTranslate);
       }
     }
   }, [index, imgLength]);
+
+  useEffect(() => {
+    if (currentSession) {
+      const handleTransitionEnd = (): void => {
+        if (sectionsRefs.current.length - 2 === Number(currentSession?.id)) {
+          setEndTranslate(true);
+          setIndex(2);
+        }
+        if (Number(currentSession.id) === 1) {
+          setEndTranslate(true);
+          setIndex(sectionsRefs.current.length - 3);
+        }
+      };
+
+      currentSession.addEventListener('transitionend', handleTransitionEnd);
+
+      return () => {
+        currentSession.removeEventListener(
+          'transitionend',
+          handleTransitionEnd,
+        );
+      };
+    }
+  }, [currentSession]);
 
   useEffect(() => {
     if (projects) {
@@ -122,12 +143,6 @@ function ProjectDetails(): ReactElement {
   const nextSlide = (): void => {
     sectionsRefs.current.forEach((section) => {
       if (section) {
-        // section.addEventListener('transitionend', () => {
-        //   if (sectionsRefs.current.length - 3 === index) {
-        //     section.style.transition = 'none';
-        //     setIndex(2);
-        //   }
-        // });
         if (savedPosition === 0) {
           section.style.transform = `translateX(-${65}rem)`;
           setSavedPosition(65);
@@ -138,14 +153,7 @@ function ProjectDetails(): ReactElement {
             section.style.transition = 'transform .5s';
             setSavedPosition(savedPosition + 65);
             setIndex(index + 1);
-          } else {
-            console.log(section.id);
           }
-          // console.log(
-          //   sectionsRefs.current.length - 2,
-          //   index,
-          //   sectionsRefs.current.length - 2 > index,
-          // );
         }
       }
     });
