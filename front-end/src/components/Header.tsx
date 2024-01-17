@@ -70,8 +70,8 @@ function Header({ home }: IPropsHeader): ReactElement {
       <div>
         <button
           className='rounded-full w-14  h-10 flex justify-center items-center
-            shadow-md hover:bg-slate-50
-           dark:hover:ring-1 dark:hover:ring-zinc-700
+            dark:hover:ring-1 hover:bg-slate-50 dark:hover:bg-zinc-900
+            dark:hover:ring-zinc-700 shadow-md
            dark:shadow dark:shadow-zinc-800 dark:bg-zinc-900'
           onClick={() => {
             setToggleBaseColors(toggleBaseColors === 'dark' ? 'light' : 'dark');
