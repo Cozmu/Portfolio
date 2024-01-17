@@ -223,7 +223,7 @@ function ProjectDetails(): ReactElement {
               </section>
             </div>
             <div className='flex gap-2 mx-10 pt-5'>
-              {clonedGenerate(img).map((_e, i) => (
+              {img.map((_e, i) => (
                 <nav key={i}>
                   <button
                     ref={(el) => (buttonsRefs.current[i] = el)}
