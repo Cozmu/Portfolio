@@ -2,6 +2,8 @@ import { type ReactElement, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import ProjectsCards from '../components/ProjectsCards';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 function Projects(): ReactElement {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,6 +12,22 @@ function Projects(): ReactElement {
     setTimeout(() => {
       setIsLoading(false);
     }, 1100);
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to('#header-container', {
+      display: 'none',
+      scrollTrigger: {
+        trigger: '#description',
+        start: '38% 60rem',
+        end: '38% 60rem',
+        markers: false,
+        scrub: true,
+      },
+    });
+
+    return () => {
+      gsap.killTweensOf('#header-container');
+    };
   }, []);
 
   if (isLoading) {

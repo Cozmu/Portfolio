@@ -261,8 +261,8 @@ function ProjectDetails(): ReactElement {
                         mx-auto w-full
                       `}
                     >
-                      <span className='text-slate-50 text-8xl'>APENAS</span>
-                      <span className='text-slate-50 text-8xl'>BACK-END</span>
+                      <span className='text-zinc-200 text-8xl'>APENAS</span>
+                      <span className='text-zinc-200 text-8xl'>BACK-END</span>
                     </div>
                   </section>
                 )}
