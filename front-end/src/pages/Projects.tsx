@@ -14,10 +14,10 @@ function Projects(): ReactElement {
 
   if (isLoading) {
     return (
-      <div className='flex flex-col '>
+      <div>
         <Header />
         <section
-          className={`flex h-screen  
+          className={`flex h-screen mr-5
               items-center justify-center gap-1
               `}
         >

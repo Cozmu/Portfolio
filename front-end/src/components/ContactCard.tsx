@@ -90,7 +90,6 @@ function ContactCard(): ReactElement {
         )
         .then(
           (response) => {
-            // fazer esquema para ficar um loading enquanto envia
             console.log('STATUS', response.status);
             setForm({ name: '', email: '', message: '' });
             setIsLoading(false);
