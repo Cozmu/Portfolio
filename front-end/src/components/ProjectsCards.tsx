@@ -10,7 +10,51 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
   const { projects } = useContext(PortfolioContext);
 
   if (home) {
-    return <div>oi</div>;
+    return (
+      <div className={`flex flex-col gap-5 my-10`}>
+        {projects?.slice(0, 3).map((project) => (
+          <NavLink
+            className={`flex rounded gap-2 border-zinc-400/40 border
+             dark:border-zinc-400/20 `}
+            key={project.id}
+            to={project.name}
+          >
+            <section className={`w-1/2`}>
+              <img
+                className={`object-cover rounded-s w-full 
+                  h-full border-r border-zinc-400/40`}
+                src={project.img.url}
+                alt={project.img.fileName}
+              />
+            </section>
+            <section className='w-1/2 relative p-1'>
+              <div className='flex flex-col gap-1'>
+                <h3 className='dark:text-slate-50 text-black text-2xl font-bold'>
+                  {project.name}
+                </h3>
+                <p
+                  className={`tracking-tight text-justify text-ellipsis
+                    overflow-hidden truncate`}
+                >
+                  {project.description}
+                </p>
+              </div>
+              <div className='flex gap-2 absolute bottom-4'>
+                {project.topics.slice(-3).map((topic) => (
+                  <p
+                    className={`p-1 rounded-sm dark:text-contrast dark:bg-contrast/40
+                      bg-tertiary/40 text-contrast`}
+                    key={topic}
+                  >
+                    {topic}
+                  </p>
+                ))}
+              </div>
+            </section>
+          </NavLink>
+        ))}
+      </div>
+    );
   }
 
   return (
