@@ -40,7 +40,7 @@ function ProjectDetails(): ReactElement {
   const [currentSession, setCurrentSession] = useState<HTMLElement>();
 
   const { projectName } = useParams();
-  const { projects } = useContext(PortfolioContext);
+  const { projects, toggleBaseColors } = useContext(PortfolioContext);
 
   const sectionsRefs = useRef<Array<HTMLElement | null>>([]);
   const buttonsRefs = useRef<Array<HTMLElement | null>>([]);
@@ -64,7 +64,9 @@ function ProjectDetails(): ReactElement {
           const isMatchingIndex = Number(button.id) === index;
           button.style.backgroundColor = isMatchingIndex
             ? '#4b54ff'
-            : 'rgb(248 250 252)';
+            : toggleBaseColors === 'dark'
+              ? 'rgb(248 250 252)'
+              : 'rgba(82, 82, 91, 0.3)';
         }
       });
 
@@ -91,7 +93,7 @@ function ProjectDetails(): ReactElement {
         setFirstTranslate(!firstTranslate);
       }
     }
-  }, [index, imgLength]);
+  }, [index, imgLength, toggleBaseColors]);
 
   useEffect(() => {
     if (currentSession) {
@@ -192,13 +194,13 @@ function ProjectDetails(): ReactElement {
           <section key={id} className='h-screen'>
             <h1 className='p-6 mx-10'>{name}</h1>
             <div className='relative'>
-              <div className={`flex overflow-hidden`}>
+              <div className={`flex overflow-hidden py-10`}>
                 {clonedGenerate(img).map(({ url, fileName }, index) => (
                   <section
                     key={index}
                     id={`${index}`}
                     ref={(el) => (sectionsRefs.current[index] = el)}
-                    className='flex-shrink-0 w-[60rem] mx-10'
+                    className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel'
                   >
                     <img className='w-full' src={url} alt={fileName} />
                   </section>
@@ -210,13 +212,13 @@ function ProjectDetails(): ReactElement {
               >
                 <button
                   onClick={previousSlide}
-                  className='w-10 h-10 text-slate-50'
+                  className='w-10 h-10 dark:text-slate-50 text-black'
                 >
                   <MdOutlineArrowBackIosNew className='w-full h-full' />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className='w-10 h-10 z-50 text-slate-50'
+                  className='w-10 h-10 z-50 dark:text-slate-50 text-black'
                 >
                   <MdOutlineArrowForwardIos className='w-full h-full' />
                 </button>

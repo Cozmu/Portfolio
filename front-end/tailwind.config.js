@@ -30,6 +30,7 @@ export default {
       },
       boxShadow: {
         'box-shadow': 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+        'carousel': 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
       },
       colors: {
         'main-dark': '#0d0d0d',
