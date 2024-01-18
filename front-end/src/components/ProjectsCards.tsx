@@ -17,7 +17,7 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
             className={`flex rounded gap-2 border-zinc-400/40 border
              dark:border-zinc-400/20 `}
             key={project.id}
-            to={project.name}
+            to={`projects/${project.name}`}
           >
             <section className={`w-1/2`}>
               <img
