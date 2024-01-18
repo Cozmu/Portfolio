@@ -12,7 +12,7 @@ function Projects(): ReactElement {
     }, 1100);
   }, []);
 
-  if (typeof isLoading === 'boolean') {
+  if (isLoading) {
     return (
       <div className='flex flex-col '>
         <Header />
