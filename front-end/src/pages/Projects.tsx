@@ -12,15 +12,18 @@ function Projects(): ReactElement {
     }, 1100);
   }, []);
 
-  if (isLoading) {
+  if (typeof isLoading === 'boolean') {
     return (
-      <section
-        className={`flex w-full h-screen items-center justify-center
-        gap-1
-        `}
-      >
-        <Loading measures={{ W: 'w-5', H: 'h-5' }} />
-      </section>
+      <div className='flex flex-col '>
+        <Header />
+        <section
+          className={`flex h-screen  
+              items-center justify-center gap-1
+              `}
+        >
+          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+        </section>
+      </div>
     );
   }
 

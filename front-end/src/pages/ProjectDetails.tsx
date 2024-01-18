@@ -189,20 +189,41 @@ function ProjectDetails(): ReactElement {
   return (
     <div>
       <Header />
-      <div className='pt-48'>
+      <div className='pt-48 p-6 mx-10'>
         {data?.map(({ id, name, description, img, topics, url }) => (
           <section key={id} className='h-screen'>
-            <h1 className='p-6 mx-10'>{name}</h1>
+            <section className='flex flex-col gap-2 '>
+              <p className='text-lg dark:text-contrast text-tertiary'>
+                . . /projetos
+              </p>
+              <h1
+                className={`text-black dark:text-white 
+                  text-3xl border-b pb-4 dark:border-zinc-400/20
+                 border-zinc-400/40`}
+              >
+                {name}
+              </h1>
+            </section>
             <div className='relative'>
-              <div className={`flex overflow-hidden py-10`}>
+              <div className={`flex overflow-hidden py-8`}>
                 {clonedGenerate(img).map(({ url, fileName }, index) => (
                   <section
                     key={index}
                     id={`${index}`}
                     ref={(el) => (sectionsRefs.current[index] = el)}
-                    className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel'
+                    className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel relative'
                   >
-                    <img className='w-full' src={url} alt={fileName} />
+                    <img
+                      className='w-full rounded-sm'
+                      src={url}
+                      alt={fileName}
+                    />
+                    {toggleBaseColors === 'dark' && (
+                      <div
+                        className={`absolute inset-0 bg-black 
+                        rounded-sm opacity-5`}
+                      />
+                    )}
                   </section>
                 ))}
               </div>
@@ -224,12 +245,12 @@ function ProjectDetails(): ReactElement {
                 </button>
               </section>
             </div>
-            <div className='flex gap-2 mx-10 pt-5'>
+            <div className='flex gap-2'>
               {img.map((_e, i) => (
                 <nav key={i}>
                   <button
                     ref={(el) => (buttonsRefs.current[i] = el)}
-                    id={`${i}`}
+                    id={`${i + 2}`}
                     className={`w-9 h-1`}
                     onClick={(e) => {
                       onControlButtonClick(e);
