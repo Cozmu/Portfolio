@@ -14,7 +14,7 @@ interface Irequest {
   name: string;
   description: string;
   topics: string[];
-  url: string;
+  html_url: string;
   [key: string]: unknown;
 }
 
@@ -47,7 +47,7 @@ const request = async (): Promise<Irequest[]> => {
 };
 
 const filterDate = async (): Promise<Irequest[]> => {
-  const desiredKeys = ['id', 'name', 'description', 'topics', 'url'];
+  const desiredKeys = ['id', 'name', 'description', 'topics', 'html_url'];
   const rawScore = await request();
   const arrayFiltered = [];
 
@@ -61,7 +61,6 @@ const filterDate = async (): Promise<Irequest[]> => {
     }
     arrayFiltered.push(filteredObj);
   }
-  // console.log('A', arrayFiltered);
 
   return arrayFiltered;
 };

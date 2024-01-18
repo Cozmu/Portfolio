@@ -42,7 +42,6 @@ const unzipFile = async (
       return { fileName: name[0], url };
     }),
   );
-  // console.log('B', imageUrls);
 
   return imageUrls;
 };

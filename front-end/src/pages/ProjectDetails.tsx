@@ -6,7 +6,7 @@ import React, {
   useRef,
   useLayoutEffect,
 } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import PortfolioContext from '../context/PortfolioContext';
 import unzipFile, { type IunzipFile } from '../service/ImagesAPI';
 import { type Irequest } from '../service/APIgithub';
@@ -15,6 +15,8 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIosNew,
 } from 'react-icons/md';
+import Loading from '../components/Loading';
+import { TbBrandGithub } from 'react-icons/tb';
 
 interface IprojectDetails extends Irequest {
   img: [
@@ -52,8 +54,10 @@ function ProjectDetails(): ReactElement {
 
   useEffect(() => {
     if (data) {
-      const imgLength = data[0]?.img.length || 0;
-      setImgLength(imgLength);
+      const verify = data[0]?.img.length || 0;
+      setTimeout(() => {
+        setImgLength(verify);
+      }, 600);
     }
   }, [data]);
 
@@ -186,11 +190,26 @@ function ProjectDetails(): ReactElement {
     return [...img.slice(-2), ...img, ...img.slice(0, 2)];
   };
 
+  if (imgLength < 1) {
+    return (
+      <div>
+        <Header />
+        <section
+          className={`flex h-screen mr-5
+              items-center justify-center gap-1
+              `}
+        >
+          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header />
-      <div className='pt-48 p-6 mx-10'>
-        {data?.map(({ id, name, description, img, topics, url }) => (
+      <div className='pt-64 p-6 mx-10'>
+        {data?.map(({ id, name, description, img, topics, html_url: url }) => (
           <section key={id} className='h-screen'>
             <section className='flex flex-col gap-2 '>
               <p className='text-lg dark:text-contrast text-tertiary'>
@@ -205,59 +224,111 @@ function ProjectDetails(): ReactElement {
               </h1>
             </section>
             <div className='relative'>
-              <div className={`flex overflow-hidden py-8`}>
-                {clonedGenerate(img).map(({ url, fileName }, index) => (
-                  <section
-                    key={index}
-                    id={`${index}`}
-                    ref={(el) => (sectionsRefs.current[index] = el)}
-                    className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel relative'
-                  >
-                    <img
-                      className='w-full rounded-sm'
-                      src={url}
-                      alt={fileName}
-                    />
-                    {toggleBaseColors === 'dark' && (
-                      <div
-                        className={`absolute inset-0 bg-black 
-                        rounded-sm opacity-5`}
-                      />
-                    )}
-                  </section>
-                ))}
-              </div>
-              <section
-                className={`absolute left-[8.6rem] top-2/4 flex 
-                justify-between w-[67.6rem]`}
+              <div
+                className={`${img.length > 1 && 'flex overflow-hidden'} py-8`}
               >
-                <button
-                  onClick={previousSlide}
-                  className='w-10 h-10 dark:text-slate-50 text-black'
+                {img.length > 1 ? (
+                  clonedGenerate(img).map(({ url, fileName }, index) => (
+                    <section
+                      key={index}
+                      id={`${index}`}
+                      ref={(el) => (sectionsRefs.current[index] = el)}
+                      className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel relative'
+                    >
+                      <img
+                        className='w-full rounded-sm'
+                        src={url}
+                        alt={fileName}
+                      />
+                      {toggleBaseColors === 'dark' && (
+                        <div
+                          className={`absolute inset-0 bg-black 
+                        rounded-sm opacity-5`}
+                        />
+                      )}
+                    </section>
+                  ))
+                ) : (
+                  <section className='relative w-full h-[30rem] shadow-carousel'>
+                    <img
+                      className='w-full h-full rounded-sm object-cover'
+                      src={img[0].url}
+                      alt={img[0].fileName}
+                    />
+                    <div
+                      className={`
+                        absolute top-[30%] text-slate-50 flex flex-col items-center
+                        mx-auto w-full
+                      `}
+                    >
+                      <span className='text-slate-50 text-8xl'>APENAS</span>
+                      <span className='text-slate-50 text-8xl'>BACK-END</span>
+                    </div>
+                  </section>
+                )}
+              </div>
+              {img.length > 1 && (
+                <section
+                  className={`absolute left-[8.6rem] top-2/4 flex 
+                justify-between w-[67.6rem]`}
                 >
-                  <MdOutlineArrowBackIosNew className='w-full h-full' />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className='w-10 h-10 z-50 dark:text-slate-50 text-black'
-                >
-                  <MdOutlineArrowForwardIos className='w-full h-full' />
-                </button>
-              </section>
-            </div>
-            <div className='flex gap-2'>
-              {img.map((_e, i) => (
-                <nav key={i}>
                   <button
-                    ref={(el) => (buttonsRefs.current[i] = el)}
-                    id={`${i + 2}`}
-                    className={`w-9 h-1`}
-                    onClick={(e) => {
-                      onControlButtonClick(e);
-                    }}
-                  />
-                </nav>
-              ))}
+                    onClick={previousSlide}
+                    className='w-10 h-10 dark:text-slate-50 text-black'
+                  >
+                    <MdOutlineArrowBackIosNew className='w-full h-full' />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className='w-10 h-10 z-50 dark:text-slate-50 text-black'
+                  >
+                    <MdOutlineArrowForwardIos className='w-full h-full' />
+                  </button>
+                </section>
+              )}
+            </div>
+            <div className='flex gap-2 mb-5'>
+              {img.length > 1 &&
+                img.map((_e, i) => (
+                  <nav key={i}>
+                    <button
+                      ref={(el) => (buttonsRefs.current[i] = el)}
+                      id={`${i + 2}`}
+                      className={`w-9 h-1`}
+                      onClick={(e) => {
+                        onControlButtonClick(e);
+                      }}
+                    />
+                  </nav>
+                ))}
+            </div>
+            <div className='flex flex-col gap-3'>
+              <p className='text-lg dark:text-zinc-300 text-black w-2/3'>
+                {description}
+              </p>
+              <ul className='flex gap-3'>
+                {topics.map((topic, index) => (
+                  <li
+                    className={`py-[5px] px-1 rounded-sm text-center uppercase
+                  dark:text-contrast dark:bg-contrast/40 bg-tertiary/40 text-contrast`}
+                    key={index}
+                  >
+                    {topic}
+                  </li>
+                ))}
+              </ul>
+              <NavLink
+                className={`p-2 w-32 text-center rounded-sm mt-6
+                  text-lg dark:text-slate-50 text-black 
+                  dark:bg-contrast bg-tertiary
+                  hover:dark:bg-tertiary hover:bg-contrast                  
+                  flex items-center gap-1 justify-center`}
+                target='_black'
+                to={url}
+              >
+                <TbBrandGithub />
+                Repositório
+              </NavLink>
             </div>
           </section>
         ))}
