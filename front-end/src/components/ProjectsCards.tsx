@@ -15,7 +15,7 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
         {projects?.slice(0, 3).map((project) => (
           <NavLink
             className={`flex rounded gap-2 border-zinc-400/40 border
-             dark:border-zinc-400/20 `}
+             dark:border-zinc-400/20 h-60`}
             key={project.id}
             to={`projects/${project.name}`}
           >
@@ -39,11 +39,11 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
                   {project.description}
                 </p>
               </div>
-              <div className='flex gap-2 absolute bottom-4'>
+              <div className='flex gap-2 absolute bottom-4 flex-wrap'>
                 {project.topics.slice(-3).map((topic) => (
                   <p
                     className={`p-1 rounded-sm dark:text-contrast dark:bg-contrast/40
-                      bg-tertiary/40 text-contrast`}
+                    text-center bg-tertiary/40 text-contrast`}
                     key={topic}
                   >
                     {topic}
