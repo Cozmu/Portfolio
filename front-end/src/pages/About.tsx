@@ -8,28 +8,26 @@ function About(): ReactElement {
     <>
       <Header />
       <div className='flex p-6 mx-10 pt-40 gap-10 justify-center'>
-        <section className='w-1/2'>
+        <section className='w-1/2 flex flex-col gap-2'>
           <p className='text-lg dark:text-contrast text-tertiary tex'>
             . . /sobre mim
           </p>
-          <h1></h1>
-          <p></p>
-          <p></p>
-          <p>
-            issim eget maximus arcu. In in pellentesque eros. Ut dignissim metus
-            in metus egestas, vitae aliquet arcu vulputate. Maecenas imperdiet
-            non diam eget venenatis. Duis ultricies mollis rhoncus. Vivamus
-            elementum urna dictum dignissim bibendum. Integer accumsan sem nec
-            eros ornare rutrum. Maecenas eget elit est. Mauris quis augue
-            imperdietque leo ut est lacinia, et bibendum orci iaculis. Nulla
-            quam tellus, tristique quis scelerisque id, porttitor vitae sapien.
-            Duis vitae enim arcu. Proin non auctor tellus. Proin vel aliquam
-            erat, non sollicitudin metus. Integer nec risus sem. Praesent in
-            eros quis metus suscipit mollis tempus nec ipsum. Aliquam erat
-            volutpat. Morbi neque lorem, fringilla sit amet tincidunt vel,
-            accumsan et sapien. Curabitur consectetur elit vitae leo dignissim,
-            sed vestibulum neque congue.
-          </p>
+          <h1 className='text-slate-50 text-5xl'>
+            Sou um desenvolvedor full-stack no início da minha carreira, mas com
+            muitos sonhos e força de vontade.
+          </h1>
+          <div>
+            <p>infancia: primeiros contatos com a tecnologia e sonhos</p>
+            <p>
+              formação: como cheguei ao ponto de querer seguir essa carreira e
+              como adiquiri meus conhecimentos que eu tenho hoje
+            </p>
+            <p>
+              objetivos: como eu quero ser daqui pra frente e como eu posso
+              agregar valor
+            </p>
+            <p></p>
+          </div>
         </section>
         <section className='w-1/2  flex flex-col justify-between items-center'>
           <img
