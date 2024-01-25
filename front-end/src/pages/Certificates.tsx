@@ -1,10 +1,34 @@
-import { type ReactElement } from 'react';
+import { useEffect, type ReactElement, useState } from 'react';
 import Header from '../components/Header';
 import { certificates } from '../service/date';
 import { NavLink } from 'react-router-dom';
 import { FaPaperclip } from 'react-icons/fa6';
+import Loading from '../components/Loading';
 
 function Certificates(): ReactElement {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        <Header />
+        <section
+          className={`flex h-screen mr-5
+              items-center justify-center gap-1
+              `}
+        >
+          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className='pb-20'>
       <Header />

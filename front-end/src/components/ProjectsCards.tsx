@@ -11,7 +11,7 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
 
   if (home) {
     return (
-      <div className={`flex flex-col gap-5 my-10`}>
+      <div className={`flex flex-col gap-5 mt-10 mb-5`}>
         {projects?.slice(0, 3).map((project) => (
           <NavLink
             className={`flex rounded gap-2 border-zinc-400/40 border

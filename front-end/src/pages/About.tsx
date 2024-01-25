@@ -1,13 +1,37 @@
-import { type ReactElement } from 'react';
+import { useState, type ReactElement, useEffect } from 'react';
 import Header from '../components/Header';
 import SocialMedias from '../components/SocialMedias';
 import perfil from '../imgs/perfil.jpg';
+import Loading from '../components/Loading';
 
 function About(): ReactElement {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        <Header />
+        <section
+          className={`flex h-screen mr-5
+              items-center justify-center gap-1
+              `}
+        >
+          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+        </section>
+      </div>
+    );
+  }
+
   return (
     <>
       <Header />
-      <div className='flex p-6 mx-10 pt-40 gap-10 justify-center'>
+      <div className='flex p-6 mx-10 pt-60 gap-10 justify-center'>
         <section className='w-1/2 flex flex-col gap-2 flex-wrap'>
           <p className='text-lg dark:text-contrast text-tertiary tex'>
             . . /sobre mim
