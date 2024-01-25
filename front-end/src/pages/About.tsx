@@ -17,9 +17,7 @@ function About(): ReactElement {
             muitos sonhos e força de vontade.
           </h1>
           <div className='flex flex-col w-full mt-10 gap-8'>
-            <p
-            /* infancia: primeiros contatos com a tecnologia e sonhos */
-            >
+            <p>
               A tecnologia sempre foi a minha paixão, desde a infância. Eu
               passava horas na frente do computador, jogando clássicos como GTA
               San Andreas, Donkey Kong e Call of Duty, navegando na internet em
@@ -27,10 +25,7 @@ function About(): ReactElement {
               nas redes sociais e fazendo trabalhos escolares com Word ou
               PowerPoint, que me introduziram ao uso de ferramentas digitais.
             </p>
-            <p
-            /* formação: como cheguei ao ponto de querer seguir essa carreira e
-              como adiquiri meus conhecimentos que eu tenho hoje */
-            >
+            <p>
               Quando conclui o ensino médio, estava claro que meu futuro
               profissional envolveria tecnologia. Decidi, então, focar nos
               estudos em programação e me matriculei na Trybe, uma escola
@@ -39,14 +34,11 @@ function About(): ReactElement {
               meus conhecimentos em diversas tecnologias, aplicando-os em
               projetos práticos e desafiadores.
             </p>
-            <p
-            /* objetivos: como eu quero ser daqui pra frente e como eu posso
-              agregar valor */
-            >
-              Atualmente, estou dedicado aperfeiçoando e trabalhando em projetos
-              que agreguem valor ao meu portfólio e a mim como profissional,
-              pois sei que ainda estou no início da minha carreira e tenho muito
-              a conquistar e desenvolver. A paixão pela tecnologia continua me
+            <p>
+              Atualmente, estou me aperfeiçoando e trabalhando em projetos que
+              agreguem valor ao meu portfólio e a mim como profissional, pois
+              sei que ainda estou no início da minha carreira e tenho muito a
+              conquistar e desenvolver. A paixão pela tecnologia continua me
               impulsionando, assim como a busca por novos desafios que permitem
               expandir meus conhecimentos e habilidades. Estou comprometido em
               crescer e evoluir constantemente nesta área que tanto me fascina.
