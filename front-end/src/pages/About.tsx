@@ -22,7 +22,7 @@ function About(): ReactElement {
               items-center justify-center gap-1
               `}
         >
-          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+          <Loading measures={{ W: 'md:w-5 w-3', H: 'md:h-5 h-3' }} />
         </section>
       </div>
     );
