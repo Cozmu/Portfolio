@@ -23,7 +23,7 @@ function Certificates(): ReactElement {
               items-center justify-center gap-1
               `}
         >
-          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+          <Loading measures={{ W: 'md:w-5 w-3', H: 'md:h-5 h-3' }} />
         </section>
       </div>
     );
@@ -32,20 +32,20 @@ function Certificates(): ReactElement {
   return (
     <div className='pb-20'>
       <Header />
-      <div className='p-6 mx-10 pt-56'>
-        <section className='flex flex-col gap-2 mb-11'>
+      <div className='md:px-6 px-4 md:mx-10 md:pt-56 pt-32'>
+        <section className='flex flex-col md:gap-2 gap-1 md:mb-11 mb-14'>
           <p className='text-lg dark:text-contrast text-tertiary'>
             . . /certificados
           </p>
-          <h1 className='text-black dark:text-white text-3xl'>
+          <h1 className='md:text-3xl text-2xl text-black dark:text-white '>
             Minhas Certificações estudantis
           </h1>
         </section>
         <ul
           className={`flex flex-col gap-14 relative
-            before:content-[''] before:absolute before:top-1 before:dark:bg-zinc-500
-            before:bg-zinc-400/60
-            before:w-[1px] before:h-full before:left-6
+            before:content-[''] before:absolute before:top-1
+            before:dark:bg-zinc-500 before:bg-zinc-400/60
+            before:w-[1px] before:h-full before:md:left-6 before:left-2
         `}
         >
           {certificates.map(
@@ -58,10 +58,12 @@ function Certificates(): ReactElement {
               link,
             }) => (
               <li
-                className={`pl-9 ml-4 relative flex flex-col gap-1
-                before:content-[''] before:absolute before:top-1 before:dark:bg-main-dark 
-                before:w-4 before:h-4 before:left-0 before:rounded-full before:border-2
-                before:dark:border-zinc-300 before:border-main-dark before:bg-white
+                className={`md:pl-9 pl-4 ml-4 relative flex flex-col gap-1
+                before:content-[''] before:absolute before:top-1 
+                before:w-4 before:h-4 before:-left-4 before:md:left-0
+                before:rounded-full before:border-2
+                before:dark:bg-main-dark before:dark:border-zinc-300
+                before:border-main-dark before:bg-white
               `}
                 key={id}
               >
@@ -92,7 +94,7 @@ function Certificates(): ReactElement {
                 >
                   {emission}
                 </p>
-                <p className='w-2/4'>{description}</p>
+                <p className='xl:w-2/4'>{description}</p>
               </li>
             ),
           )}
