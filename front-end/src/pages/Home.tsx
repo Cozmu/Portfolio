@@ -96,7 +96,7 @@ function HomePage(): ReactElement {
         </div>
       </section>
       <section
-        className={`p-6 mx-10 border-t dark:border-zinc-400/20 
+        className={`p-6 mx-10 mb-10 border-t dark:border-zinc-400/20 
           border-zinc-400/40 flex flex-col gap-3`}
       >
         <p className='text-lg dark:text-contrast text-tertiary'>
