@@ -31,12 +31,29 @@ function About(): ReactElement {
   return (
     <>
       <Header />
-      <div className='flex p-6 mx-10 pt-60 gap-10 justify-center'>
-        <section className='w-1/2 flex flex-col gap-2 flex-wrap'>
+      <div
+        className={`
+          grid lg:grid-cols-2 
+          lg:p-6 lg:mx-10 md:p-3 md:mx-5 p-2 mx-3 pb-10
+          lg:pt-60 md:pt-48 pt-48 gap-10 justify-center
+        `}
+      >
+        <section className='flex justify-center items-center'>
+          <img
+            src={perfil}
+            alt=''
+            className='rounded-md md:w-96 w-80 md:h-96 h-80 object-cover rotate-3'
+          />
+        </section>
+        <section
+          className={`
+            flex lg:order-first row-span-2 flex-col gap-2 flex-wrap
+          `}
+        >
           <p className='text-lg dark:text-contrast text-tertiary tex'>
             . . /sobre mim
           </p>
-          <h1 className='dark:text-slate-50 text-black text-5xl'>
+          <h1 className='dark:text-slate-50 text-black xl:text-5xl md:text-4xl text-3xl'>
             Sou um desenvolvedor full-stack no início da minha carreira, mas com
             muitos sonhos e força de vontade.
           </h1>
@@ -69,12 +86,7 @@ function About(): ReactElement {
             </p>
           </div>
         </section>
-        <section className='w-1/2  flex flex-col justify-between items-center'>
-          <img
-            src={perfil}
-            alt=''
-            className='rounded-md w-96 h-96 object-cover rotate-3'
-          />
+        <section className='flex justify-center'>
           <SocialMedias />
         </section>
       </div>

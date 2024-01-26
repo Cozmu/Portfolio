@@ -21,9 +21,9 @@ function SocialMedias({ home }: IPropsSocialMedias): ReactElement {
 
   return (
     <section
-      className={`flex w-3/5 gap-4
+      className={`flex lg:w-3/5 gap-4
       ${home && 'mt-48 items-center'}
-      ${!home && 'flex-col mt-20 items-start'}
+      ${!home && 'flex-col mt-10'}
     `}
     >
       {home && (
