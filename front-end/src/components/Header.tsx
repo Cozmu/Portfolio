@@ -6,7 +6,7 @@ import { BsMoonStars } from 'react-icons/bs';
 import { MdOutlineWbSunny, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import NavigateComponent from './NavigateComponent';
+import NavigateBar from './NavigateBar';
 
 interface IPropsHeader {
   home?: boolean;
@@ -112,7 +112,7 @@ function Header({ home }: IPropsHeader): ReactElement {
           </button>
         </div>
       </section>
-      <NavigateComponent />
+      <NavigateBar />
       <section>
         <NavLink className='' to='/'>
           <div

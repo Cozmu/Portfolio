@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5';
 import PortfolioContext from '../context/PortfolioContext';
 
-function NavigateComponent(): ReactElement {
+function NavigateBar(): ReactElement {
   const { pathname } = useLocation();
   const { floatingMenu, setFloatingMenu } = useContext(PortfolioContext);
 
@@ -79,4 +79,4 @@ function NavigateComponent(): ReactElement {
   );
 }
 
-export default NavigateComponent;
+export default NavigateBar;
