@@ -1,11 +1,12 @@
 import { type ReactElement, useContext, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PortfolioContext from '../context/PortfolioContext';
 import perfil from '../imgs/perfil.jpg';
 import { BsMoonStars } from 'react-icons/bs';
 import { MdOutlineWbSunny, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import NavigateComponent from './NavigateComponent';
 
 interface IPropsHeader {
   home?: boolean;
@@ -14,9 +15,12 @@ interface IPropsHeader {
 function Header({ home }: IPropsHeader): ReactElement {
   const isHome = home === true;
   const animation = `translate-y-80 -translate-x-28 duration-700 ease-in-out scale-[7]`;
-  const { setToggleBaseColors, toggleBaseColors } =
-    useContext(PortfolioContext);
-  const { pathname } = useLocation();
+  const {
+    setToggleBaseColors,
+    toggleBaseColors,
+    floatingMenu,
+    setFloatingMenu,
+  } = useContext(PortfolioContext);
 
   useEffect(() => {
     // animação buga quando troca de resolução (troca de tela)
@@ -70,9 +74,13 @@ function Header({ home }: IPropsHeader): ReactElement {
         xl:mx-10 xl:w-[85%] lg:mx-8 lg:w-[81.8%] md:w-[86%] w-full
         `}
     >
-      <section className='flex justify-end gap-2'>
+      <section
+        className={`flex ${home && 'flex-row-reverse'} justify-end gap-2`}
+      >
         <button
-          // onClick={}
+          onClick={() => {
+            setFloatingMenu(!floatingMenu);
+          }}
           className={`
           dark:bg-zinc-900 h-10 px-4 py-2 rounded-full  
           flex items-center gap-1 justify-center 
@@ -104,61 +112,7 @@ function Header({ home }: IPropsHeader): ReactElement {
           </button>
         </div>
       </section>
-      <nav
-        className=' items-center justify-around
-          md:w-2/5 lg:w-1/3 xl:w-1/4
-          md:flex hidden flex-wrap
-          h-10 rounded-full text-sm 
-          shadow-box-shadow text-black
-          dark:text-slate-50 dark:bg-zinc-900
-          dark:shadow dark:shadow-zinc-800'
-      >
-        <div className='md:hidden'></div>
-        <NavLink
-          className={`${
-            pathname === '/about' && 'text-tertiary'
-          } relative hover:text-tertiary h-full flex items-center`}
-          to='/about'
-        >
-          Sobre
-          {pathname === '/about' && (
-            <span
-              className='absolute inset-x-0 -bottom-px h-px bg-gradient-to-r 
-              from-tertiary/0 via-contrast to-tertiary/0 '
-            />
-          )}
-        </NavLink>
-        <NavLink
-          className={`${
-            pathname === '/projects' && 'text-tertiary'
-          } relative hover:text-tertiary h-full flex items-center`}
-          to='/projects'
-        >
-          Projetos
-          {pathname === '/projects' && (
-            <span
-              className='absolute w-10 inset-x-0 
-                -bottom-px h-px bg-gradient-to-r
-                from-tertiary/0 via-contrast to-tertiary/0 '
-            />
-          )}
-        </NavLink>
-        <NavLink
-          className={`${
-            pathname === '/certificates' && 'text-tertiary'
-          } relative hover:text-tertiary h-full flex items-center`}
-          to='/certificates'
-        >
-          Certificados
-          {pathname === '/certificates' && (
-            <span
-              className='absolute mx-auto w-10 inset-x-0 
-            -bottom-px h-px bg-gradient-to-r 
-            from-tertiary/0 via-contrast to-tertiary/0 '
-            />
-          )}
-        </NavLink>
-      </nav>
+      <NavigateComponent />
       <section>
         <NavLink className='' to='/'>
           <div

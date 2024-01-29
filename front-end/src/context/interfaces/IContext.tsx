@@ -9,6 +9,8 @@ interface IGlobalContext {
   setPulseContactCard: (value: boolean) => void;
   pulseContactCard: boolean;
   setProjects: (value: Iproject[]) => void;
+  floatingMenu: boolean;
+  setFloatingMenu: (value: boolean) => void;
 }
 
 interface IProps {

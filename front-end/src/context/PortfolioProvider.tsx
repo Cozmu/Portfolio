@@ -10,6 +10,7 @@ interface IserviceAPI {
 }
 
 function PortfolioProvider({ children }: IProps): JSX.Element {
+  const [floatingMenu, setFloatingMenu] = useState(false);
   const [pulseContactCard, setPulseContactCard] = useState<boolean>(false);
   const [contactCard, setContactCard] = useState<React.ReactNode>();
   const localBaseColors = localStorage.getItem('baseColors'); // implementar
@@ -74,6 +75,7 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
 
   const values = useMemo(
     () => ({
+      floatingMenu,
       projects,
       contactCard,
       toggleBaseColors,
@@ -82,8 +84,9 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
       setToggleBaseColors,
       setPulseContactCard,
       setProjects,
+      setFloatingMenu,
     }),
-    [projects, toggleBaseColors, contactCard, pulseContactCard],
+    [projects, toggleBaseColors, contactCard, pulseContactCard, floatingMenu],
   );
 
   return (
