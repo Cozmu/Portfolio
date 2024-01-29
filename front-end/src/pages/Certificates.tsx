@@ -33,7 +33,12 @@ function Certificates(): ReactElement {
     <div className='pb-20'>
       <Header />
       <div className='md:px-6 px-4 md:mx-10 md:pt-56 pt-32'>
-        <section className='flex flex-col md:gap-2 gap-1 md:mb-11 mb-14'>
+        <section
+          className={`
+            flex flex-col md:gap-2 gap-1 md:mb-11 mb-14
+            dark:border-zinc-400/20 border-zinc-400/40 border-b pb-3
+            `}
+        >
           <p className='text-lg dark:text-contrast text-tertiary'>
             . . /certificados
           </p>

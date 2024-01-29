@@ -48,12 +48,19 @@ function About(): ReactElement {
         <section
           className={`
             flex lg:order-first row-span-2 flex-col gap-2 flex-wrap
-          `}
+        `}
         >
           <p className='text-lg dark:text-contrast text-tertiary tex'>
             . . /sobre mim
           </p>
-          <h1 className='dark:text-slate-50 text-black xl:text-5xl md:text-4xl text-3xl'>
+          <h1
+            className={`
+              dark:text-slate-50 text-black
+              xl:text-5xl md:text-4xl text-3xl
+              dark:border-zinc-400/20 border-zinc-400/40 border-b 
+              md:pb-7 pb-4
+            `}
+          >
             Sou um desenvolvedor full-stack no início da minha carreira, mas com
             muitos sonhos e força de vontade.
           </h1>
@@ -86,7 +93,11 @@ function About(): ReactElement {
             </p>
           </div>
         </section>
-        <section className='flex justify-center'>
+        <section
+          className={`flex justify-center border-t lg:border-none     
+            dark:border-zinc-400/20 border-zinc-400/40
+          `}
+        >
           <SocialMedias />
         </section>
       </div>

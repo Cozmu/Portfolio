@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import PortfolioContext from '../context/PortfolioContext';
 import perfil from '../imgs/perfil.jpg';
 import { BsMoonStars } from 'react-icons/bs';
-import { MdOutlineWbSunny } from 'react-icons/md';
+import { MdOutlineWbSunny, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -45,6 +45,7 @@ function Header({ home }: IPropsHeader): ReactElement {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to('#header-container', {
+      // #header-container
       opacity: 0,
       scrollTrigger: {
         trigger: '#header-container',
@@ -63,16 +64,18 @@ function Header({ home }: IPropsHeader): ReactElement {
     <header
       id='header-container'
       className={`flex fixed items-center pb-28
-      ${!home && 'flex-row-reverse'}
-      duration-500 ease-in-out transition-opacity opacity-100
-      justify-between p-6 mx-10 w-[85%]`}
+        ${!home && 'flex-row-reverse'}
+        duration-500 ease-in-out transition-opacity opacity-100
+        justify-between p-6
+        xl:mx-10 xl:w-[85%] lg:mx-8 lg:w-[81.8%] md:w-[86%] w-full
+        `}
     >
       <div>
         <button
-          className='rounded-full w-14  h-10 flex justify-center items-center
+          className='rounded-full w-14 h-10 flex justify-center items-center
             dark:hover:ring-1 hover:bg-slate-50 dark:hover:bg-zinc-900
-            dark:hover:ring-zinc-700 shadow-md
-           dark:shadow dark:shadow-zinc-800 dark:bg-zinc-900'
+          dark:hover:ring-zinc-700 shadow-md
+            dark:shadow dark:shadow-zinc-800 dark:bg-zinc-900'
           onClick={() => {
             setToggleBaseColors(toggleBaseColors === 'dark' ? 'light' : 'dark');
           }}
@@ -84,13 +87,28 @@ function Header({ home }: IPropsHeader): ReactElement {
           )}
         </button>
       </div>
-      <nav
-        className='dark:bg-zinc-900 w-1/4 flex items-center
-          h-10 rounded-full justify-around text-sm 
+      <button
+        className={`
+          dark:bg-zinc-900 h-10 px-4 py-2 rounded-full  
+          flex items-center gap-1 justify-center 
+          md:hidden
+          dark:text-slate-50 dark:shadow dark:shadow-zinc-800
           shadow-box-shadow text-black
-          dark:text-slate-50
+        `}
+      >
+        <span className='ml-1'>Menu</span>
+        <MdOutlineKeyboardArrowDown />
+      </button>
+      <nav
+        className=' items-center justify-around
+          md:w-2/5 lg:w-1/3 xl:w-1/4
+          md:flex hidden flex-wrap
+          h-10 rounded-full text-sm 
+          shadow-box-shadow text-black
+          dark:text-slate-50 dark:bg-zinc-900
           dark:shadow dark:shadow-zinc-800'
       >
+        <div className='hidden'></div>
         <NavLink
           className={`${
             pathname === '/about' && 'text-tertiary'
