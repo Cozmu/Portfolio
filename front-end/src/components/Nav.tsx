@@ -14,8 +14,9 @@ function Nav({ mobile }: IPropsNav): ReactElement {
       md:w-2/5 lg:w-1/3 xl:w-1/4
       md:flex md:flex-row ${!mobile && 'hidden'}
       h-10 rounded-full text-sm flex-col
-      md:shadow-box-shadow text-black
-      dark:text-slate-50 md:dark:bg-zinc-900
+      md:divide-y-0 divide-y dark:divide-zinc-400/20 divide-zinc-400/40
+      md:shadow-box-shadow md:text-black
+      md:dark:text-slate-50 md:dark:bg-zinc-900
       md:dark:shadow md:dark:shadow-zinc-800`}
     >
       <NavLink
@@ -25,7 +26,7 @@ function Nav({ mobile }: IPropsNav): ReactElement {
         to='/about'
       >
         Sobre
-        {pathname === '/about' && (
+        {pathname === '/about' && !mobile && (
           <span
             className='absolute inset-x-0 -bottom-px h-px bg-gradient-to-r 
           from-tertiary/0 via-contrast to-tertiary/0 '
@@ -39,7 +40,7 @@ function Nav({ mobile }: IPropsNav): ReactElement {
         to='/projects'
       >
         Projetos
-        {pathname === '/projects' && (
+        {pathname === '/projects' && !mobile && (
           <span
             className='absolute w-10 inset-x-0 
             -bottom-px h-px bg-gradient-to-r
@@ -54,7 +55,7 @@ function Nav({ mobile }: IPropsNav): ReactElement {
         to='/certificates'
       >
         Certificados
-        {pathname === '/certificates' && (
+        {pathname === '/certificates' && !mobile && (
           <span
             className='absolute mx-auto w-10 inset-x-0 
         -bottom-px h-px bg-gradient-to-r 

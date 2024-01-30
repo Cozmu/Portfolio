@@ -7,8 +7,6 @@ function NavigateBar(): ReactElement {
   const { floatingMenu, setFloatingMenu } = useContext(PortfolioContext);
 
   const handleResize = (): void => {
-    console.log(window.innerWidth);
-
     if (window.innerWidth >= 768) {
       setFloatingMenu(false);
     }
@@ -47,14 +45,14 @@ function NavigateBar(): ReactElement {
               <IoClose className='w-full h-full' />
             </button>
           </section>
-          <section>
+          <section className='h-28'>
             <Nav mobile={true} />
           </section>
         </div>
       </div>
     );
   }
-  return <Nav mobile={false} />;
+  return <Nav />;
 }
 
 export default NavigateBar;
