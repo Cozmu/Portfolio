@@ -1,11 +1,26 @@
-import { useContext, type ReactElement } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useContext, type ReactElement, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 import PortfolioContext from '../context/PortfolioContext';
+import Nav from './Nav';
 
 function NavigateBar(): ReactElement {
-  const { pathname } = useLocation();
   const { floatingMenu, setFloatingMenu } = useContext(PortfolioContext);
+
+  const handleResize = (): void => {
+    console.log(window.innerWidth);
+
+    if (window.innerWidth >= 768) {
+      setFloatingMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   if (floatingMenu) {
     return (
@@ -21,7 +36,7 @@ function NavigateBar(): ReactElement {
            bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800
           `}
         >
-          <section className=' flex w-full justify-between mb-3 items-center'>
+          <section className='flex w-full justify-between mb-3 items-center'>
             <h4 className='dark:text-slate-50 text-black'>Navegação</h4>
             <button
               className='w-5'
@@ -32,73 +47,14 @@ function NavigateBar(): ReactElement {
               <IoClose className='w-full h-full' />
             </button>
           </section>
-          <ul>
-            <li>eu uero</li>
-            <li>eu uero</li>
-            <li>eu uero</li>
-            <li>eu uero</li>
-            <li>eu uero</li>
-          </ul>
+          <section>
+            <Nav mobile={true} />
+          </section>
         </div>
       </div>
     );
   }
-  return (
-    <nav
-      className=' items-center justify-around
-      md:w-2/5 lg:w-1/3 xl:w-1/4
-      md:flex hidden flex-wrap
-      h-10 rounded-full text-sm 
-      shadow-box-shadow text-black
-      dark:text-slate-50 dark:bg-zinc-900
-      dark:shadow dark:shadow-zinc-800'
-    >
-      <NavLink
-        className={`${
-          pathname === '/about' && 'text-tertiary'
-        } relative hover:text-tertiary h-full flex items-center`}
-        to='/about'
-      >
-        Sobre
-        {pathname === '/about' && (
-          <span
-            className='absolute inset-x-0 -bottom-px h-px bg-gradient-to-r 
-          from-tertiary/0 via-contrast to-tertiary/0 '
-          />
-        )}
-      </NavLink>
-      <NavLink
-        className={`${
-          pathname === '/projects' && 'text-tertiary'
-        } relative hover:text-tertiary h-full flex items-center`}
-        to='/projects'
-      >
-        Projetos
-        {pathname === '/projects' && (
-          <span
-            className='absolute w-10 inset-x-0 
-            -bottom-px h-px bg-gradient-to-r
-            from-tertiary/0 via-contrast to-tertiary/0 '
-          />
-        )}
-      </NavLink>
-      <NavLink
-        className={`${
-          pathname === '/certificates' && 'text-tertiary'
-        } relative hover:text-tertiary h-full flex items-center`}
-        to='/certificates'
-      >
-        Certificados
-        {pathname === '/certificates' && (
-          <span
-            className='absolute mx-auto w-10 inset-x-0 
-        -bottom-px h-px bg-gradient-to-r 
-        from-tertiary/0 via-contrast to-tertiary/0 '
-          />
-        )}
-      </NavLink>
-    </nav>
-  );
+  return <Nav mobile={false} />;
 }
 
 export default NavigateBar;
