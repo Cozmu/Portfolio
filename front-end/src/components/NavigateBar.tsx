@@ -10,14 +10,35 @@ function NavigateBar(): ReactElement {
   if (floatingMenu) {
     return (
       <div>
-        <div className='md:hidden'></div>
-        <button
-          onClick={() => {
-            setFloatingMenu(!floatingMenu);
-          }}
+        <div
+          className={`
+            fixed inset-0 z-50 bg-zinc-800/40 
+            backdrop-blur-sm dark:bg-black/80
+            `}
+        />
+        <div
+          className={`fixed inset-x-4 top-8 z-50 origin-top rounded-3xl
+           bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800
+          `}
         >
-          <IoClose />
-        </button>
+          <section className='flex w-full justify-between'>
+            <h4>Navegação</h4>
+            <button
+              onClick={() => {
+                setFloatingMenu(!floatingMenu);
+              }}
+            >
+              <IoClose />
+            </button>
+          </section>
+          <ul>
+            <li>eu uero</li>
+            <li>eu uero</li>
+            <li>eu uero</li>
+            <li>eu uero</li>
+            <li>eu uero</li>
+          </ul>
+        </div>
       </div>
     );
   }

@@ -38,11 +38,11 @@ function About(): ReactElement {
           lg:pt-60 md:pt-48 pt-48 gap-10 justify-center
         `}
       >
-        <section className='flex justify-center items-center'>
+        <section className='flex justify-center items-center z-40'>
           <img
             src={perfil}
             alt=''
-            className='rounded-md md:w-96 w-80 md:h-96 h-80 object-cover rotate-3'
+            className='z-10 rounded-md md:w-96 w-80 md:h-96 h-80 object-cover rotate-3'
           />
         </section>
         <section
