@@ -2,9 +2,15 @@ import { useContext, type ReactElement, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 import PortfolioContext from '../context/PortfolioContext';
 import Nav from './Nav';
+import { useLocation } from 'react-router-dom';
 
 function NavigateBar(): ReactElement {
   const { floatingMenu, setFloatingMenu } = useContext(PortfolioContext);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setFloatingMenu(false);
+  }, [pathname]);
 
   const handleResize = (): void => {
     if (window.innerWidth >= 768) {

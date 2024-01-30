@@ -34,7 +34,7 @@ function About(): ReactElement {
       <div
         className={`
           grid lg:grid-cols-2 
-          lg:p-6 lg:mx-10 md:p-3 md:mx-5 p-2 mx-3 pb-10
+          lg:p-6 lg:mx-10 md:p-3 md:mx-5 p-2 mx-3
           lg:pt-60 md:pt-48 pt-48 gap-10 justify-center
         `}
       >
@@ -95,7 +95,7 @@ function About(): ReactElement {
         </section>
         <section
           className={`flex justify-center border-t lg:border-none     
-            dark:border-zinc-400/20 border-zinc-400/40
+            dark:border-zinc-400/20 border-zinc-400/40 pb-20
           `}
         >
           <SocialMedias />
