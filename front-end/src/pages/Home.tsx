@@ -32,15 +32,32 @@ function HomePage(): ReactElement {
   return (
     <>
       <Header home={true} />
-      <section className='p-6 mx-10'>
-        <div className='mt-52'>
+      <section
+        className={`
+          lg:p-6 p-[4px] py-6 md:p-3 
+          lg:mx-10 mx-5
+        `}
+      >
+        <div className='md:mt-52 mt-28'>
           <p className='text-contrast w-full text-lg'>Olá, meu nome é</p>
-          <h1 id='name' className='text-7xl pb-6 dark:text-slate-50 text-black'>
+          <h1
+            id='name'
+            className={`
+              xl:text-7xl lg:text-6xl md:text-5xl text-4xl
+              pb-6 dark:text-slate-50 text-black
+            `}
+          >
             Jorge Wellington...
           </h1>
         </div>
-        <div className='w-3/5'>
-          <p id='description' className='text-lg w-full'>
+        <div className='lg:w-3/5 md:w-1/2'>
+          <p
+            id='description'
+            className={`
+              lg:text-lg w-full
+              `}
+            // md:max-lg:tracking-tight md:max-lg:text-justify md:max-lg:text-ellipsis
+          >
             Sou um
             <span className='dark:text-slate-50 text-black'>
               {' '}
@@ -96,21 +113,33 @@ function HomePage(): ReactElement {
         </div>
       </section>
       <section
-        className={`p-6 mx-10 mb-10 border-t dark:border-zinc-400/20 
-          border-zinc-400/40 flex flex-col gap-3`}
+        className={`
+          lg:p-6 md:p-3 py-6
+          lg:mx-10 mx-5
+          border-t dark:border-zinc-400/20 
+          mb-10 border-zinc-400/40 flex flex-col gap-3
+        `}
       >
         <p className='text-lg dark:text-contrast text-tertiary'>
           . . /conhecimentos
         </p>
-        <h3 className='text-black dark:text-white text-3xl mb-11'>
+        <h3
+          className={`
+            text-3xl 
+            mb-11 text-black dark:text-white 
+          `}
+        >
           Competências
         </h3>
         <SkillsCards />
       </section>
       <section
-        className={`p-6 mx-10 pb-20 border-t
-         dark:border-zinc-400/20 border-zinc-400/40
-        gap-8 grid grid-cols-2`}
+        className={`
+          lg:p-6 md:p-3 py-6
+          lg:mx-10 mx-5 
+          border-t dark:border-zinc-400/20 border-zinc-400/40
+          gap-8 grid xl:grid-cols-2 grid-cols-1 pb-20 
+        `}
       >
         <Highlights />
         <Experiences />

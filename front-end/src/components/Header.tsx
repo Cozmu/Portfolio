@@ -12,9 +12,25 @@ interface IPropsHeader {
   home?: boolean;
 }
 
+// const handleResize = (): void => {
+//   const script = `
+//   duration-700 ease-in-out
+//   xl:translate-y-80 md:translate-y-[22rem]
+//   md:scale-[7] md:-translate-x-28`;
+//   setAnimation(script);
+// };
+// window.addEventListener('resize', handleResize);
+// window.removeEventListener('resize', handleResize);
+// const [animation, setAnimation] = useState<string>('');
+// setAnimation(script);
+
 function Header({ home }: IPropsHeader): ReactElement {
+  const animation = `
+  duration-700 ease-in-out
+  xl:translate-y-80 md:translate-y-[22rem]
+  md:scale-[7] md:-translate-x-28`;
   const isHome = home === true;
-  const animation = `translate-y-80 -translate-x-28 duration-700 ease-in-out scale-[7]`;
+
   const {
     setToggleBaseColors,
     toggleBaseColors,
@@ -23,7 +39,6 @@ function Header({ home }: IPropsHeader): ReactElement {
   } = useContext(PortfolioContext);
 
   useEffect(() => {
-    // animação buga quando troca de resolução (troca de tela)
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to('#profile-picture', {
@@ -49,7 +64,6 @@ function Header({ home }: IPropsHeader): ReactElement {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to('#header-container', {
-      // #header-container
       opacity: 0,
       scrollTrigger: {
         trigger: '#header-container',
@@ -117,11 +131,11 @@ function Header({ home }: IPropsHeader): ReactElement {
         <NavLink className='' to='/'>
           <div
             id='profile-picture'
-            className={`rounded${
-              isHome ? '' : '-full'
-            } flex items-center justify-center
-          ${isHome && animation}
-          w-10 h-10 shadow-box-shadow bg-slate-50  dark:bg-zinc-800`}
+            className={`rounded${isHome ? '' : '-full'}
+              flex items-center justify-center
+              ${isHome && animation}
+              w-10 h-10 shadow-box-shadow bg-slate-50 dark:bg-zinc-800
+            `}
           >
             <img
               id='profile-picture'

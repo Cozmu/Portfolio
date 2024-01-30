@@ -22,9 +22,8 @@ const unzipFile = async (
   projectName: string | undefined,
   router: string,
 ): Promise<IunzipFile[]> => {
-  const urlRost = 'http://localhost:8903'; // http://localhost:8903
+  const urlRost = 'http://localhost:8903';
   const zipData = await fetchZipFile(
-    // eslint-disable-next-line max-len
     `${urlRost}/images/${
       router === 'project-details' ? `${router}/${projectName}` : router
     }`,

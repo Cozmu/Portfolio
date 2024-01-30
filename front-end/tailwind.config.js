@@ -35,7 +35,6 @@ export default {
       colors: {
         'main-dark': '#0d0d0d',
         'tertiary': '#646cff',
-        'base2': '#610C9F', // rename preference
         'contrast': '#4b54ff',
       },
       fontFamily:{
