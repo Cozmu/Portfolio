@@ -117,7 +117,7 @@ function HomePage(): ReactElement {
           lg:p-6 md:p-3 py-6
           lg:mx-10 mx-5
           border-t dark:border-zinc-400/20 
-          mb-10 border-zinc-400/40 flex flex-col gap-3
+          mb-10 border-zinc-400/40 flex flex-col gap-2
         `}
       >
         <p className='text-lg dark:text-contrast text-tertiary'>
@@ -125,7 +125,7 @@ function HomePage(): ReactElement {
         </p>
         <h3
           className={`
-            text-3xl 
+            lg:text-3xl text-2xl
             mb-11 text-black dark:text-white 
           `}
         >

@@ -34,7 +34,7 @@ function Experiences(): ReactElement {
       <p className='text-lg dark:text-contrast text-contrast'>
         . . /experiências
       </p>
-      <h3 className='text-black dark:text-white text-3xl'>
+      <h3 className='text-black dark:text-white lg:text-3xl text-2xl'>
         Experiências Profissionais
       </h3>
       <div className='w-full flex items-center justify-center h-60'>

@@ -130,7 +130,7 @@ function ContactCard(): ReactElement {
           <p className='text-lg dark:text-contrast text-contrast'>
             . . /contato
           </p>
-          <h3 className='text-black dark:text-white text-3xl'>
+          <h3 className='text-black dark:text-white lg:text-3xl text-2xl'>
             Vamos trabalhar juntos? Entre em contato
           </h3>
         </div>
@@ -153,9 +153,9 @@ function ContactCard(): ReactElement {
       onSubmit={emailSubmite}
       ref={reference}
     >
-      <div className='w-full flex flex-col gap-2 mb-11'>
+      <div className='w-full flex flex-col gap-2 md:mb-11 mb-5'>
         <p className='text-lg dark:text-contrast text-tertiary'>. . /contato</p>
-        <h3 className='text-black dark:text-white text-3xl'>
+        <h3 className='text-black dark:text-white lg:text-3xl text-2xl'>
           Vamos trabalhar juntos? Entre em contato
         </h3>
       </div>
