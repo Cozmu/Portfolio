@@ -313,7 +313,7 @@ function ProjectDetails(): ReactElement {
               <p className='text-lg dark:text-zinc-300 text-black w-2/3'>
                 {description}
               </p>
-              <ul className='flex gap-3'>
+              <ul className='flex gap-3 flex-wrap'>
                 {topics.map((topic, index) => (
                   <li
                     className={`py-[5px] px-1 rounded-sm text-center uppercase
