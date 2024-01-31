@@ -83,7 +83,7 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
           />
           <div
             className={`lg:opacity-0 hover:opacity-100 hover:duration-500 bg-gradient-to-t
-            from-zinc-800/50 to-transparent dark:from-zinc-900/50 dark:to-transparent
+            from-zinc-800/60 to-transparent dark:from-zinc-900/50 dark:to-transparent
               w-full h-full rounded-lg absolute lg:px-5 mt:px-2 px-1 flex flex-col 
               gap-1 pb-6 justify-end
             `}
