@@ -39,7 +39,7 @@ function Projects(): ReactElement {
               items-center justify-center gap-1
               `}
         >
-          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+          <Loading measures={{ W: 'md:w-5 w-3', H: 'md:h-5 h-3' }} />
         </section>
       </div>
     );
@@ -48,14 +48,20 @@ function Projects(): ReactElement {
   return (
     <div>
       <Header />
-      <div className='pt-52 p-6 mx-10'>
+      <div
+        className={` 
+          lg:px-6 md:px-3 py-6
+          lg:mx-10 mx-5
+          md:pt-52 pt-28
+        `}
+      >
         <section className='flex flex-col gap-2'>
           <p className='text-lg dark:text-contrast text-tertiary'>
             . . /projetos
           </p>
           <h1
             className={`text-black dark:text-white 
-              text-3xl mb-11 border-b pb-4 
+              lg:text-3xl text-2xl mb-11 border-b pb-4 
               dark:border-zinc-400/20 border-zinc-400/40`}
           >
             Meus projetos

@@ -56,16 +56,22 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
       </div>
     );
   }
-
+  // gap-y-12 gap-x-[4.7rem]
   return (
-    <div className='grid grid-cols-3 gap-12 my-14'>
+    <div
+      className={` 
+        grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 
+        my-14 gap-12
+      `}
+    >
       {projects?.map((project) => (
         <NavLink
           to={project.name}
           className={`
-            hover:transition ease-in-out hover:scale-105 hover:duration-500
-            w-[28rem] relative h-[28rem] rounded-lg
-          `}
+              hover:transition ease-in-out hover:scale-105 
+              rounded-lg relative hover:duration-500
+              md:w-full md:m-0 w-11/12 m-auto  h-96
+            `}
           key={project.id}
         >
           <img
@@ -77,25 +83,36 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
             className={`absolute inset-0 bg-black rounded-lg opacity-10 hover:opacity-0`}
           />
           <div
-            className={`opacity-0 hover:opacity-100 hover:duration-500 bg-gradient-to-t
-              from-zinc-800/50 to-transparent dark:from-zinc-900/50 dark:to-transparent
-                h-full rounded-lg absolute px-5 flex flex-col gap-1 pb-6 justify-end`}
+            className={`lg:opacity-0 hover:opacity-100 hover:duration-500 bg-gradient-to-t
+            from-zinc-800/50 to-transparent dark:from-zinc-900/50 dark:to-transparent
+              w-full h-full rounded-lg absolute px-5 flex flex-col gap-1 pb-6 justify-end
+            `}
           >
             {project.img.fileName === 'back-end' && (
-              <div className='mx-auto mb-20 flex flex-col items-center gap-1'>
-                <span className='text-slate-50 text-6xl'>APENAS</span>
-                <span className='text-slate-50 text-6xl'>BACK-END</span>
+              <div className='mx-auto mb-14 flex flex-col items-center gap-1'>
+                <span className='text-slate-50 mt:text-6xl text-5xl'>
+                  APENAS
+                </span>
+                <span className='text-slate-50 mt:text-6xl text-5xl'>
+                  BACK-END
+                </span>
               </div>
             )}
-            <h1 className='text-slate-50 text-2xl font-bold'>{project.name}</h1>
+            <h1 className='text-slate-50 lg:text-2xl text-xl font-bold'>
+              {project.name}
+            </h1>
             <p
               className={`text-sm text-zinc-300 
-                tracking-tight text-justify text-ellipsis w-[25.5rem]
+                tracking-tight text-justify text-ellipsis 
                 overflow-hidden truncate`}
             >
               {project.description}
             </p>
-            <div className='flex gap-3 mt-3'>
+            <div
+              className={`
+                flex flex-wrap lg:gap-3 gap-1 mt-3 lg:text-sm text-xs
+              `}
+            >
               {project.topics.slice(-3).map((topic) => (
                 <section key={topic}>
                   <p
