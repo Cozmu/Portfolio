@@ -199,7 +199,7 @@ function ProjectDetails(): ReactElement {
               items-center justify-center gap-1
               `}
         >
-          <Loading measures={{ W: 'w-5', H: 'h-5' }} />
+          <Loading measures={{ W: 'md:w-5 w-3', H: 'md:h-5 h-3' }} />
         </section>
       </div>
     );
@@ -208,7 +208,13 @@ function ProjectDetails(): ReactElement {
   return (
     <div>
       <Header />
-      <div className='pt-64 p-6 mx-10'>
+      <div
+        className={`
+          pt-64 
+          lg:px-6 md:px-3 2xl:pb-0 pb-20
+          lg:mx-10 mx-5
+        `}
+      >
         {data?.map(({ id, name, description, img, topics, html_url: url }) => (
           <section key={id} className='h-screen'>
             <section className='flex flex-col gap-2 '>
@@ -217,8 +223,9 @@ function ProjectDetails(): ReactElement {
               </p>
               <h1
                 className={`text-black dark:text-white 
-                  text-3xl border-b pb-4 dark:border-zinc-400/20
-                 border-zinc-400/40`}
+                  lg:text-3xl text-2xl border-b pb-4 
+                dark:border-zinc-400/20 border-zinc-400/40
+                `}
               >
                 {name}
               </h1>
