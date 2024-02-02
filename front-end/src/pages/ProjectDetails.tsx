@@ -40,6 +40,7 @@ function ProjectDetails(): ReactElement {
   const [firstTranslate, setFirstTranslate] = useState(true);
   const [endTranslate, setEndTranslate] = useState(false);
   const [currentSession, setCurrentSession] = useState<HTMLElement>();
+  const [mouseStartingPoint, setMouseStartingPoint] = useState<number>(0);
 
   const { projectName } = useParams();
   const { projects, toggleBaseColors } = useContext(PortfolioContext);
@@ -80,6 +81,7 @@ function ProjectDetails(): ReactElement {
           section.style.transform = `translateX(-${
             position - (!firstTranslate ? 10 : 0)
           }rem)`;
+
           section.style.transition =
             firstTranslate || endTranslate ? 'none' : 'transform .5s';
           setSavedPosition(position);
@@ -98,6 +100,58 @@ function ProjectDetails(): ReactElement {
       }
     }
   }, [index, imgLength, toggleBaseColors]);
+
+  const onMouseDown = (event: MouseEvent): void => {
+    console.log(event.clientX);
+    setMouseStartingPoint(event.clientX);
+    const slideItem = event.currentTarget as HTMLElement;
+    slideItem.addEventListener('mousemove', onMouseMove);
+  };
+
+  const onMouseMove = (event: MouseEvent): void => {
+    const mv = event.clientX - mouseStartingPoint;
+    console.log(
+      `(EVENT =>${event.clientX}) - (START => ${mouseStartingPoint}) = ${mv}`,
+    );
+    sectionsRefs.current.forEach((section) => {
+      if (section) {
+        section.style.transform = `translateX(${mv}px)`;
+      }
+    });
+  };
+
+  const onMouseUp = (event: MouseEvent): void => {
+    console.log('soltei');
+    const slideItem = event.currentTarget as HTMLElement;
+    slideItem.removeEventListener('mousemove', onMouseMove);
+  };
+
+  useEffect(() => {
+    if (sectionsRefs.current.length > 0) {
+      sectionsRefs.current.forEach((section) => {
+        if (section) {
+          section.addEventListener('dragstart', (event: MouseEvent) => {
+            event.preventDefault();
+          });
+          section.addEventListener('mousedown', (event: MouseEvent) => {
+            onMouseDown(event);
+          });
+          section.addEventListener('mouseup', (event: MouseEvent) => {
+            onMouseUp(event);
+          });
+        }
+      });
+
+      return () => {
+        sectionsRefs.current.forEach((section) => {
+          if (section) {
+            section.removeEventListener('mousedown', onMouseDown);
+            section.removeEventListener('mouseup', onMouseUp);
+          }
+        });
+      };
+    }
+  }, [index, imgLength]);
 
   useEffect(() => {
     if (currentSession) {
