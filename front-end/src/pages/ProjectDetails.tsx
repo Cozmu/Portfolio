@@ -40,13 +40,14 @@ function ProjectDetails(): ReactElement {
   const [firstTranslate, setFirstTranslate] = useState(true);
   const [endTranslate, setEndTranslate] = useState(false);
   const [currentSession, setCurrentSession] = useState<HTMLElement>();
-  const [mouseStartingPoint, setMouseStartingPoint] = useState<number>(0);
 
   const { projectName } = useParams();
   const { projects, toggleBaseColors } = useContext(PortfolioContext);
 
   const sectionsRefs = useRef<Array<HTMLElement | null>>([]);
   const buttonsRefs = useRef<Array<HTMLElement | null>>([]);
+  const mouseStartingPointRef = useRef<number | null>(null);
+  const savedPositionRef = useRef<number>(0);
 
   const getProjectDetails = async (): Promise<IunzipFile[]> => {
     const projectsIMG = await unzipFile(projectName, 'project-details');
@@ -78,6 +79,9 @@ function ProjectDetails(): ReactElement {
       sectionsRefs.current.forEach((section) => {
         if (section) {
           const position = index * (firstTranslate ? 60 : 65);
+          console.log(position);
+          savedPositionRef.current = position;
+
           section.style.transform = `translateX(-${
             position - (!firstTranslate ? 10 : 0)
           }rem)`;
@@ -102,27 +106,37 @@ function ProjectDetails(): ReactElement {
   }, [index, imgLength, toggleBaseColors]);
 
   const onMouseDown = (event: MouseEvent): void => {
-    console.log(event.clientX);
-    setMouseStartingPoint(event.clientX);
+    mouseStartingPointRef.current = event.clientX;
     const slideItem = event.currentTarget as HTMLElement;
+    slideItem.style.userSelect = 'none';
     slideItem.addEventListener('mousemove', onMouseMove);
   };
 
   const onMouseMove = (event: MouseEvent): void => {
-    const mv = event.clientX - mouseStartingPoint;
-    console.log(
-      `(EVENT =>${event.clientX}) - (START => ${mouseStartingPoint}) = ${mv}`,
-    );
-    sectionsRefs.current.forEach((section) => {
-      if (section) {
-        section.style.transform = `translateX(${mv}px)`;
-      }
-    });
+    if (mouseStartingPointRef.current !== null) {
+      const mv = event.clientX - mouseStartingPointRef.current;
+      const x = savedPositionRef.current * 16;
+      console.log(
+        `(EVENT =>${event.clientX}) - 
+        (START => ${mouseStartingPointRef.current}) = ${mv}`,
+        -x,
+        mv,
+      );
+      sectionsRefs.current.forEach((section) => {
+        if (section) {
+          section.style.transform = `translateX(${-x + mv}px)`;
+        }
+      });
+    }
   };
 
   const onMouseUp = (event: MouseEvent): void => {
+    // se ficar com o mouse clicado e tirar do alcance do elemento
+    // ele conta que nunca soltou o mouse mesmo soltando dps
     console.log('soltei');
+    mouseStartingPointRef.current = null;
     const slideItem = event.currentTarget as HTMLElement;
+    slideItem.style.userSelect = '';
     slideItem.removeEventListener('mousemove', onMouseMove);
   };
 
@@ -133,12 +147,8 @@ function ProjectDetails(): ReactElement {
           section.addEventListener('dragstart', (event: MouseEvent) => {
             event.preventDefault();
           });
-          section.addEventListener('mousedown', (event: MouseEvent) => {
-            onMouseDown(event);
-          });
-          section.addEventListener('mouseup', (event: MouseEvent) => {
-            onMouseUp(event);
-          });
+          section.addEventListener('mousedown', onMouseDown);
+          section.addEventListener('mouseup', onMouseUp);
         }
       });
 
@@ -195,7 +205,7 @@ function ProjectDetails(): ReactElement {
           setData(filterProject);
         })
         .catch((err) => {
-          console.log(err);
+          return err;
         });
     }
   }, [projects, projectName]);
@@ -271,7 +281,7 @@ function ProjectDetails(): ReactElement {
       >
         {data?.map(({ id, name, description, img, topics, html_url: url }) => (
           <section key={id} className='h-screen'>
-            <section className='flex flex-col gap-2 '>
+            <section className='flex flex-col gap-2'>
               <p className='text-lg dark:text-contrast text-tertiary'>
                 . . /projetos
               </p>
