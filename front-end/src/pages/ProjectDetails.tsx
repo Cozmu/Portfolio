@@ -79,7 +79,6 @@ function ProjectDetails(): ReactElement {
       sectionsRefs.current.forEach((section) => {
         if (section) {
           const position = index * (firstTranslate ? 60 : 65);
-          console.log(position);
           savedPositionRef.current = position;
 
           section.style.transform = `translateX(-${
@@ -115,16 +114,14 @@ function ProjectDetails(): ReactElement {
   const onMouseMove = (event: MouseEvent): void => {
     if (mouseStartingPointRef.current !== null) {
       const mv = event.clientX - mouseStartingPointRef.current;
-      const x = savedPositionRef.current * 16;
-      console.log(
-        `(EVENT =>${event.clientX}) - 
-        (START => ${mouseStartingPointRef.current}) = ${mv}`,
-        -x,
-        mv,
-      );
+      const savedPositionInPx = savedPositionRef.current * 16;
+      // console.log(
+      //   `(EVENT =>${event.clientX}) -
+      //   (START => ${mouseStartingPointRef.current}) = ${mv}`,
+      // );
       sectionsRefs.current.forEach((section) => {
         if (section) {
-          section.style.transform = `translateX(${-x + mv}px)`;
+          section.style.transform = `translateX(${-savedPositionInPx + mv}px)`;
         }
       });
     }
