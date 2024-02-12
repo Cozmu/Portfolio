@@ -46,8 +46,6 @@ function ProjectDetails(): ReactElement {
 
   const sectionsRefs = useRef<Array<HTMLElement | null>>([]);
   const buttonsRefs = useRef<Array<HTMLElement | null>>([]);
-  const mouseStartingPointRef = useRef<number | null>(null);
-  const savedPositionRef = useRef<number>(0);
 
   const getProjectDetails = async (): Promise<IunzipFile[]> => {
     const projectsIMG = await unzipFile(projectName, 'project-details');
@@ -79,7 +77,6 @@ function ProjectDetails(): ReactElement {
       sectionsRefs.current.forEach((section) => {
         if (section) {
           const position = index * (firstTranslate ? 60 : 65);
-          savedPositionRef.current = position;
 
           section.style.transform = `translateX(-${
             position - (!firstTranslate ? 10 : 0)
@@ -103,62 +100,6 @@ function ProjectDetails(): ReactElement {
       }
     }
   }, [index, imgLength, toggleBaseColors]);
-
-  const onMouseDown = (event: MouseEvent): void => {
-    mouseStartingPointRef.current = event.clientX;
-    const slideItem = event.currentTarget as HTMLElement;
-    slideItem.style.userSelect = 'none';
-    slideItem.addEventListener('mousemove', onMouseMove);
-  };
-
-  const onMouseMove = (event: MouseEvent): void => {
-    if (mouseStartingPointRef.current !== null) {
-      const mv = event.clientX - mouseStartingPointRef.current;
-      const savedPositionInPx = savedPositionRef.current * 16;
-      // console.log(
-      //   `(EVENT =>${event.clientX}) -
-      //   (START => ${mouseStartingPointRef.current}) = ${mv}`,
-      // );
-      sectionsRefs.current.forEach((section) => {
-        if (section) {
-          section.style.transform = `translateX(${-savedPositionInPx + mv}px)`;
-        }
-      });
-    }
-  };
-
-  const onMouseUp = (event: MouseEvent): void => {
-    // se ficar com o mouse clicado e tirar do alcance do elemento
-    // ele conta que nunca soltou o mouse mesmo soltando dps
-    console.log('soltei');
-    mouseStartingPointRef.current = null;
-    const slideItem = event.currentTarget as HTMLElement;
-    slideItem.style.userSelect = '';
-    slideItem.removeEventListener('mousemove', onMouseMove);
-  };
-
-  useEffect(() => {
-    if (sectionsRefs.current.length > 0) {
-      sectionsRefs.current.forEach((section) => {
-        if (section) {
-          section.addEventListener('dragstart', (event: MouseEvent) => {
-            event.preventDefault();
-          });
-          section.addEventListener('mousedown', onMouseDown);
-          section.addEventListener('mouseup', onMouseUp);
-        }
-      });
-
-      return () => {
-        sectionsRefs.current.forEach((section) => {
-          if (section) {
-            section.removeEventListener('mousedown', onMouseDown);
-            section.removeEventListener('mouseup', onMouseUp);
-          }
-        });
-      };
-    }
-  }, [index, imgLength]);
 
   useEffect(() => {
     if (currentSession) {
