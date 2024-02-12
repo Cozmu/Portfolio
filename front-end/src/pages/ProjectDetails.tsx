@@ -242,6 +242,7 @@ function ProjectDetails(): ReactElement {
                       key={index}
                       id={`${index}`}
                       ref={(el) => (sectionsRefs.current[index] = el)}
+                      // trocar para porcentagem em todos
                       className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel relative'
                     >
                       <img
@@ -278,8 +279,10 @@ function ProjectDetails(): ReactElement {
               </div>
               {img.length > 1 && (
                 <section
-                  className={`absolute left-[8.6rem] top-2/4 flex 
-                justify-between w-[67.6rem]`}
+                  className={` 
+                    w-[68.6%] left-[9%] top-2/4
+                    flex justify-between  absolute
+                  `}
                 >
                   <button
                     onClick={previousSlide}
