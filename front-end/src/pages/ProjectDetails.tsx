@@ -76,11 +76,11 @@ function ProjectDetails(): ReactElement {
 
       sectionsRefs.current.forEach((section) => {
         if (section) {
-          const position = index * (firstTranslate ? 60 : 65);
+          const position = index * (firstTranslate ? 60.8 : 65);
 
           section.style.transform = `translateX(-${
-            position - (!firstTranslate ? 10 : 0)
-          }rem)`;
+            position - (!firstTranslate ? 8.6 : 0)
+          }vw)`;
 
           section.style.transition =
             firstTranslate || endTranslate ? 'none' : 'transform .5s';
@@ -152,12 +152,12 @@ function ProjectDetails(): ReactElement {
     sectionsRefs.current.forEach((section) => {
       if (section) {
         if (savedPosition === 0) {
-          section.style.transform = `translateX(-${65}rem)`;
+          section.style.transform = `translateX(-${65}vw)`;
           setSavedPosition(65);
           setIndex(index + 1);
         } else {
           if (sectionsRefs.current.length - 2 > index) {
-            section.style.transform = `translateX(-${savedPosition + 65}rem)`;
+            section.style.transform = `translateX(-${savedPosition + 65}vw)`;
             section.style.transition = 'transform .5s';
             setSavedPosition(savedPosition + 65);
             setIndex(index + 1);
@@ -171,7 +171,7 @@ function ProjectDetails(): ReactElement {
     sectionsRefs.current.forEach((section) => {
       if (section) {
         if (index > 1) {
-          section.style.transform = `translateX(-${savedPosition - 65}rem)`;
+          section.style.transform = `translateX(-${savedPosition - 65}vw)`;
           section.style.transition = 'transform .5s';
           setSavedPosition(savedPosition - 65);
           setIndex(index - 1);
@@ -242,8 +242,9 @@ function ProjectDetails(): ReactElement {
                       key={index}
                       id={`${index}`}
                       ref={(el) => (sectionsRefs.current[index] = el)}
-                      // trocar para porcentagem em todos
-                      className='flex-shrink-0 w-[60rem] mx-10 shadow-carousel relative'
+                      className={`
+                        flex-shrink-0 w-[60vw] mx-[2.5vw] shadow-carousel relative
+                      `}
                     >
                       <img
                         className='w-full rounded-sm'
@@ -281,7 +282,7 @@ function ProjectDetails(): ReactElement {
                 <section
                   className={` 
                     w-[68.6%] left-[9%] top-2/4
-                    flex justify-between  absolute
+                    hidden justify-between absolute
                   `}
                 >
                   <button
