@@ -213,7 +213,7 @@ function ProjectDetails(): ReactElement {
       <div
         className={`
           pt-64 
-          lg:px-6 md:px-3 2xl:pb-0 pb-20
+          lg:px-6 md:px-3 2xl:pb-32 pb-20
           lg:mx-10 mx-5
         `}
       >
@@ -281,8 +281,8 @@ function ProjectDetails(): ReactElement {
               {img.length > 1 && (
                 <section
                   className={` 
-                    w-[68.6%] left-[9%] top-2/4
-                    hidden justify-between absolute
+                    w-[68.6vw] left-[6.6vw] top-2/4
+                    flex justify-between absolute
                   `}
                 >
                   <button

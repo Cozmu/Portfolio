@@ -78,3 +78,9 @@ function arrastar(): ReactElement {
 }
 
 export default arrastar;
+
+const medidas = {
+  movel: { img: 85, incial: 90 },
+};
+
+console.log(medidas);
