@@ -40,6 +40,7 @@ function ProjectDetails(): ReactElement {
   const [firstTranslate, setFirstTranslate] = useState(true);
   const [endTranslate, setEndTranslate] = useState(false);
   const [currentSession, setCurrentSession] = useState<HTMLElement>();
+  const [screenWidth, setScreenWidth] = useState<number>(0);
 
   const { projectName } = useParams();
   const { projects, toggleBaseColors } = useContext(PortfolioContext);
@@ -52,14 +53,32 @@ function ProjectDetails(): ReactElement {
     return projectsIMG;
   };
 
+  const handleResize = (): void => {
+    console.log(window.innerWidth);
+    setScreenWidth(window.innerWidth);
+  };
+
   useEffect(() => {
     if (data) {
       const verify = data[0]?.img.length || 0;
       setTimeout(() => {
         setImgLength(verify);
       }, 600);
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }
   }, [data]);
+
+  const getStartingPosition = (): number => {
+    if (screenWidth >= 768) {
+      return 60.8;
+    }
+    return 90;
+  };
 
   useLayoutEffect(() => {
     if (buttonsRefs.current.length > 0 && sectionsRefs.current.length > 0) {
@@ -76,7 +95,7 @@ function ProjectDetails(): ReactElement {
 
       sectionsRefs.current.forEach((section) => {
         if (section) {
-          const position = index * (firstTranslate ? 60.8 : 65);
+          const position = index * (firstTranslate ? 60.3 : 65);
 
           section.style.transform = `translateX(-${
             position - (!firstTranslate ? 8.6 : 0)
@@ -213,7 +232,7 @@ function ProjectDetails(): ReactElement {
       <div
         className={`
           pt-64 
-          lg:px-6 md:px-3 2xl:pb-32 pb-20
+          lg:px-6 md:px-3 2xl:pb-16 pb-20
           lg:mx-10 mx-5
         `}
       >
@@ -243,7 +262,9 @@ function ProjectDetails(): ReactElement {
                       id={`${index}`}
                       ref={(el) => (sectionsRefs.current[index] = el)}
                       className={`
-                        flex-shrink-0 w-[60vw] mx-[2.5vw] shadow-carousel relative
+                        flex-shrink-0 shadow-carousel relative
+                        md:w-[60vw] w-[85vw]
+                        mx-[2.5vw]
                       `}
                     >
                       <img

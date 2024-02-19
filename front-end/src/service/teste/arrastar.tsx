@@ -80,7 +80,11 @@ function arrastar(): ReactElement {
 export default arrastar;
 
 const medidas = {
-  movel: { img: 85, incial: 90 },
+  movel: { img: 85, incial: 90, subtracao: 0 },
+  md: { img: 60, incial: 62 },
+  lg: { img: 60, inicial: 62.5, subtracao: 5 },
+  xl: { img: 60, incial: '', subtracao: '' },
+  '2xl': { img: 60, incial: 60.3, subtracao: 8.6 },
 };
 
 console.log(medidas);
