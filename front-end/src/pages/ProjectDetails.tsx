@@ -54,12 +54,12 @@ function ProjectDetails(): ReactElement {
   };
 
   const handleResize = (): void => {
-    console.log(window.innerWidth);
     setScreenWidth(window.innerWidth);
   };
 
   useEffect(() => {
     if (data) {
+      handleResize();
       const verify = data[0]?.img.length || 0;
       setTimeout(() => {
         setImgLength(verify);
@@ -74,10 +74,45 @@ function ProjectDetails(): ReactElement {
   }, [data]);
 
   const getStartingPosition = (): number => {
+    if (screenWidth >= 1536) {
+      return 60.3;
+    }
+    if (screenWidth >= 1280) {
+      return 61.6;
+    }
+    if (screenWidth >= 1024) {
+      return 62.5;
+    }
     if (screenWidth >= 768) {
-      return 60.8;
+      return 62;
     }
     return 90;
+  };
+
+  const getTranslateMeasure = (): number => {
+    if (screenWidth < 768) {
+      return 90;
+    }
+    return 65;
+  };
+
+  const getReadjustedMeasure = (): number => {
+    if (screenWidth >= 1536) {
+      return 8.6;
+    }
+    if (screenWidth >= 1280) {
+      return 6.4;
+    }
+    if (screenWidth >= 1024) {
+      return 5;
+    }
+    if (screenWidth >= 768) {
+      return 6.4;
+    }
+    if (screenWidth >= 640) {
+      return 2.3;
+    }
+    return 0;
   };
 
   useLayoutEffect(() => {
@@ -93,12 +128,17 @@ function ProjectDetails(): ReactElement {
         }
       });
 
+      const firstMeasure = getStartingPosition();
+      const measure = getTranslateMeasure();
+      const subtraction = getReadjustedMeasure();
+      console.log(firstMeasure, measure, subtraction);
+
       sectionsRefs.current.forEach((section) => {
         if (section) {
-          const position = index * (firstTranslate ? 60.3 : 65);
+          const position = index * (firstTranslate ? firstMeasure : measure);
 
           section.style.transform = `translateX(-${
-            position - (!firstTranslate ? 8.6 : 0)
+            position - (!firstTranslate ? subtraction : 0)
           }vw)`;
 
           section.style.transition =
@@ -118,7 +158,7 @@ function ProjectDetails(): ReactElement {
         setFirstTranslate(!firstTranslate);
       }
     }
-  }, [index, imgLength, toggleBaseColors]);
+  }, [index, imgLength, toggleBaseColors, screenWidth]);
 
   useEffect(() => {
     if (currentSession) {
@@ -303,7 +343,7 @@ function ProjectDetails(): ReactElement {
                 <section
                   className={` 
                     w-[68.6vw] left-[6.6vw] top-2/4
-                    flex justify-between absolute
+                    hidden justify-between absolute
                   `}
                 >
                   <button

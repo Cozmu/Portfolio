@@ -81,9 +81,10 @@ export default arrastar;
 
 const medidas = {
   movel: { img: 85, incial: 90, subtracao: 0 },
-  md: { img: 60, incial: 62 },
+  sm: { img: 85, incial: 90, subtracao: 2.3 },
+  md: { img: 60, incial: 62, subtracao: 6.4 },
   lg: { img: 60, inicial: 62.5, subtracao: 5 },
-  xl: { img: 60, incial: '', subtracao: '' },
+  xl: { img: 60, incial: 61.6, subtracao: 6.4 },
   '2xl': { img: 60, incial: 60.3, subtracao: 8.6 },
 };
 

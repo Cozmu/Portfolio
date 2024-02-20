@@ -5,7 +5,7 @@ import filterDate, { type Irequest, type Iproject } from '../service/APIgithub';
 import unzipFile, { type IunzipFile } from '../service/ImagesAPI';
 
 interface IserviceAPI {
-  projects: Irequest[];
+  projectsReq: Irequest[];
   projectsIMG: IunzipFile[];
 }
 
@@ -20,17 +20,17 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
   );
 
   const serviceAPI = async (): Promise<IserviceAPI> => {
-    const projects = await filterDate();
+    const projectsReq = await filterDate();
     const projectsIMG = await unzipFile('', 'projects');
 
-    return { projects, projectsIMG };
+    return { projectsReq, projectsIMG };
   };
 
   useEffect(() => {
     serviceAPI()
-      .then(({ projects, projectsIMG }) => {
+      .then(({ projectsReq, projectsIMG }) => {
         const result: Iproject[] = [];
-        projects.forEach((project) => {
+        projectsReq.forEach((project) => {
           const imgs = projectsIMG.find((img) => {
             return img.fileName === `${project.name}-2`;
           });
