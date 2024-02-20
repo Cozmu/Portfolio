@@ -17,6 +17,7 @@ import {
 } from 'react-icons/md';
 import Loading from '../components/Loading';
 import { TbBrandGithub } from 'react-icons/tb';
+import { PiArrowCircleRightFill, PiArrowCircleLeftFill } from 'react-icons/pi';
 
 interface IprojectDetails extends Irequest {
   img: [
@@ -353,15 +354,29 @@ function ProjectDetails(): ReactElement {
                 >
                   <button
                     onClick={previousSlide}
-                    className={`w-10 h-10 dark:text-slate-50 text-black`}
+                    className={`botao
+                      w-10 h-10 rounded-full
+                      text-slate-50 dark:bg-main-dark shadow-carousel
+                    `}
                   >
-                    <MdOutlineArrowBackIosNew className='w-full h-full' />
+                    {screenWidth >= 768 ? (
+                      <MdOutlineArrowBackIosNew className='w-full h-full' />
+                    ) : (
+                      <PiArrowCircleLeftFill className='w-full h-full' />
+                    )}
                   </button>
                   <button
                     onClick={nextSlide}
-                    className={`w-10 h-10 dark:text-slate-50 text-black`}
+                    className={`botao
+                      w-10 h-10 rounded-full
+                      text-slate-50 dark:bg-main-dark shadow-carousel
+                    `}
                   >
-                    <MdOutlineArrowForwardIos className='w-full h-full' />
+                    {screenWidth >= 768 ? (
+                      <MdOutlineArrowForwardIos className='w-full h-full' />
+                    ) : (
+                      <PiArrowCircleRightFill className='w-full h-full' />
+                    )}
                   </button>
                 </section>
               )}
