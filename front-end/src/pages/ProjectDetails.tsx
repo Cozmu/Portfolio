@@ -131,7 +131,6 @@ function ProjectDetails(): ReactElement {
       const firstMeasure = getStartingPosition();
       const measure = getTranslateMeasure();
       const subtraction = getReadjustedMeasure();
-      console.log(firstMeasure, measure, subtraction);
 
       sectionsRefs.current.forEach((section) => {
         if (section) {
@@ -346,19 +345,21 @@ function ProjectDetails(): ReactElement {
               {img.length > 1 && (
                 <section
                   className={` 
-                    w-[68.6vw] left-[6.6vw] top-2/4
+                    w-[96vw] 
+                    left-[-3vw] 
+                    top-[41%]
                     flex justify-between absolute
                   `}
                 >
                   <button
                     onClick={previousSlide}
-                    className='w-10 h-10 dark:text-slate-50 text-black'
+                    className={`w-10 h-10 dark:text-slate-50 text-black`}
                   >
                     <MdOutlineArrowBackIosNew className='w-full h-full' />
                   </button>
                   <button
                     onClick={nextSlide}
-                    className='w-10 h-10 z-50 dark:text-slate-50 text-black'
+                    className={`w-10 h-10 dark:text-slate-50 text-black`}
                   >
                     <MdOutlineArrowForwardIos className='w-full h-full' />
                   </button>
