@@ -208,17 +208,20 @@ function ProjectDetails(): ReactElement {
   }, [projects, projectName]);
 
   const nextSlide = (): void => {
+    const measure = getTranslateMeasure();
     sectionsRefs.current.forEach((section) => {
       if (section) {
         if (savedPosition === 0) {
-          section.style.transform = `translateX(-${65}vw)`;
-          setSavedPosition(65);
+          section.style.transform = `translateX(-${measure}vw)`;
+          setSavedPosition(measure);
           setIndex(index + 1);
         } else {
           if (sectionsRefs.current.length - 2 > index) {
-            section.style.transform = `translateX(-${savedPosition + 65}vw)`;
+            section.style.transform = `translateX(-${
+              savedPosition + measure
+            }vw)`;
             section.style.transition = 'transform .5s';
-            setSavedPosition(savedPosition + 65);
+            setSavedPosition(savedPosition + measure);
             setIndex(index + 1);
           }
         }
@@ -227,12 +230,13 @@ function ProjectDetails(): ReactElement {
   };
 
   const previousSlide = (): void => {
+    const measure = getTranslateMeasure();
     sectionsRefs.current.forEach((section) => {
       if (section) {
         if (index > 1) {
-          section.style.transform = `translateX(-${savedPosition - 65}vw)`;
+          section.style.transform = `translateX(-${savedPosition - measure}vw)`;
           section.style.transition = 'transform .5s';
-          setSavedPosition(savedPosition - 65);
+          setSavedPosition(savedPosition - measure);
           setIndex(index - 1);
         }
       }
@@ -343,7 +347,7 @@ function ProjectDetails(): ReactElement {
                 <section
                   className={` 
                     w-[68.6vw] left-[6.6vw] top-2/4
-                    hidden justify-between absolute
+                    flex justify-between absolute
                   `}
                 >
                   <button
