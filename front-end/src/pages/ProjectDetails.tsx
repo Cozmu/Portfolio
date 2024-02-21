@@ -354,17 +354,20 @@ function ProjectDetails(): ReactElement {
               {img.length > 1 && (
                 <section
                   className={` 
-                    w-[96vw] max-[345px]:w-[95vw]
-                    left-[-3vw] 
+                    w-[96vw] max-[345px]:w-[95vw] min-[450px]:w-[95.5vw] 
+                    min-[535px]:w-[91.5vw] sm:w-[91vw] min-[690px]:w-[90.5vw]
+                    left-[-3vw] min-[535px]:left-[-1vw] sm:left-2.5 min-[690px]:left-3.5
+
                     top-[45%]
                     flex justify-between absolute
                   `}
                 >
                   <button
                     onClick={previousSlide}
-                    className={`botao rounded-full
+                    className={`${screenWidth < 768 && 'botao'} rounded-full
                       w-10 h-10 max-[345px]:w-9 
-                      text-slate-50 dark:bg-main-dark shadow-carousel
+                      dark:text-slate-50 shadow-carousel md:shadow-none
+                      text-main-dark
                     `}
                   >
                     {screenWidth >= 768 ? (
@@ -375,9 +378,10 @@ function ProjectDetails(): ReactElement {
                   </button>
                   <button
                     onClick={nextSlide}
-                    className={`botao rounded-full
+                    className={`${screenWidth < 768 && 'botao'} rounded-full
                       w-10 h-10 max-[345px]:w-9
-                      text-slate-50 dark:bg-main-dark shadow-carousel
+                      dark:text-slate-50 shadow-carousel md:shadow-none
+                      text-main-dark
                     `}
                   >
                     {screenWidth >= 768 ? (
