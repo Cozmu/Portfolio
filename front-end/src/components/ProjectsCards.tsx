@@ -102,7 +102,7 @@ function ProjectsCards({ home }: IPropsProjectsCards): ReactElement {
               {project.name}
             </h1>
             <p
-              className={`text-sm text-zinc-300 
+              className={`text-sm text-zinc-300
                 tracking-tight text-justify text-ellipsis 
                 overflow-hidden truncate`}
             >
