@@ -276,7 +276,7 @@ function ProjectDetails(): ReactElement {
       <div
         className={`
           pt-64 
-          lg:px-6 md:px-3 2xl:pb-16
+          lg:px-6 md:px-3 2xl:pb-16 pb-20
           lg:mx-10 mx-5
         `}
       >
@@ -297,7 +297,7 @@ function ProjectDetails(): ReactElement {
             </section>
             <div className='relative'>
               <div
-                className={`${img.length > 1 && 'flex overflow-hidden'} py-8 pb-2`}
+                className={`${img.length > 1 && 'flex overflow-hidden'} py-8`}
               >
                 {img.length > 1 ? (
                   clonedGenerate(img).map(({ url, fileName }, index) => (
@@ -325,11 +325,7 @@ function ProjectDetails(): ReactElement {
                     </section>
                   ))
                 ) : (
-                  <section
-                    className={`
-                      relative w-full md:h-[30rem] h-[20rem] shadow-carousel
-                    `}
-                  >
+                  <section className='relative w-full h-[30rem] shadow-carousel'>
                     <img
                       className='w-full h-full rounded-sm object-cover'
                       src={img[0].url}
@@ -341,12 +337,8 @@ function ProjectDetails(): ReactElement {
                         mx-auto w-full
                       `}
                     >
-                      <span className='text-zinc-200 md:text-8xl text-6xl'>
-                        APENAS
-                      </span>
-                      <span className='text-zinc-200 md:text-8xl text-6xl'>
-                        BACK-END
-                      </span>
+                      <span className='text-zinc-200 text-8xl'>APENAS</span>
+                      <span className='text-zinc-200 text-8xl'>BACK-END</span>
                     </div>
                   </section>
                 )}
@@ -356,7 +348,7 @@ function ProjectDetails(): ReactElement {
                   className={` 
                     w-[96vw] 
                     left-[-3vw] 
-                    top-[45%]
+                    top-[41%]
                     flex justify-between absolute
                   `}
                 >
@@ -389,14 +381,14 @@ function ProjectDetails(): ReactElement {
                 </section>
               )}
             </div>
-            <div className='flex gap-2 mb-8 justify-center'>
+            <div className='flex gap-2 mb-5'>
               {img.length > 1 &&
                 img.map((_e, i) => (
                   <nav key={i}>
                     <button
                       ref={(el) => (buttonsRefs.current[i] = el)}
                       id={`${i + 2}`}
-                      className={`w-9 max-[345px]:w-[2rem] h-1`}
+                      className={`w-9 h-1`}
                       onClick={(e) => {
                         onControlButtonClick(e);
                       }}
@@ -404,11 +396,11 @@ function ProjectDetails(): ReactElement {
                   </nav>
                 ))}
             </div>
-            <div className='flex flex-col lg:gap-3 gap-4'>
-              <p className='text-lg w-full dark:text-zinc-300 text-black xl:w-2/3'>
+            <div className='flex flex-col gap-3'>
+              <p className='text-lg dark:text-zinc-300 text-black w-2/3'>
                 {description}
               </p>
-              <ul className='flex lg:gap-3 gap-2 flex-wrap lg:text-sm text-xs'>
+              <ul className='flex gap-3 flex-wrap'>
                 {topics.map((topic, index) => (
                   <li
                     className={`py-[5px] px-1 rounded-sm text-center uppercase
