@@ -354,7 +354,7 @@ function ProjectDetails(): ReactElement {
               {img.length > 1 && (
                 <section
                   className={` 
-                    w-[96vw] 
+                    w-[96vw] max-[345px]:w-[95vw]
                     left-[-3vw] 
                     top-[45%]
                     flex justify-between absolute
@@ -362,8 +362,8 @@ function ProjectDetails(): ReactElement {
                 >
                   <button
                     onClick={previousSlide}
-                    className={`botao
-                      w-10 h-10 rounded-full
+                    className={`botao rounded-full
+                      w-10 h-10 max-[345px]:w-9 
                       text-slate-50 dark:bg-main-dark shadow-carousel
                     `}
                   >
@@ -375,8 +375,8 @@ function ProjectDetails(): ReactElement {
                   </button>
                   <button
                     onClick={nextSlide}
-                    className={`botao
-                      w-10 h-10 rounded-full
+                    className={`botao rounded-full
+                      w-10 h-10 max-[345px]:w-9
                       text-slate-50 dark:bg-main-dark shadow-carousel
                     `}
                   >
