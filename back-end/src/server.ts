@@ -14,15 +14,15 @@ class App {
 
   private config (): void {
     const accessControl: express.RequestHandler = (req, res, next) => {
-      const allowedOrigins = [
-        'http://localhost:5173',
-        'https://portfolio-ten-peach-74.vercel.app/'
-      ]
+      // const allowedOrigins = [
+      //   'http://localhost:5173',
+      //   'https://portfolio-ten-peach-74.vercel.app/'
+      // ]
 
-      const origin = req.headers.origin ?? '' // se nao vir nada vai ser tornar uma string vazia
-      if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin)
-      }
+      // const origin = req.headers.origin ?? '' // se nao vir nada vai ser tornar uma string vazia
+      // if (allowedOrigins.includes(origin)) {
+      // }
+      res.header('Access-Control-Allow-Origin', '*')
       res.header('Access-Control-Allow-Methods', 'GET')
       res.header('Access-Control-Allow-Headers', '*')
       next()
