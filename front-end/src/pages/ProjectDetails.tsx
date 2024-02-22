@@ -376,7 +376,7 @@ function ProjectDetails(): ReactElement {
                     className={`${screenWidth < 768 && 'botao'} rounded-full
                       w-10 h-10 max-[345px]:w-9 
                       dark:text-slate-50 shadow-carousel md:shadow-none
-                      text-main-dark
+                      md:text-main-dark text-slate-50
                     `}
                   >
                     {screenWidth >= 768 ? (
@@ -390,7 +390,7 @@ function ProjectDetails(): ReactElement {
                     className={`${screenWidth < 768 && 'botao'} rounded-full
                       w-10 h-10 max-[345px]:w-9
                       dark:text-slate-50 shadow-carousel md:shadow-none
-                      text-main-dark
+                      md:text-main-dark text-slate-50
                     `}
                   >
                     {screenWidth >= 768 ? (
