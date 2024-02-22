@@ -1,4 +1,4 @@
-import { useEffect, type ReactElement } from 'react';
+import { useEffect, type ReactElement, useState } from 'react';
 import Header from '../components/Header';
 import SocialMedias from '../components/SocialMedias';
 import SkillsCards from '../components/SkillsCards';
@@ -8,9 +8,16 @@ import Experiences from '../components/Experiences';
 import skills from '../service/date';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Loading from '../components/Loading';
 
 function HomePage(): ReactElement {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to('#header-container', {
@@ -29,12 +36,24 @@ function HomePage(): ReactElement {
     };
   }, []);
 
+  if (isLoading) {
+    return (
+      <section
+        className={`flex h-screen mr-5
+          items-center justify-center gap-1
+          `}
+      >
+        <Loading measures={{ W: 'md:w-5 w-3', H: 'md:h-5 h-3' }} />
+      </section>
+    );
+  }
+
   return (
     <>
       <Header home={true} />
       <section
         className={`
-          lg:p-6 p-[4px] py-6 md:p-3 
+          lg:p-6 p-[4px] py-6 md:p-3
           lg:mx-10 mx-5
         `}
       >
@@ -56,7 +75,6 @@ function HomePage(): ReactElement {
             className={`
               lg:text-lg w-full
               `}
-            // md:max-lg:tracking-tight md:max-lg:text-justify md:max-lg:text-ellipsis
           >
             Sou um
             <span className='dark:text-slate-50 text-black'>
@@ -135,10 +153,10 @@ function HomePage(): ReactElement {
       </section>
       <section
         className={`
-          lg:p-6 md:p-3 py-6
+          lg:pb-16 lg:p-6 md:p-3 py-6
           lg:mx-10 mx-5 
           border-t dark:border-zinc-400/20 border-zinc-400/40
-          gap-8 grid xl:grid-cols-2 grid-cols-1 pb-20 
+          gap-8 grid xl:grid-cols-2 grid-cols-1  
         `}
       >
         <Highlights />

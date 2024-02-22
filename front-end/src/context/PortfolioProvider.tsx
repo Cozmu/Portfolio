@@ -13,7 +13,7 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
   const [floatingMenu, setFloatingMenu] = useState(false);
   const [pulseContactCard, setPulseContactCard] = useState<boolean>(false);
   const [contactCard, setContactCard] = useState<React.ReactNode>();
-  const localBaseColors = localStorage.getItem('baseColors'); // implementar
+  const localBaseColors = localStorage.getItem('baseColors');
   const [projects, setProjects] = useState<Iproject[]>();
   const [toggleBaseColors, setToggleBaseColors] = useState<string>(
     localBaseColors ?? 'light',
