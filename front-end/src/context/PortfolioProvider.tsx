@@ -16,7 +16,7 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
   const localBaseColors = localStorage.getItem('baseColors'); // implementar
   const [projects, setProjects] = useState<Iproject[]>();
   const [toggleBaseColors, setToggleBaseColors] = useState<string>(
-    localBaseColors ?? 'dark',
+    localBaseColors ?? 'light',
   );
 
   const serviceAPI = async (): Promise<IserviceAPI> => {
@@ -71,6 +71,7 @@ function PortfolioProvider({ children }: IProps): JSX.Element {
       );
       document.documentElement.classList.add('scrollbar-track-gray-300');
     }
+    localStorage.setItem('baseColors', toggleBaseColors);
   }, [toggleBaseColors]);
 
   const values = useMemo(

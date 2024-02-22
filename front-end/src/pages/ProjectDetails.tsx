@@ -276,12 +276,12 @@ function ProjectDetails(): ReactElement {
       <div
         className={`
           pt-64 
-          lg:px-6 md:px-3 2xl:pb-16
+          lg:px-6 md:px-3 2xl:pb-16 pb-20
           lg:mx-10 mx-5
         `}
       >
         {data?.map(({ id, name, description, img, topics, html_url: url }) => (
-          <section key={id} className='h-screen'>
+          <section key={id}>
             <section className='flex flex-col gap-2'>
               <p className='text-lg dark:text-contrast text-tertiary'>
                 . . /projetos
@@ -352,13 +352,22 @@ function ProjectDetails(): ReactElement {
                 )}
               </div>
               {img.length > 1 && (
-                <section
+                <section // kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
                   className={` 
                     w-[96vw] max-[345px]:w-[95vw] min-[450px]:w-[95.5vw] 
                     min-[535px]:w-[91.5vw] sm:w-[91vw] min-[690px]:w-[90.5vw]
                     left-[-3vw] min-[535px]:left-[-1vw] sm:left-2.5 min-[690px]:left-3.5
+                    
+                    md:w-[70.5vw] min-[820px]:w-[70.2vw] min-[970px]:w-[69.5vw]
+                    min-[1200px]:w-[68.5vw] min-[1500px]:w-[67vw] 2xl:w-[68vw]
+                    min-[1750px]:w-[67.5vw] min-[2240px]:w-[66.5vw]
+                    min-[1910px]:w-[67vw] min-[1440px]:w-[66.6vw] min-[2560px]:w-[67vw]
+                    md:left-7 min-[820px]:left-8 min-[970px]:left-10 lg:left-7
+                    min-[1200px]:left-10 xl:left-14 min-[1500px]:left-20
+                    2xl:left-28 min-[1750px]:left-32 min-[2240px]:left-44
+                    min-[1910px]:left-36 min-[1440px]:left-20 min-[2560px]:left-48
 
-                    top-[45%]
+                    md:top-[50%] top-[45%] 
                     flex justify-between absolute
                   `}
                 >
