@@ -16,7 +16,7 @@ class App {
     const accessControl: express.RequestHandler = (req, res, next) => {
       const allowedOrigins = [
         'http://localhost:5173',
-        'http://ex.com'
+        'https://portfolio-ten-peach-74.vercel.app/'
       ]
 
       const origin = req.headers.origin ?? '' // se nao vir nada vai ser tornar uma string vazia
