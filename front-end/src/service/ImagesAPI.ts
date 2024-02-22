@@ -22,7 +22,7 @@ const unzipFile = async (
   projectName: string | undefined,
   router: string,
 ): Promise<IunzipFile[]> => {
-  const urlRost = 'http://localhost:8903';
+  const urlRost = 'https://ap-portfolio-uej5.onrender.com'; // http://localhost:8903
   const zipData = await fetchZipFile(
     `${urlRost}/images/${
       router === 'project-details' ? `${router}/${projectName}` : router
