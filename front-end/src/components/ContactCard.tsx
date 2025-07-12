@@ -90,7 +90,7 @@ function ContactCard(): ReactElement {
         )
         .then(
           (response) => {
-            console.log('STATUS', response.status);
+            // console.log('STATUS', response.status);
             setForm({ name: '', email: '', message: '' });
             setIsLoading(false);
             setIsSend(true);
