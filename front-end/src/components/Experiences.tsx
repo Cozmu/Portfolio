@@ -39,7 +39,7 @@ function Experiences(): ReactElement {
       </h3>
       <div className='w-full flex items-center justify-center h-60'>
         <p
-          ref={elementRef}
+          // ref={elementRef}
           className={`w-[9ch] whitespace-nowrap overflow-hidden 
             text-center text-lg border-r-2 dark:border-contrast border-tertiary`}
         >
