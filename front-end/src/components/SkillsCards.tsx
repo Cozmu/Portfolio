@@ -9,10 +9,16 @@ function SkillsCards(): ReactElement {
       `}
     >
       {skills.map(({ id, name, time }) => {
+        let number = '';
         const today = new Date();
         const date = new Date(time);
         const difference = today.getTime() - date.getTime();
         const monthus = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
+        if (monthus > 12) {
+          const years = monthus / 12;
+          number = years.toString().split('.')[0];
+        }
+
         return (
           <section
             className={`grid grid-rows-2 grid-cols-2 dark:bg-zinc-900
@@ -27,7 +33,9 @@ function SkillsCards(): ReactElement {
                 name === 'Express' ? 'original' : 'plain'
               } text-end`}
             />
-            <p className='col-span-2'>{`${monthus} meses de experiência`}</p>
+            <p className='col-span-2'>
+              {`${number} ${monthus > 12 ? 'anos' : 'meses'} de experiência`}
+            </p>
           </section>
         );
       })}
