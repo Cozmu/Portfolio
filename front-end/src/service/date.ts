@@ -13,66 +13,75 @@ interface Icertificates {
   link: string;
 }
 
+interface Iexperience {
+  id: number;
+  enterprise: string;
+  position: string;
+  responsibilities: string[];
+  startTime: string;
+  endTime?: string;
+}
+
 const skills: Iskills[] = [
   {
     id: 1,
     name: 'JavaScript',
-    time: 'July 21,2022',
+    time: '2022-07-21',
   },
   {
     id: 2,
     name: 'TypeScript',
-    time: 'Marth 9,2023',
+    time: '2023-03-09',
   },
   {
     id: 3,
     name: 'React',
-    time: 'September 20,2022',
+    time: '2022-09-20',
   },
   {
     id: 4,
     name: 'Redux',
-    time: 'Octuber 24,2022',
+    time: '2022-10-24',
   },
   {
     id: 5,
     name: 'NodeJS',
-    time: 'January 30,2023',
+    time: '2023-01-30',
   },
   {
     id: 6,
     name: 'Express',
-    time: 'January 30,2023',
+    time: '2023-01-30',
   },
   {
     id: 7,
     name: 'MySQL',
-    time: 'February 8,2023',
+    time: '2023-02-08',
   },
   {
     id: 8,
     name: 'Sequelize',
-    time: 'February 28,2023',
+    time: '2023-02-28',
   },
   {
     id: 9,
     name: 'MongoDB',
-    time: 'April 11,2023',
+    time: '2023-04-11',
   },
   {
     id: 10,
     name: 'Jest',
-    time: 'September 5,2022',
+    time: '2022-09-05',
   },
   {
     id: 11,
     name: 'Docker',
-    time: 'January 12,2023',
+    time: '2023-01-12',
   },
   {
     id: 12,
     name: 'TailwindCss',
-    time: 'September 28,2023',
+    time: '2023-09-28',
   },
 ];
 
@@ -161,5 +170,15 @@ const certificates: Icertificates[] = [
   },
 ];
 
-export { certificates };
+const experiences: Iexperience[] = [
+  {
+    id: 1,
+    enterprise: 'Uniao Transportes e Serviços LTDA',
+    position: 'Auxiliar Administrativo',
+    responsibilities: [''],
+    startTime: '2024-05-02',
+  },
+];
+
+export { certificates, experiences, type Iexperience };
 export default skills;

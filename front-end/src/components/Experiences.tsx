@@ -1,9 +1,12 @@
-import { useEffect, type ReactElement, useRef } from 'react';
+import { useEffect, type ReactElement, useRef, useState } from 'react';
+import { experiences, type Iexperience } from '../service/date';
 
 function Experiences(): ReactElement {
   const elementRef = useRef(null);
+  const [currentExperience, setCurrentExperience] = useState<Iexperience[]>([]);
 
   useEffect(() => {
+    setCurrentExperience(experiences);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -37,15 +40,27 @@ function Experiences(): ReactElement {
       <h3 className='text-black dark:text-white lg:text-3xl text-2xl'>
         Experiências Profissionais
       </h3>
-      <div className='w-full flex items-center justify-center h-60'>
-        <p
-          // ref={elementRef}
-          className={`w-[9ch] whitespace-nowrap overflow-hidden 
+      {currentExperience.length >= 1 ? (
+        <section className='w-full flex items-center justify-center h-60'>
+          {currentExperience.map((experience) => (
+            <div key={experience.id}>
+              <h4 className='text-lg dark:text-contrast text-contrast'>
+                {experience.endTime}
+              </h4>
+            </div>
+          ))}
+        </section>
+      ) : (
+        <div className='w-full flex items-center justify-center h-60'>
+          <p
+            ref={elementRef}
+            className={`w-[9ch] whitespace-nowrap overflow-hidden 
             text-center text-lg border-r-2 dark:border-contrast border-tertiary`}
-        >
-          Em breve...
-        </p>
-      </div>
+          >
+            Em breve...
+          </p>
+        </div>
+      )}
     </div>
   );
 }
