@@ -180,5 +180,20 @@ const experiences: Iexperience[] = [
   },
 ];
 
-export { certificates, experiences, type Iexperience };
+const mesesPt = [
+  'janeiro',
+  'fevereiro',
+  'março',
+  'abril',
+  'maio',
+  'junho',
+  'julho',
+  'agosto',
+  'setembro',
+  'outubro',
+  'novembro',
+  'dezembro',
+];
+
+export { certificates, experiences, mesesPt, type Iexperience };
 export default skills;

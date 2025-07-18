@@ -41,12 +41,16 @@ function Experiences(): ReactElement {
         Experiências Profissionais
       </h3>
       {currentExperience.length >= 1 ? (
-        <section className='w-full flex items-center justify-center h-60'>
+        <section
+          className={`w-full flex flex-col h-60 px-5 py-2
+            before:content-[''] before:absolute before:top-1
+            before:dark:bg-zinc-500 before:bg-zinc-400/60
+            before:w-[1px] before:h-full before:md:left-6 before:left-2
+        `}
+        >
           {currentExperience.map((experience) => (
-            <div key={experience.id}>
-              <h4 className='text-lg dark:text-contrast text-contrast'>
-                {experience.endTime}
-              </h4>
+            <div key={experience.id} className='w-full'>
+              <h4 className='text-lg'>{experience.enterprise}</h4>
             </div>
           ))}
         </section>

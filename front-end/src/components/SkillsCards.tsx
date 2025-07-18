@@ -27,7 +27,7 @@ function SkillsCards(): ReactElement {
               } text-end`}
             />
             <p className='col-span-2'>
-              {`${date[0]} ${date[1] > 12 ? 'anos' : 'meses'} de experiência`}
+              {`${date[0][0]} ${date[1] > 12 ? 'anos' : 'meses'} de experiência`}
             </p>
           </section>
         );
