@@ -40,7 +40,7 @@ function Experiences(): ReactElement {
       <h3 className='text-black dark:text-white lg:text-3xl text-2xl'>
         Experiências Profissionais
       </h3>
-      {currentExperience.length >= 1 ? (
+      {currentExperience.length < 0 ? ( // alterar linha para desenvolver
         <section
           className={`w-full flex flex-col h-60 px-5 py-2
             before:content-[''] before:absolute before:top-1
