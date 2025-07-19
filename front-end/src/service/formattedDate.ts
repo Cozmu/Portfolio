@@ -1,5 +1,5 @@
 const formattedDate = (time: string): [string[], number] => {
-  let number: string[] | number = [''];
+  let number: string[] = [''];
   const today = new Date();
   const date = new Date(time);
   const difference = today.getTime() - date.getTime();
