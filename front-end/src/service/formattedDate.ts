@@ -1,16 +1,21 @@
-const formattedDate = (time: string): [string[], number] => {
-  let number: string[] = [''];
-  const today = new Date();
-  const date = new Date(time);
-  const difference = today.getTime() - date.getTime();
-  const monthus = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
-  if (monthus > 12) {
-    const years = monthus / 12;
-    number = years.toString().split('.');
-  } else {
-    number = [monthus.toString()];
+const formattedDate = (
+  startTime: string,
+  endTime?: string,
+): { years: number; months: number } => {
+  const initialDate = new Date(startTime);
+  const finalDate = endTime ? new Date(endTime) : new Date();
+
+  let years = finalDate.getFullYear() - initialDate.getFullYear();
+  let months = finalDate.getMonth() - initialDate.getMonth();
+
+  if (months < 0) {
+    years--;
+    months += 12;
   }
-  return [number, monthus];
+
+  console.log(`Anos: ${years}, Meses: ${months}`);
+
+  return { years, months };
 };
 
 export default formattedDate;

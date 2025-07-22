@@ -1,5 +1,6 @@
 import { useEffect, type ReactElement, useRef, useState } from 'react';
 import { experiences, type Iexperience, mesesPt } from '../service/date';
+import formattedDate from '../service/formattedDate';
 
 function Experiences(): ReactElement {
   const elementRef = useRef(null);
@@ -50,7 +51,7 @@ function Experiences(): ReactElement {
             className={`w-full flex flex-col h-60 px-5 py-2
             before:content-[''] before:absolute before:top-5
             before:dark:bg-zinc-500 before:bg-zinc-400/60
-            before:w-[1px] before:h-[80%] before:md:left-6 before:left-2
+            before:w-[1px] before:h-[60%] before:md:left-6 before:left-2
         `}
           >
             {currentExperience.map((experience) => (
@@ -68,13 +69,53 @@ function Experiences(): ReactElement {
                 <h4 className='text-xl text-black dark:text-white'>
                   {`${experience.position} - ${experience.enterprise}`}
                 </h4>
-                <ul className='flex'>
+                <ul
+                  className={`
+                      flex gap-1 border-l-2 dark:text-zinc-600 dark:border-zinc-400/30
+                      pl-3 border-zinc-300 text-zinc-400
+                    `}
+                >
                   <li>
                     <span>{`${getMonthName(experience.startTime.split('-')[1])} `}</span>
                     <span>{`${experience.startTime.split('-')[0]}`}</span>
                   </li>
-                  <li></li>
-                  <li></li>
+                  <span>•</span>
+                  <li>
+                    {experience.endTime ? (
+                      <>
+                        <span>
+                          {`${
+                            // redundante
+                            experience.endTime &&
+                            getMonthName(experience.endTime?.split('-')[1])
+                          }`}
+                        </span>
+                        <span>{` ${experience.endTime?.split('-')[0]}`}</span>
+                      </>
+                    ) : (
+                      <span>Ate o momento</span>
+                    )}
+                  </li>
+                  <span>•</span>
+                  <li>
+                    <span>
+                      {`(${formattedDate(experience.startTime).years} ano `}
+                    </span>
+                    <span>e</span>
+                    <span>
+                      {` ${
+                        formattedDate(experience.startTime, experience.endTime)
+                          .months
+                      } meses)`}
+                    </span>
+                  </li>
+                </ul>
+                <ul className='mt-2'>
+                  {experience.responsibilities.map((respon: string) => (
+                    <li key={respon} className=''>
+                      {`- ${respon}`}
+                    </li>
+                  ))}
                 </ul>
               </div>
             ))}

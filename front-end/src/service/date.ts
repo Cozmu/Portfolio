@@ -83,6 +83,11 @@ const skills: Iskills[] = [
     name: 'TailwindCss',
     time: '2023-09-28',
   },
+  {
+    id: 13,
+    name: 'TailwindCss',
+    time: '2025-01-30',
+  },
 ];
 
 const certificates: Icertificates[] = [
@@ -175,8 +180,13 @@ const experiences: Iexperience[] = [
     id: 1,
     enterprise: 'Uniao Transportes e Serviços LTDA',
     position: 'Auxiliar Administrativo',
-    responsibilities: [''],
+    responsibilities: [
+      'Manifesto eletrônico de documentos fiscais (CT-e).',
+      'Atendimento ao cliente.',
+      'Conhecimentos de transporte (MDF-e).',
+    ],
     startTime: '2024-05-02',
+    endTime: '',
   },
 ];
 
